@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         在ASP的IOC实例化对象时加入自定义参数
+        
+    </title>
+
+        
+            <meta property="og:title" content="在ASP的IOC实例化对象时加入自定义参数" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="解决依赖注入时需要输入自定义参数的问题" />
+         
+     
+
+     
+         
+             <meta name="description" content="解决依赖注入时需要输入自定义参数的问题" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        在ASP的IOC实例化对象时加入自定义参数<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-12-08</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-12</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/c/" class="post-tag">C#</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/she-ji-mo-shi/" class="post-tag">设计模式</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#相关API">相关API</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#实现方式">实现方式</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#工厂类方式">工厂类方式</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#工厂代码">工厂代码</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#使用方式">使用方式</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#拓展方法方式">拓展方法方式</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#拓展方法">拓展方法</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#使用方式-1">使用方式</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在ASP的IOC实例化对象时加入自定义参数/#总结">总结</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  在使用IOC时我们能十分方便的去实例化一个对象而不用考虑其依赖的实例化方式，但有时候我们可能需要对依赖进行一些定制化的操作，这时候实例化依赖时就需要<strong>运行时</strong>才能确定具体的参数了，但在IOC整体的流程之中并没有一个地方供我们去输入这个参数，于是我们可以考虑设计一个工厂类来实现这个需求。</p>
+<h2 id="相关API">相关API</h2>
+<ol>
+<li>ActivatorUtilities.CreateInstance 用于配合IServiceProvider实例化对象</li>
+<li><a href="https://blog.hikari.cyou/archives/%E5%9C%A8asp%E4%B8%AD%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Eioc%E7%9A%84%E5%8D%95%E4%BE%8B%E7%B3%BB%E7%BB%9F">在ASP中制作一个基于IOC的单例系统</a></li>
+</ol>
+<h2 id="实现方式">实现方式</h2>
+<h3 id="工厂类方式">工厂类方式</h3>
+<h4 id="工厂代码">工厂代码</h4>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">Message</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-support z-type z-cs">ILogger</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-variable z-other z-member z-cs">logger</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-member z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">Message</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">ILogger</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-variable z-parameter z-cs">logger</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">logger</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">logger</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">msg</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetMsg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">logger</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">msg</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">Singlonton</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">MessageFactory</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-storage z-modifier z-cs">readonly</span> <span class="z-support z-type z-cs">IServiceProvider</span> <span class="z-variable z-other z-member z-cs">provider</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">MessageFactory</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">IServiceProvider</span> <span class="z-variable z-parameter z-cs">provider</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">provider</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">provider</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">Message</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">CreateInstance</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">ActivatorUtilities</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CreateInstance</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">provider</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h4 id="使用方式">使用方式</h4>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">ApiController</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">Route</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>api/v1/[controller]<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">MessageController</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">ControllerBase</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-support z-type z-cs">MessageFactory</span> <span class="z-variable z-other z-member z-cs">factory</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">MessageController</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">MessageFactory</span> <span class="z-variable z-parameter z-cs">factory</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">factory</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">factory</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">HttpGet</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>msg<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetMessage</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">factory</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CreateInstance</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetMsg</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h3 id="拓展方法方式">拓展方法方式</h3>
+<h4 id="拓展方法">拓展方法</h4>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">Message</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-support z-type z-cs">ILogger</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-variable z-other z-member z-cs">logger</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-member z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">Message</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">ILogger</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-variable z-parameter z-cs">logger</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">logger</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">logger</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">msg</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetMsg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">logger</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">msg</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">MessageFactory</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-support z-type z-cs">Message</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">CreateMessageInstance</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-modifier z-parameter z-cs">this</span> <span class="z-support z-type z-cs">IServiceProvider</span> <span class="z-variable z-parameter z-cs">provider</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">ActivatorUtilities</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CreateMessageInstance</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Message</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">provider</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h4 id="使用方式-1">使用方式</h4>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">ApiController</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">Route</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>api/v1/[controller]<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">MessageController</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">ControllerBase</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-support z-type z-cs">IServiceProvider</span> <span class="z-variable z-other z-member z-cs">provider</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">MessageController</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">IServiceProvider</span> <span class="z-variable z-parameter z-cs">provider</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">provider</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">provider</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">HttpGet</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>msg<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetMessage</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">msg</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">provider</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CreateMessageInstance</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">msg</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetMsg</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h3 id="总结">总结</h3>
+<p>  虽然两种方式均可以实现该功能，但个人还是偏向于工厂类来实现，因为当使用工厂类时将会注入一个更为明确的依赖，而不像拓展方法中注入的IServiceProvider一样，毕竟当拿到IServiceProvider时就获得了访问所有对象的能力。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Linux性能监控
+        
+    </title>
+
+        
+            <meta property="og:title" content="Linux性能监控" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="关于Linux下用于查看性能的软件的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="关于Linux下用于查看性能的软件的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Linux性能监控<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-04-02</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/gong-ju/" class="post-tag">工具</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/netdata/" class="post-tag">Netdata</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#命令行工具">命令行工具</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#Netdata">Netdata</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#通过Docker_Compose安装">通过Docker Compose安装</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#浏览">浏览</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Linux性能监控/#浏览的方案有两种:">浏览的方案有两种:</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Linux性能监控/#1._使用诸如Nginx或者Caddy之类的服务端进行反向代理以此来使用Netdata">1. 使用诸如Nginx或者Caddy之类的服务端进行反向代理以此来使用Netdata</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Linux性能监控/#2._在Docker部署时链接Netdata官方提供的服务，通过官网来查看详细数据">2. 在Docker部署时链接Netdata官方提供的服务，通过官网来查看详细数据</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#IOSP">IOSP</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Linux性能监控/#参考资料">参考资料</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>今天在弄Drone的时候发现发现性能十分不稳定，同一个任务运行时间<strong>2-10</strong>分钟不等，差距实在是太大了，于是想看看问题出在哪里，找了一圈查看性能的工具所以在这记录一下。</p>
+<h2 id="命令行工具">命令行工具</h2>
+<ol>
+<li><code>top</code> 自带工具，用来看看CPU和MEM</li>
+<li><code>iotop</code> 用来查看当前<strong>IO</strong>占用的工具</li>
+<li><code>free</code> 查看内存统计信息</li>
+<li>查看进程swap使用情况 <code>smem -k -s swap</code></li>
+</ol>
+<h2 id="Netdata">Netdata</h2>
+<p>命令行工具通常也就是拿来看看当前情况如何，有时候想看看详细的数据统计或图表，这时候可以安装<strong>Netdata</strong>来完成该需求，<strong>Netdata</strong>是一个开源的方案，而且提供了前端界面用起来十分的方便，统计的数据也很详细。</p>
+<h3 id="通过Docker_Compose安装">通过<strong>Docker Compose</strong>安装</h3>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">version</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>3<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">services</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">netdata</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">image</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">netdata/netdata</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">container_name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">netdata</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">hostname</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">example.com</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> set to fqdn of host
+</span></span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">ports</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">19999:19999</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restart</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">unless-stopped</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">cap_add</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">SYS_PTRACE</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">security_opt</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">apparmor:unconfined</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">volumes</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">netdataconfig:/etc/netdata</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">netdatalib:/var/lib/netdata</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">netdatacache:/var/cache/netdata</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">/etc/passwd:/host/etc/passwd:ro</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">/etc/group:/host/etc/group:ro</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">/proc:/host/proc:ro</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">/sys:/host/sys:ro</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">/etc/os-release:/host/etc/os-release:ro</span>
+</span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">volumes</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">netdataconfig</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">netdatalib</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">netdatacache</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span></code></pre>
+<h3 id="浏览">浏览</h3>
+<h4 id="浏览的方案有两种:">浏览的方案有两种:</h4>
+<h4 id="1._使用诸如Nginx或者Caddy之类的服务端进行反向代理以此来使用Netdata">1. 使用诸如Nginx或者Caddy之类的服务端进行反向代理以此来使用Netdata</h4>
+<h4 id="2._在Docker部署时链接Netdata官方提供的服务，通过官网来查看详细数据">2. 在Docker部署时链接Netdata官方提供的服务，通过官网来查看详细数据</h4>
+<ol>
+<li>登录 https://app.netdata.cloud</li>
+<li>注册并登录后找到<strong>Nodes</strong>相关选项</li>
+<li>选中<strong>Nodes</strong>选项后找到<strong>Docker</strong>相关的选项，复制里面提供的<strong>Docker</strong>代码在本机运行即可。</li>
+<li>安装完成之后在该网站就能看到服务器的性能数据了。</li>
+</ol>
+<h3 id="IOSP">IOSP</h3>
+<p>IOSP意为磁盘每秒的读写次数，有些VPS厂家是会锁这个值，之前购买VPS的时候没怎么关注过这个性能指标，但最近使用Cloudcone的时候发现指令执行起来出奇的慢，最后使用<code>https://github.com/masonr/yet-another-bench-script</code>这个脚本跑了一下发现在4k block的情况下IOSP这个指标相较另一台服务器来说有巨大的差异(Cloudcone 100+,Servarica 15k+),于是出现一个很有意思的事情发生Servarica测出来的读写速度没Cloudcone快，但实际体验来看Servarica明显好很多，执行各种任务都没有明显延迟，而Cloudcone则是每次等几秒甚至数分钟才能有反应。在执行指令时Cloudcone的iowait会达到100%，而Servarica则基本为0。这就有点像是拿货轮送外卖的形象了，虽然读写大，但是每次间隔太长了。</p>
+<h3 id="参考资料">参考资料</h3>
+<ol>
+<li><a href="https://learn.netdata.cloud/docs/agent/packaging/docker">Learn Netdata</a></li>
+<li><a href="https://www.open-open.com/lib/view/open1418970861542.html">25 个 Linux 性能监控工具</a></li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

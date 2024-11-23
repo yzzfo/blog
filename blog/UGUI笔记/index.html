@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         UGUI笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="UGUI笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="UGUI笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="UGUI笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        UGUI笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-04-12</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/UGUI笔记/#合批操作">合批操作</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="合批操作">合批操作</h2>
+<ol>
+<li>
+<p>添加图集</p>
+</li>
+<li>
+<p>设计 Prefab 时尽量保持层级一直，如下图。在该图中通过 SelectEffect 的 active 控制选择特效，这样将会导致该 Prefab 自 SelectEffect 起后续节点的层级将与其他的该 Prefab 实例不一致，从而导致合批失败，正确做法是将 SelectEffect 移到最后一个，这样便可保证前面的元素层级保证一致。
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/uguinote1.png" alt="" /></p>
+</li>
+<li>
+<p>注意元素大小，如下图。一个 Img 和 Text 不重叠，一个 Img 和 Text 重叠，这也导致层级发生改变，进而导致 Text 无法合批。
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/uguinote2.png" alt="" /></p>
+</li>
+<li>
+<p>总的来说，在 UGUI 合批时可以依照如下方式判断。
+如果有三个实例化对象，InsA, InsB, InsC，若 Backgroud 和 ContentImg 在同一个图集中，则这六个元素将使用一个 drawcall，对于 Text，若重叠方式都相同，也一个 drawcall，若不同则根据有几种不同的重叠层级确定 drawcall。</p>
+</li>
+</ol>
+<table><thead><tr><th style="text-align: center">InsA</th><th style="text-align: center">InsB</th><th style="text-align: center">InsC</th></tr></thead><tbody>
+<tr><td style="text-align: center">Backgroud</td><td style="text-align: center">Backgroud</td><td style="text-align: center">Backgroud</td></tr>
+<tr><td style="text-align: center">ContentImg</td><td style="text-align: center">ContentImg</td><td style="text-align: center">ContentImg</td></tr>
+<tr><td style="text-align: center">Text</td><td style="text-align: center">Text</td><td style="text-align: center">Text</td></tr>
+</tbody></table>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Golang编译
+        
+    </title>
+
+        
+            <meta property="og:title" content="Golang编译" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Golang编译相关的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Golang编译相关的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Golang编译<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-08-04</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/golang/" class="post-tag">Golang</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Golang编译/#Golang编译">Golang编译</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang编译/#交叉编译">交叉编译</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang编译/#Dll导出">Dll导出</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang编译/#Build的一些参数">Build的一些参数</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="Golang编译">Golang编译</h1>
+<h2 id="交叉编译"><a href="https://stackoverflow.com/questions/20829155/how-to-cross-compile-from-windows-to-linux">交叉编译</a></h2>
+<ol>
+<li>设置导出的平台<code>export GOOS="linux"</code></li>
+<li>设置导出的架构<code>export GOARCH="amd64"</code></li>
+<li>go build -o 导出的名字 要编译的文件<code>go build -o tg_bot.exe ./</code></li>
+<li><a href="https://crinte.ga/2021/03/24/golang%e7%ac%94%e8%ae%b0/#rsrc">Win下导出程序</a></li>
+</ol>
+<h2 id="Dll导出">Dll导出</h2>
+<ol>
+<li>GCC安装</li>
+</ol>
+<blockquote>
+<blockquote>
+<p>在win下有Mingw，MSys2，<strong>tdm-gcc</strong>这几种方法安装，前两种由于网络以及自带库的一些问题安装起来较为费事，所以推荐采用第三种方式进行安装，安装即可在Golang中使用了</p>
+</blockquote>
+</blockquote>
+<ol start="2">
+<li>导出指令<br />
+<code>go build --buildmode=c-shared -o xxx.dll</code></li>
+<li><a href="https://blog.csdn.net/qq_30549833/article/details/86157744">代码事项</a></li>
+</ol>
+<pre data-lang="go" class="language-go z-code"><code class="language-go" data-lang="go"><span class="z-source z-go">  <span class="z-keyword z-other z-package z-go">package</span> <span class="z-variable z-other z-go">main</span>
+</span><span class="z-source z-go">
+</span><span class="z-source z-go">  <span class="z-keyword z-other z-import z-go">import</span> <span class="z-string z-quoted z-double z-go"><span class="z-punctuation z-definition z-string z-begin z-go">&quot;</span>C<span class="z-punctuation z-definition z-string z-end z-go">&quot;</span></span>      <span class="z-comment z-line z-go"><span class="z-punctuation z-definition z-comment z-go">//</span>必须要加进去
+</span></span><span class="z-source z-go">  <span class="z-keyword z-other z-import z-go">import</span> <span class="z-string z-quoted z-double z-go"><span class="z-punctuation z-definition z-string z-begin z-go">&quot;</span>fmt<span class="z-punctuation z-definition z-string z-end z-go">&quot;</span></span>
+</span><span class="z-source z-go">
+</span><span class="z-source z-go">  <span class="z-comment z-line z-go"><span class="z-punctuation z-definition z-comment z-go">//</span>export PrintBye   //固定格式，标记这个方法要导出
+</span></span><span class="z-source z-go">  <span class="z-storage z-type z-keyword z-function z-go">func</span> <span class="z-entity z-name z-function z-go">PrintBye</span><span class="z-punctuation z-section z-parens z-begin z-go">(</span><span class="z-punctuation z-section z-parens z-end z-go">)</span> <span class="z-meta z-block z-go"><span class="z-punctuation z-section z-braces z-begin z-go">{</span>
+</span></span><span class="z-source z-go"><span class="z-meta z-block z-go">      <span class="z-variable z-other z-go">fmt</span><span class="z-punctuation z-accessor z-dot z-go">.</span><span class="z-variable z-function z-go">Println</span><span class="z-punctuation z-section z-parens z-begin z-go">(</span><span class="z-string z-quoted z-double z-go"><span class="z-punctuation z-definition z-string z-begin z-go">&quot;</span>From DLL: Bye!<span class="z-punctuation z-definition z-string z-end z-go">&quot;</span></span><span class="z-punctuation z-section z-parens z-end z-go">)</span>
+</span></span><span class="z-source z-go"><span class="z-meta z-block z-go">  <span class="z-punctuation z-section z-braces z-end z-go">}</span></span>
+</span><span class="z-source z-go">
+</span><span class="z-source z-go">  <span class="z-comment z-line z-go"><span class="z-punctuation z-definition z-comment z-go">//</span>export Sum    //固定格式，标记这个方法要导出
+</span></span><span class="z-source z-go">  <span class="z-storage z-type z-keyword z-function z-go">func</span> <span class="z-entity z-name z-function z-go">Sum</span><span class="z-punctuation z-section z-parens z-begin z-go">(</span><span class="z-variable z-parameter z-go">a</span> <span class="z-storage z-type z-go"><span class="z-support z-type z-builtin z-go">int</span></span><span class="z-punctuation z-separator z-go">,</span> <span class="z-variable z-parameter z-go">b</span> <span class="z-storage z-type z-go"><span class="z-support z-type z-builtin z-go">int</span></span><span class="z-punctuation z-section z-parens z-end z-go">)</span> <span class="z-storage z-type z-go"><span class="z-support z-type z-builtin z-go">int</span></span> <span class="z-meta z-block z-go"><span class="z-punctuation z-section z-braces z-begin z-go">{</span>
+</span></span><span class="z-source z-go"><span class="z-meta z-block z-go">      <span class="z-keyword z-control z-go">return</span> <span class="z-variable z-other z-go">a</span> <span class="z-keyword z-operator z-go">+</span> <span class="z-variable z-other z-go">b</span><span class="z-punctuation z-terminator z-go">;</span>
+</span></span><span class="z-source z-go"><span class="z-meta z-block z-go">  <span class="z-punctuation z-section z-braces z-end z-go">}</span></span>
+</span><span class="z-source z-go">
+</span><span class="z-source z-go">  <span class="z-storage z-type z-keyword z-function z-go">func</span> <span class="z-entity z-name z-function z-go">main</span><span class="z-punctuation z-section z-parens z-begin z-go">(</span><span class="z-punctuation z-section z-parens z-end z-go">)</span> <span class="z-meta z-block z-go"><span class="z-punctuation z-section z-braces z-begin z-go">{</span>
+</span></span><span class="z-source z-go"><span class="z-meta z-block z-go">      <span class="z-comment z-line z-go"><span class="z-punctuation z-definition z-comment z-go">//</span> Need a main function to make CGO compile package as C shared library
+</span></span></span><span class="z-source z-go"><span class="z-meta z-block z-go">  <span class="z-punctuation z-section z-braces z-end z-go">}</span></span>
+</span></code></pre>
+<ol start="3">
+<li>C#中使用Dll</li>
+</ol>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>In Golang 
+</span></span><span class="z-source z-cs"> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>func XmlToJson(c C.Char*) C.Char*
+</span></span><span class="z-source z-cs">
+</span><span class="z-source z-cs"> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>In CSharp
+</span></span><span class="z-source z-cs"> <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">DllImport</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>json2struct<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-parameter z-cs">CallingConvention</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">CallingConvention</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Cdecl</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"> <span class="z-storage z-modifier z-cs">static</span> <span class="z-support z-type z-cs">extern</span> <span class="z-variable z-other z-cs">IntPtr</span> <span class="z-variable z-other z-cs">XmlToJson</span>(<span class="z-variable z-other z-cs">byte</span>[<span class="z-invalid z-illegal z-stray z-brace z-cs">]</span> <span class="z-variable z-other z-cs">xml</span><span class="z-invalid z-illegal z-stray z-brace z-cs">)</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>容易出错的地方
+</span></span><span class="z-source z-cs"> <span class="z-support z-type z-cs">传入的byte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-variable z-other z-cs">xml需要按照C的形式去构造</span>，<span class="z-variable z-other z-cs">即最后要加一个</span>\0<span class="z-variable z-other z-cs">元素到byte尾部</span>，<span class="z-variable z-other z-cs">C</span>#<span class="z-variable z-other z-cs">默认的转码都是没有</span>\0<span class="z-variable z-other z-cs">的</span><span class="z-punctuation z-separator z-variables z-cs">,</span><span class="z-variable z-other z-cs">会导致在C解析的过程中字符串过多的进行解析</span>
+</span><span class="z-source z-cs"> <span class="z-variable z-other z-cs">同样的读取时也是读到</span>\0<span class="z-variable z-other z-cs">就停止</span>
+</span></code></pre>
+<h2 id="Build的一些参数">Build的一些参数</h2>
+<ol>
+<li>-ldflags 'flag list'<br />
+'-s -w': 压缩编译后的体积<br />
+-s: 去掉符号表<br />
+-w: 去掉调试信息，不能gdb调试了</li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

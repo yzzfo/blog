@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Mono.Cecil
+        
+    </title>
+
+        
+            <meta property="og:title" content="Mono.Cecil" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Mono.Cecil的一些使用笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Mono.Cecil的一些使用笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Mono.Cecil<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-07-29</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/c/" class="post-tag">C#</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/il/" class="post-tag">IL</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/MonoCecil/#Mono.Cecil的使用">Mono.Cecil的使用</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/MonoCecil/#Mono.Cecil中的结构">Mono.Cecil中的结构</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/MonoCecil/#Wiki">Wiki</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/MonoCecil/#Definition和Reference">Definition和Reference</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="Mono.Cecil的使用">Mono.Cecil的使用</h1>
+<p>最近看了下ILRuntime以及基于ILRuntime实现的XIL源码，发现他们核心都在于使用了Mono.Cecil，所以去看了看Mono.Cecil的使用，Mono.Cecil是用于在C#中实现AOP编程的一个库，AOP有两种实现方式，一种是<strong>预编译</strong>另一种是<strong>运行时</strong>，Mono.Cecil属于<strong>预编译</strong>类型，通俗的来说就是<strong>直接修改Dll</strong>文件达到修改函数行为的效果。</p>
+<h2 id="Mono.Cecil中的结构">Mono.Cecil中的结构</h2>
+<p>Assembly</p>
+<ul>
+<li>
+<p>Moduls</p>
+<ul>
+<li>
+<p>Types</p>
+<ul>
+<li>Fields</li>
+<li>Methods</li>
+<li>Properties</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Wiki">Wiki</h4>
+<p><a href="https://github.com/mono/cecil/wiki">Home · mono/cecil Wiki (github.com)</a></p>
+<h3 id="Definition和Reference">Definition和Reference</h3>
+<p>Mono.Cecil中的类型不同于C#反射中的Type，Mono.Cecil的操作级别属于<strong>metadata</strong>，这也就让其类型有了<strong>Definition</strong>和<strong>Reference</strong>之分，对于<strong>Definition</strong>就是定义于该Dll里的类型和方法，<strong>Reference</strong>就是不属于该Dll中的类型和方法。<strong>Definition</strong>和<strong>Reference</strong>区分十分重要，在实际编写代码的过程中，即便<strong>区分错误</strong>了Mono.Cecil也不会报错的情况，甚至运行结果正确，但第二次以及后续运行时则会发生奇奇怪怪的问题，例如在Unity中，首次通过Mono.Cecil进行IL注入后，代码运行符合预期，但是后续在Unity中修改代码，重新编译并不会生效，只能重启Unity才能恢复正常，再次注入IL后将继续导致编译失效。原因在于自引用问题，自己引用了自己。</p>
+<h4 id="Definition">Definition</h4>
+<p>Definition自然指的是定义，就类似于.cs文件一样，代码的修改就位于Definition中。</p>
+<h4 id="Reference">Reference</h4>
+<p>Reference自然指的是引用，若需要调用非该程序集的类型时就需要导入Reference，若时本程序集的则使用Definition类型即可(Definition继承自Reference)</p>
+<h4 id="Generic">Generic</h4>
+<p>在Mono.Cecil中泛型属于Reference范畴，一旦Resolve后变成Definition将失去输入的泛型数据，例如:Singlton<T>,</p>
+<p>想要构造一个Singlton<Manager>,只需要获取到Singlton<T>的Reference构造一个GenericInstanceType然后传入GenericArguments即可</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

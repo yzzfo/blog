@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         nginx笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="nginx笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="nginx笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="nginx笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        nginx笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-04-26</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/nginx/" class="post-tag">Nginx</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/webgl/" class="post-tag">WebGL</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#环境">环境</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#添加Header">添加Header</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#设置反代超时">设置反代超时</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#正则表达式">正则表达式</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/nginx笔记/#localtion和if中正则表达式的不同">localtion和if中正则表达式的不同</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/nginx笔记/#url_decode的问题">url decode的问题</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#Debug的方式">Debug的方式</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#Cors_Anywhere">Cors Anywhere</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/nginx笔记/#Nginx指令">Nginx指令</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>在部署 Unity WebGL 的时候遇到一些问题所以记录一下。</p>
+<h3 id="环境">环境</h3>
+<ol>
+<li>Nginx Proxy Manger</li>
+</ol>
+<h3 id="添加Header">添加Header</h3>
+<pre class="z-code"><code><span class="z-text z-plain"># 设置解码类型为gzip
+</span><span class="z-text z-plain"># 将原本的Content-type设置为application/wasm
+</span><span class="z-text z-plain">location ~ .+\.wasm.gz$ {
+</span><span class="z-text z-plain"> root /www/game;
+</span><span class="z-text z-plain">add_header Content-Encoding gzip;
+</span><span class="z-text z-plain">add_header Content-type  application/wasm always;
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># 设置其他.gz结尾的解码类型为gzip
+</span><span class="z-text z-plain">location ~ .+\.gz$ {
+</span><span class="z-text z-plain"> root /www/game;
+</span><span class="z-text z-plain">add_header Content-Encoding gzip;
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"># index目录
+</span><span class="z-text z-plain">location / {
+</span><span class="z-text z-plain"> root /www/game;
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<h3 id="设置反代超时">设置反代超时</h3>
+<p>由于 cloudflare 有个 100s 的强制 timeout，所以若使用了 cloudflare 且设置的 timeout 大于 100s，还是会在 100s 就断开。</p>
+<pre class="z-code"><code><span class="z-text z-plain">proxy_read_timeout 1d;
+</span><span class="z-text z-plain">proxy_send_timeout 1d;
+</span><span class="z-text z-plain">proxy_connect_timeout 1d;
+</span></code></pre>
+<h3 id="正则表达式">正则表达式</h3>
+<p>在 Nginx 配置文件中，可以使用正则表达式来匹配 URL 或其他文本。以下是 Nginx 中正则表达式的使用示例：</p>
+<ol>
+<li>简单的正则表达式匹配</li>
+</ol>
+<p>使用 <code>~</code> 运算符可以在 Nginx 中使用正则表达式匹配 URL，例如：</p>
+<pre class="z-code"><code><span class="z-text z-plain">location ~ /blog/\d+ {
+</span><span class="z-text z-plain">    # 匹配 URL 为 /blog/ 后面跟一或多个数字的请求
+</span><span class="z-text z-plain">    # 其他指令
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<p>在上面的示例中，正则表达式 <code>\d+</code> 匹配一个或多个数字，匹配的 URL 将被重定向到该位置。</p>
+<ol start="2">
+<li>匹配扩展名</li>
+</ol>
+<p>使用 <code>~</code> 运算符和 <code>$</code> 字符可以在 Nginx 中使用正则表达式匹配文件扩展名，例如：</p>
+<pre class="z-code"><code><span class="z-text z-plain">location ~ \.jpg$ {
+</span><span class="z-text z-plain">    # 匹配所有以 .jpg 结尾的 URL
+</span><span class="z-text z-plain">    # 其他指令
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<p>在上面的示例中，正则表达式 <code>\.</code> 匹配任何字符，<code>.</code> 字符表示点号，<code>jpg$</code> 匹配 URL 末尾的 <code>.jpg</code>。</p>
+<ol start="3">
+<li>命名捕获</li>
+</ol>
+<p>使用 <code>location</code> 指令和正则表达式的命名捕获组可以在 Nginx 中捕获 URL 中的特定部分，并将其传递给后端应用程序，例如：</p>
+<pre class="z-code"><code><span class="z-text z-plain">location ~ ^/user/(?&lt;username&gt;[a-zA-Z0-9_-]+)$ {
+</span><span class="z-text z-plain">    # 匹配 URL 为 /user/ 后面跟字母、数字、下划线或破折号的请求，将匹配到的用户名传递给后端应用程序
+</span><span class="z-text z-plain">    # 其他指令
+</span><span class="z-text z-plain">    proxy_pass http://backend/$username;
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<p>在上面的示例中，<code>(?&lt;username&gt;[a-zA-Z0-9_-]+)</code> 是一个命名捕获组，它匹配 URL 中 <code>/user/</code> 后面的任何字母、数字、下划线或破折号，并将其保存到名为 <code>username</code> 的变量中。然后，可以使用 <code>$username</code> 变量将该值传递给后端应用程序。</p>
+<p>需要注意的是，在使用正则表达式时，应该谨慎地考虑性能和安全性，并避免在表达式中使用过于复杂的模式。</p>
+<h4 id="localtion和if中正则表达式的不同">localtion和if中正则表达式的不同</h4>
+<p>在localtion中 / 充当着路径的意思，所以会出现如下问题</p>
+<pre data-lang="conf" class="language-conf z-code"><code class="language-conf" data-lang="conf"><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#跨域匹配 $1为协议 $2为 /路径
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#/cors/https://github.com/   $1 https $2 /github.com/
+</span></span></span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">location</span> <span class="z-keyword z-operator z-genconfig">~</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-string z-regexp z-genconfig">^/cors/(.*):/(.*)$</span> {
+</span><span class="z-source z-genconfig">}
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#若改成 location ~* ^/cors/(.*)://(.*)$ 则会无法匹配上 /cors/https://github.com/
+</span></span></span></code></pre>
+<h4 id="url_decode的问题">url decode的问题</h4>
+<p>在location中匹配的表达式将会被自动<code>url decode</code> 例如/cors/https://example.com/A%2FB
+这将导致 $2 得到 <code>/example.com/A/B</code> 若依照这个值去proxy_pass显然是错误的<br />
+为了解决这个问题，需要使用if进行正则匹配，这时不会进行decode</p>
+<pre data-lang="conf" class="language-conf z-code"><code class="language-conf" data-lang="conf"><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">if</span> (<span class="z-storage z-source z-genconfig">$request_uri</span> <span class="z-keyword z-operator z-genconfig">~</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-string z-regexp z-genconfig">^/cors/(.*)$</span>) {
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">proxy_pass</span> </span><span class="z-storage z-source z-genconfig">$1</span>;<span class="z-meta z-comment z-genconfig"> <span class="z-comment z-line z-number-sign z-genconfig">#此时$1 为https://example.com/A%2FB
+</span></span></span><span class="z-source z-genconfig">}
+</span></code></pre>
+<h3 id="Debug的方式">Debug的方式</h3>
+<p>在http模块中添加<code>error_log logs/debug.log debug;</code>类似的代码即可</p>
+<h3 id="Cors_Anywhere">Cors Anywhere</h3>
+<pre data-lang="conf" class="language-conf z-code"><code class="language-conf" data-lang="conf"><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#user  nobody;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">worker_processes</span> </span><span class="z-constant z-numeric z-genconfig">1</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#error_log  logs/error.log;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#error_log  logs/error.log  notice;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#error_log  logs/error.log  info;
+</span></span></span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig"><span class="z-comment z-line z-number-sign z-genconfig">#pid        logs/nginx.pid;
+</span></span></span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">events </span>{
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">worker_connections</span> </span><span class="z-constant z-numeric z-genconfig">1024</span>;
+</span><span class="z-source z-genconfig">}
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">http </span>{
+</span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">    include</span> mime<span class="z-keyword z-operator z-genconfig">.</span>types;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">default_type</span> </span><span class="z-support z-type z-genconfig">application/octet-stream</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">error_log</span> </span><span class="z-support z-type z-genconfig">logs/debug.log</span> debug;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">log_format</span> </span>main <span class="z-string z-quoted z-signle z-genconfig">&#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span>
+</span><span class="z-source z-genconfig">    <span class="z-string z-quoted z-signle z-genconfig">&#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span>
+</span><span class="z-source z-genconfig">    <span class="z-string z-quoted z-signle z-genconfig">&#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot; &quot;$proxy_host&quot;&#39;</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">access_log</span> </span><span class="z-support z-type z-genconfig">logs/access.log</span> main;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">sendfile</span> </span><span class="z-constant z-language z-genconfig">on</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">    <span class="z-comment z-line z-number-sign z-genconfig">#tcp_nopush     on;
+</span></span></span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">    <span class="z-comment z-line z-number-sign z-genconfig">#keepalive_timeout  0;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">keepalive_timeout</span> </span><span class="z-constant z-numeric z-genconfig">65</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">resolver</span> </span><span class="z-meta z-ip z-genconfig"><span class="z-constant z-other z-genconfig">1.1.1.1</span></span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">    <span class="z-comment z-line z-number-sign z-genconfig">#gzip  on;
+</span></span></span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">    server </span>{
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">        <span class="z-variable z-parameter z-genconfig">listen</span> </span><span class="z-constant z-numeric z-genconfig">80</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">        <span class="z-variable z-parameter z-genconfig">server_name</span> </span><span class="z-meta z-url z-genconfig"><span class="z-constant z-other z-genconfig">localhost</span></span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">        <span class="z-comment z-line z-number-sign z-genconfig">#charset koi8-r;
+</span></span></span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">        <span class="z-comment z-line z-number-sign z-genconfig">#access_log  logs/host.access.log  main;
+</span></span></span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">        location</span> <span class="z-keyword z-operator z-genconfig">~</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-string z-regexp z-genconfig">^/cors/(.*):/(.*)$</span> {
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_ssl_server_name</span> </span><span class="z-constant z-language z-genconfig">on</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_ssl_session_reuse off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_buffer_size</span> </span><span class="z-constant z-numeric z-genconfig">64k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_buffers</span> </span><span class="z-constant z-numeric z-genconfig">32</span> <span class="z-constant z-numeric z-genconfig">32k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_busy_buffers_size</span> </span><span class="z-constant z-numeric z-genconfig">128k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_connect_timeout</span> </span><span class="z-constant z-numeric z-genconfig">60</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_read_timeout</span> </span><span class="z-constant z-numeric z-genconfig">120</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_send_timeout</span> </span><span class="z-constant z-numeric z-genconfig">60</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_pass_request_headers</span> </span><span class="z-constant z-language z-genconfig">on</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_set_header</span> </span>referer <span class="z-storage z-source z-genconfig">$1</span><span class="z-keyword z-operator z-genconfig">:</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-storage z-source z-genconfig">$proxy_host</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_redirect off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#$request_uri ~* ^/cors/(.*)$
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig"># 由于重新正则匹配之前的匹配值会被覆盖，即便?&lt;name&gt;也会被覆盖，例如$1路由别名sche,但在该if的regex执行后，sche也变成这次的$1了
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#且add_header始终位于proxy之后执行，所以继续使用同路由一样的匹配，这样就能保证$1和$2为期待值。
+</span></span></span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">            if</span> (<span class="z-storage z-source z-genconfig">$request_uri</span> <span class="z-keyword z-operator z-genconfig">~</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-string z-regexp z-genconfig">^/cors/(.*):/(.*)$</span>) {
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">                <span class="z-variable z-parameter z-genconfig">proxy_pass</span> </span><span class="z-storage z-source z-genconfig">$1</span><span class="z-keyword z-operator z-genconfig">:</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-storage z-source z-genconfig">$2</span>;
+</span><span class="z-source z-genconfig">            }
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_redirect</span> </span><span class="z-keyword z-operator z-genconfig">.</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-keyword z-operator z-genconfig">/</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_redirect off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-double z-genconfig">&quot;Set-Cookie&quot;</span> <span class="z-string z-quoted z-double z-genconfig">&quot;CORS=$1://$proxy_host; HttpOnly; Secure;Path=/&quot;</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Origin&#39;</span> <span class="z-string z-quoted z-double z-genconfig">&quot;$http_origin&quot;</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Methods&#39;</span> <span class="z-string z-quoted z-signle z-genconfig">&#39;GET, POST, OPTIONS&#39;</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Headers&#39;</span> <span class="z-string z-quoted z-signle z-genconfig">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span>;
+</span><span class="z-source z-genconfig">        }
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">        location</span> <span class="z-keyword z-operator z-genconfig">~</span><span class="z-keyword z-operator z-genconfig">*</span> <span class="z-string z-regexp z-genconfig">^/(.*)$</span> {
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_ssl_server_name</span> </span><span class="z-constant z-language z-genconfig">on</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_ssl_session_reuse off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_buffer_size</span> </span><span class="z-constant z-numeric z-genconfig">64k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_buffers</span> </span><span class="z-constant z-numeric z-genconfig">32</span> <span class="z-constant z-numeric z-genconfig">32k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_busy_buffers_size</span> </span><span class="z-constant z-numeric z-genconfig">128k</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_connect_timeout</span> </span><span class="z-constant z-numeric z-genconfig">60</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_read_timeout</span> </span><span class="z-constant z-numeric z-genconfig">120</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_send_timeout</span> </span><span class="z-constant z-numeric z-genconfig">60</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_pass_request_headers</span> </span><span class="z-constant z-language z-genconfig">on</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_set_header</span> </span>referer <span class="z-storage z-source z-genconfig">$1</span><span class="z-keyword z-operator z-genconfig">:</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-storage z-source z-genconfig">$proxy_host</span>;
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_redirect off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_pass</span> </span><span class="z-storage z-source z-genconfig">$cookie_CORS</span><span class="z-keyword z-operator z-genconfig">/</span><span class="z-storage z-source z-genconfig">$1</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">proxy_redirect</span> </span>(<span class="z-keyword z-operator z-genconfig">.</span><span class="z-keyword z-operator z-genconfig">*</span>) <span class="z-keyword z-operator z-genconfig">/</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig">#proxy_redirect off;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-comment z-genconfig">            <span class="z-comment z-line z-number-sign z-genconfig"># add_header &quot;Set-Cookie&quot; &quot;CORS=$1:/$proxy_host; HttpOnly; Secure;Path=/&quot;;
+</span></span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Origin&#39;</span> <span class="z-string z-quoted z-double z-genconfig">&quot;$http_origin&quot;</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Methods&#39;</span> <span class="z-string z-quoted z-signle z-genconfig">&#39;GET, POST, OPTIONS&#39;</span>;
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">add_header</span> </span><span class="z-string z-quoted z-signle z-genconfig">&#39;Access-Control-Allow-Headers&#39;</span> <span class="z-string z-quoted z-signle z-genconfig">&#39;Origin, X-Requested-With, Content-Type, Accept&#39;</span>;
+</span><span class="z-source z-genconfig">        }
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">        <span class="z-variable z-parameter z-genconfig">error_page</span> </span><span class="z-constant z-numeric z-genconfig">500</span> <span class="z-constant z-numeric z-genconfig">502</span> <span class="z-constant z-numeric z-genconfig">503</span> <span class="z-constant z-numeric z-genconfig">504</span> <span class="z-keyword z-operator z-genconfig">/</span><span class="z-constant z-numeric z-genconfig">50x</span><span class="z-keyword z-operator z-genconfig">.</span>html;
+</span><span class="z-source z-genconfig"><span class="z-keyword z-other z-genconfig">        location</span> <span class="z-keyword z-operator z-genconfig">=</span> <span class="z-keyword z-operator z-genconfig">/</span><span class="z-constant z-numeric z-genconfig">50x</span><span class="z-keyword z-operator z-genconfig">.</span>html {
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">            <span class="z-variable z-parameter z-genconfig">root</span> </span>html;
+</span><span class="z-source z-genconfig">        }
+</span><span class="z-source z-genconfig">}
+</span><span class="z-source z-genconfig">
+</span></code></pre>
+<h3 id="Nginx指令">Nginx指令</h3>
+<p><code>nginx</code> 启动服务器<br />
+<code>nginx -t</code> 检查配置
+<code>nginx -s stop</code> 停止
+<code>nginx -s reload</code> 重载</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

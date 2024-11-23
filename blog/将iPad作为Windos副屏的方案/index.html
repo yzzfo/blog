@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         将iPad作为Windos副屏的方案
+        
+    </title>
+
+        
+            <meta property="og:title" content="将iPad作为Windos副屏的方案" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="将iPad作为Windos副屏的方案" />
+         
+     
+
+     
+         
+             <meta name="description" content="将iPad作为Windos副屏的方案" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        将iPad作为Windos副屏的方案<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-11-10</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#串流+虚拟屏幕">串流+虚拟屏幕</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#串流软件">串流软件</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#虚拟屏幕">虚拟屏幕</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#其他问题">其他问题</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#sunshine">sunshine</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#Sunshine-Foundation">Sunshine-Foundation</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#moonlight-ios-NativeMultiTouchPassthrough">moonlight-ios-NativeMultiTouchPassthrough</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#gameview">gameview</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#现成的副屏软件">现成的副屏软件</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#副屏Windos下的配置">副屏Windos下的配置</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/将iPad作为Windos副屏的方案/#总结">总结</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  几年前尝试过将iPad作为副屏，但app store上的方案基本上都存在延迟过高，画面模糊的问题，今天研究了以下后发现了一些新的方案。</p>
+<h2 id="串流+虚拟屏幕">串流+虚拟屏幕</h2>
+<p>该方案在局域网的情况下延迟和画质都十分优秀，核心逻辑就是串流虚拟屏幕达到副屏的效果</p>
+<h3 id="串流软件">串流软件</h3>
+<ol>
+<li>sunshine + moonlight</li>
+<li>rustdesk</li>
+<li>gameview</li>
+</ol>
+<h3 id="虚拟屏幕">虚拟屏幕</h3>
+<ol>
+<li>ParsecVDisplay  ( https://github.com/nomi-san/parsec-vdd )</li>
+</ol>
+<h3 id="其他问题">其他问题</h3>
+<h4 id="sunshine">sunshine</h4>
+<ol>
+<li>功耗过高，默认情况下sunshine使用了n卡的<code>倾向于较低的编码延迟而不是省电</code>导致空载功耗过高，需要将其禁用即可降低功耗，在sunshine的<code>NVIDIA NVENC Encoder</code>中可以找到该选项（ https://github.com/LizardByte/Sunshine/issues/1908 ）</li>
+<li>音频，如果不想将音频传输到iPad，可以将捕获的音频设备设置为一个不存在的设备。</li>
+</ol>
+<h4 id="Sunshine-Foundation">Sunshine-Foundation</h4>
+<p>该版本内置了虚拟屏幕驱动，且配置了hdr等一些高阶功能，可用于iPad进行hdr显示</p>
+<h4 id="moonlight-ios-NativeMultiTouchPassthrough">moonlight-ios-NativeMultiTouchPassthrough</h4>
+<p>该版本的moonlight可以处理iPad多点操作，apple pencil等，这样就可以作为一个可触摸的windows副屏</p>
+<h4 id="gameview">gameview</h4>
+<ol>
+<li>副屏无法显示鼠标指针，在控制端点击【操作】-【启用按键映射】-【切换操控方案】选择【办公常用】方案，并选择【屏幕触控】模式，开启完成后，鼠标就会在控制端显示出来；( https://feedback-web.webapp.163.com/qa_detail/331 )</li>
+</ol>
+<h2 id="现成的副屏软件">现成的副屏软件</h2>
+<p>这些软件处于基本能用的状态，要求不高的情况下可以使用</p>
+<ol>
+<li>spacedesk整体速度和画面还算不错。</li>
+<li>duet和spacedesk差不多</li>
+</ol>
+<h2 id="副屏Windos下的配置">副屏Windos下的配置</h2>
+<ol>
+<li>任务栏，可以通过<code>个性化-任务栏-当使用多个显示器时，在以下位置显示我都任务栏应用</code>设置为<code>打开了窗口的任务栏</code>，这样任务栏只会显示在当前屏幕中的任务。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>总体测试下来，Sunshine-Foundation+moonlight-ios-NativeMultiTouchPassthrough的效果是最理想的，组件的屏幕兼容触摸操作，配合apple pencil也可以作为数位板支持压感。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

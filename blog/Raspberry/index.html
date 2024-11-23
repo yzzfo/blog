@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Raspberry
+        
+    </title>
+
+        
+            <meta property="og:title" content="Raspberry" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Raspberry使用时的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Raspberry使用时的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Raspberry<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-03-28</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/raspberry/" class="post-tag">Raspberry</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Raspberry/#Raspberry">Raspberry</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Raspberry/#常用包">常用包</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Raspberry/#Linux工具类网站">Linux工具类网站</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="Raspberry">Raspberry</h1>
+<ul>
+<li>
+<p>安装部分</p>
+<ol>
+<li>boot下新建ssh文件开启ssh连接</li>
+<li>设置root密码 <code>sudo passwd</code></li>
+<li>设置apt源
+<ul>
+<li><a href="https://tech.biko.pub/#/tool/rpi-apt-sources">源在线配置</a></li>
+<li>清华源
+<ul>
+<li>Ubuntu
+<ul>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">x86</a></li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/">其他架构</a></li>
+</ul>
+</li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/">Rasp os</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设置静态<strong>IP</strong> <code>nano /etc/dhcpcd.conf</code></li>
+</ol>
+</li>
+<li>
+<p>Docker安装</p>
+<ol>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/">Docker安装</a></li>
+<li>Docker源配置<pre class="z-code"><code><span class="z-text z-plain">sudo cat &lt;&lt;EOF &gt; /etc/docker/daemon.json
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]
+</span><span class="z-text z-plain">}
+</span></code></pre>
+</li>
+<li>重启Docker <code>systemctl restart docker</code></li>
+<li>查看是否配置成功 <code>docker info</code></li>
+<li>安装<strong>docker-compose</strong>
+<ul>
+<li>安装pip <code>sudo apt install python3-pip</code></li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/pypi/">更换pip源</a></li>
+<li>安装docker-compose <code>pip install docker-compose</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qq_32863631/article/details/76348963"><strong>配置全局变量</strong></a></p>
+<ul>
+<li>/etc/profile 全局变量</li>
+<li>~/.bashrc 用户全局变量</li>
+</ul>
+</li>
+<li>
+<p><strong>Openwrt</strong>安装</p>
+<ol>
+<li><a href="https://mlapp.cn/376.html">docker版openwrt安装教程</a>
+<ul>
+<li>对于Raspberry来说，lan口物理设置中的<strong>桥接</strong>需要关闭,否则将导致外部设备将其设为网关时无法访问网络</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>采用<strong>docker-compose</strong>安装大部分应用</p>
+<ol>
+<li><a href="https://github.com/Cnicehs/Raspberry_Compose">docker-compose配置</a></li>
+<li><code>docker-compose up -d</code></li>
+</ol>
+</li>
+<li>
+<p>挂载<strong>smaba</strong></p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt-get install cifs-utils    </span>
+</span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-echo z-shell">echo</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>//nas.me/23148625/Raspberry <span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> /mnt/nas cifs auto,<span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> x-systemd.automount,x-systemd.idle-timeout=30,<span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> username=23148625,password=123456,<span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> file_mode=0777,dir_mode=0777,<span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> uid=1000,gid=1000,<span class="z-constant z-character z-escape z-shell">\
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-string z-quoted z-double z-shell"> fmask=0133,dmask=0022 0 0<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;&gt;</span> /etc/fstab</span>
+</span></code></pre>
+<p><strong>uid</strong>和<strong>gid</strong>的数字可以改为直接输入<strong>用户名</strong>和<strong>组名</strong><br />
+x-systemd.automount,x-systemd.idle-timeout=30用于自动挂载，例如访问**/mnt/nas**时将自动挂载<br />
+fmask和file_mode之间的关系，fmask就是过滤的权限，file_mode就是本身的权限 file_mode&amp;(!fmask)就是文件生成时所设置的权限如 0777-0222 = 0555<br />
+<a href="https://wiki.archlinux.org/title/fstab">fstab Wiki</a></p>
+</li>
+</ul>
+<h4 id="常用包">常用包</h4>
+<ol>
+<li>screen
+<ul>
+<li>-S<br />
+<code>screen -S screenName</code> 创建一个名为<strong>screenName</strong>的窗口</li>
+<li>-r<br />
+<code>screen -r screenName</code> 重新进入<strong>screenName</strong>这个窗口</li>
+<li><code>crtl+A+D</code> detach窗口</li>
+<li>-D
+<code>screen -D screenName</code> detach窗口</li>
+</ul>
+</li>
+<li>cpulimit<br />
+<code>cpulimit -p pid -l 0.5</code> 限制pid进程cpu占用率不超过50%</li>
+</ol>
+<h4 id="Linux工具类网站">Linux工具类网站</h4>
+<ol>
+<li><a href="https://wiki.bash-hackers.org/start">Bash Hackers Wiki
+</a></li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Thread模型
+        
+    </title>
+
+        
+            <meta property="og:title" content="Thread模型" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Thread模型" />
+         
+     
+
+     
+         
+             <meta name="description" content="Thread模型" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Thread模型<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-05-22</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/rust/" class="post-tag">Rust</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/thread/" class="post-tag">Thread</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/ffi/" class="post-tag">FFI</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/slint/" class="post-tag">Slint</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#了解COM的线程模型">了解COM的线程模型</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#解决方案">解决方案</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#检查其他可能的原因">检查其他可能的原因</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#总结">总结</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#在C#中创建STA线程">在C#中创建STA线程</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Thread模型/#经过验证">经过验证</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Thread模型/#Rust线程启动UI">Rust线程启动UI</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Thread模型/#C#使用STA">C#使用STA</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  在使用slint构建出应用后导出ffi给C#的Console程序调用时出现了类似<code>Make sure other crates are not using multithreaded COM</code>这样的报错，问题原因如下。</p>
+<p><em>以下为ChatGPT的答案:</em></p>
+<p>在C#调用Rust提供的FFI（外部函数接口）时遇到“Make sure other crates are not using multithreaded COM”这样的报错，通常是因为在使用COM（Component Object Model）组件时出现了线程模型不匹配的问题。</p>
+<h3 id="了解COM的线程模型">了解COM的线程模型</h3>
+<p>COM有两种主要的线程模型：</p>
+<ol>
+<li><strong>单线程单元（STA，Single-Threaded Apartment）</strong>：适用于需要单线程访问的COM对象。通常由UI线程使用。</li>
+<li><strong>多线程单元（MTA，Multi-Threaded Apartment）</strong>：适用于可以被多个线程安全访问的COM对象。</li>
+</ol>
+<p>当在一个应用程序中使用COM时，需要确保所有使用COM的部分遵循同样的线程模型。如果在Rust中某些部分使用了MTA，而C#调用部分期望STA，这会导致线程模型不匹配，从而引发错误。</p>
+<h3 id="解决方案">解决方案</h3>
+<ol>
+<li>
+<p><strong>确保线程模型一致</strong>：</p>
+<ul>
+<li>
+<p>如果C#代码在STA线程中运行，确保Rust代码也在相同的线程模型下工作。</p>
+</li>
+<li>
+<p>可以通过设置C#代码的线程模型来确保一致性：</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">STAThread</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Main</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> Your main code
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rust中的COM初始化</strong>：</p>
+<ul>
+<li>
+<p>在Rust代码中使用<code>com</code>库时，需要确保正确设置COM的线程模型。例如，使用<code>CoInitializeEx</code>函数初始化COM库时，指定正确的线程模型：</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">winapi<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">um<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">combaseapi<span class="z-punctuation z-accessor z-rust">::</span></span>CoInitializeEx<span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">winapi<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">um<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">objbase<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-constant z-other z-rust">COINIT_APARTMENTTHREADED</span><span class="z-punctuation z-terminator z-rust">;</span> <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> For STA
+</span></span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">winapi<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">um<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">objbase<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-constant z-other z-rust">COINIT_MULTITHREADED</span><span class="z-punctuation z-terminator z-rust">;</span> <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> For MTA
+</span></span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-storage z-modifier z-rust">unsafe</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust">    CoInitializeEx<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-path z-rust">std<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">ptr<span class="z-punctuation z-accessor z-rust">::</span></span>null_mut<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-separator z-rust">,</span> <span class="z-constant z-other z-rust">COINIT_APARTMENTTHREADED</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>确保无冲突的COM使用</strong>：</p>
+<ul>
+<li>如果项目中有多个crate在使用COM，确保这些crate之间的COM初始化和使用没有冲突。如果可能，尝试将COM初始化和使用集中在一个crate或一个模块中。</li>
+</ul>
+</li>
+</ol>
+<h3 id="检查其他可能的原因">检查其他可能的原因</h3>
+<ul>
+<li><strong>引用的第三方库</strong>：检查是否有其他引用的第三方库在后台使用了多线程的COM模型。必要时，阅读这些库的文档和源码以了解它们的COM使用方式。</li>
+<li><strong>跨线程COM对象访问</strong>：确保没有在STA和MTA之间跨线程访问COM对象的情况。COM对象在不同线程模型之间跨线程访问时，需要进行适当的封送（marshalling）。</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>这个错误提示通常是由于C#和Rust代码中的COM使用不一致导致的。通过确保所有部分使用一致的线程模型，并正确初始化COM，可以避免这个问题。如果需要更多详细信息，请提供相关代码片段，以便提供更具体的建议。</p>
+<h2 id="在C#中创建STA线程">在C#中创建STA线程</h2>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Threading</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">Program</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Main</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 创建一个新线程
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Thread</span> <span class="z-variable z-other z-cs">staThread</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Thread</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">ThreadStart</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">MyStaThreadMethod</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 设置线程的ApartmentState为STA
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">staThread</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetApartmentState</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">ApartmentState</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">STA</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 启动线程
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">staThread</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Start</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 等待线程完成
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">staThread</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Join</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">MyStaThreadMethod</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 这个方法将在STA线程中运行
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Console</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">WriteLine</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>This is running in an STA thread.<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 你可以在这里调用需要STA的COM对象的方法
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span></code></pre>
+<h2 id="经过验证">经过验证</h2>
+<p>可以通过如下几种方式实现Console ffi调用ui</p>
+<h3 id="Rust线程启动UI">Rust线程启动UI</h3>
+<p>通过Rust的thread启动ui线程以正常启动，C#中只需要正常调用ss()即可打开窗口</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">no_mangle</span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">extern</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>C<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span> <span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">ss</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-function z-rust">mm</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">mm</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> thread1 <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">thread<span class="z-punctuation z-accessor z-rust">::</span></span>spawn<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">        <span class="z-storage z-type z-rust">let</span> ui <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">AppWindow<span class="z-punctuation z-accessor z-rust">::</span></span>new<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">        ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">on_request_increase_value</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">            <span class="z-storage z-type z-rust">let</span> ui_handle <span class="z-keyword z-operator z-assignment z-rust">=</span> ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">as_weak</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">            <span class="z-storage z-modifier z-rust">move</span> <span class="z-keyword z-operator z-logical z-rust">||</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                <span class="z-storage z-type z-rust">let</span> ui <span class="z-keyword z-operator z-assignment z-rust">=</span> ui_handle<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">set_counter</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">get_counter</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-arithmetic z-rust">+</span> <span class="z-constant z-numeric z-integer z-decimal z-rust">1</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">        </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">        ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">run</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">join</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<h3 id="C#使用STA">C#使用STA</h3>
+<p>此时rust可以不用写thread相关代码调用ui，通过在CSharp中设置STA即可正常调用ss()</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">no_mangle</span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">extern</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>C<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span> <span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">ss</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-function z-rust">mm</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">mm</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> ui <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">AppWindow<span class="z-punctuation z-accessor z-rust">::</span></span>new<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">on_request_increase_value</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">        <span class="z-storage z-type z-rust">let</span> ui_handle <span class="z-keyword z-operator z-assignment z-rust">=</span> ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">as_weak</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">        <span class="z-storage z-modifier z-rust">move</span> <span class="z-keyword z-operator z-logical z-rust">||</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-storage z-type z-rust">let</span> ui <span class="z-keyword z-operator z-assignment z-rust">=</span> ui_handle<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">set_counter</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">get_counter</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-arithmetic z-rust">+</span> <span class="z-constant z-numeric z-integer z-decimal z-rust">1</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    ui<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">run</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 在新的STA线程中开启UI
+</span></span><span class="z-source z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Main</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Thread</span> <span class="z-variable z-other z-cs">t</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Thread</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">ss</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">t</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetApartmentState</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">ApartmentState</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">STA</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">t</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Start</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Console</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ReadLine</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 主线程中开启UI
+</span></span><span class="z-source z-cs">    <span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-variable z-other z-cs">STAThread</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span>
+</span><span class="z-source z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-keyword z-other z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Main</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span>
+</span><span class="z-source z-cs">    <span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs">        <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ss</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

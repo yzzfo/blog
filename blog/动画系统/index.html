@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         动画系统
+        
+    </title>
+
+        
+            <meta property="og:title" content="动画系统" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Unity中的动画系统笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Unity中的动画系统笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        动画系统<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-03-23</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/animator/" class="post-tag">Animator</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/动画系统/#动画系统">动画系统</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/动画系统/#Humanoid的原理测试">Humanoid的原理测试</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="动画系统">动画系统</h1>
+<p>Unity中常用的Avatar有两种，一种是Generic另一种是Humanoid，Generic类型通常用于自定义骨骼，或者说如果有专门的一套骨骼制作则用Generic会好一些，Generic就是当纯的顶点映射，骨骼节点同名即可进行动画播放。Humanoid则采用骨骼映射的形式进行播放，通过将骨骼A映射到Unity的一个标准人体模型，通过这个中间层来映射给别的Humanoid骨骼进行播放。
+今天遇到一个问题就是现在有两个fps游戏模型素材，一个是第三人称用的射击动画，另一个是第一人称用的射击动画，他们两个都是用的同一套骨骼结构，但却无法在第一人称动画导入中使用import avatar from other导入第三人称的avatar来直接进行映射。
+<img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%89%E4%BA%BA%E7%A7%B0%E9%AA%A8%E9%AA%BC.png" alt="第三人称骨骼" />
+<img src="https://github.com/Cnicehs/Image/raw/main/%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E9%AA%A8%E9%AA%BC.png" alt="第一人称骨骼" /></p>
+<p>第三人称和第一人称的骨骼如图所述，均为一样的结构，且模型本身也是由用一个mesh所组成，所以预想的方式为直接将<strong>第一人称</strong>的avatar设置为<strong>第三人称</strong>所生成的avatar，设置之后出现了问题，骨骼映射出现了巨大的Y向偏差，导致模型直接超出Skinmesh的渲染范围，到地底去了，如图所示</p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E9%AA%A8%E9%AA%BCCopy%E6%A8%A1%E5%BC%8F.png" alt="第一人称动画产生的Y向偏差" /></p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9FY%E7%9A%84%E5%B7%A8%E5%A4%A7%E5%81%8F%E7%A7%BB.png" alt="Y的巨大偏移" /></p>
+<p>产生该偏差的原因可能是第一人称动画本身就存在<strong>Hip</strong>节点的偏移，加之映射的缩放导致的</p>
+<p>之后选择用同一个模型进行<strong>Create From this mode</strong>操作来创建avatar</p>
+<ol>
+<li>
+<p>打开第一人称模型的配置后会发现其及其混乱，这是由于第一人称的动作本身就扭曲导致的，仔细观察可以发现左边的arm都已经穿到右侧去了</p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0Avatar%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE.png" alt="混乱的初始配置" /></p>
+</li>
+<li>
+<p>照着骨骼顺序将右侧的Unity标准骨骼结构填入，此处可通过保存第三人称的Mapping，在Load到第一人称简化操作，但在这里进行该操作后只能Mapping出上半身的映射，下半身没映射上去，不知是何原因，剩下一半就手动给拖进去。</p>
+</li>
+</ol>
+<p>        <img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E4%BF%9D%E5%AD%98%E6%98%A0%E5%B0%84%E9%85%8D%E7%BD%AE.png" alt="保存配置" /></p>
+<ol start="3">
+<li>
+<p>填充好节点之后就是将模型摆成<strong>T-Post</strong>，这里通常可以通过<strong>Pose -&gt; Enforce Pose</strong>来摆成<strong>T-Pose</strong>，但<strong>Enforce Pose</strong>在这次的模型中无效，应该也是由于第一人称模型过于扭曲的缘故。</p>
+</li>
+<li>
+<p>既然Enfore Pose无效那么怎么来摆T-Pose呢，由于第三人称模型和第一人称模型骨骼一模一样，而且第三人称模型并不扭曲在<strong>avatar</strong>中正规的<strong>T-Pose</strong>模型，于是我们可以去他的Avatar Config中将他的模型拷贝出来，做一个T-Pose预制体，用来将里面各个节点的坐标赋值给第一人称的avatar。</p>
+</li>
+<li>
+<p>复制Avatar工具</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Generic</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEditor</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEngine</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">AvatarCopy</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">EditorWindow</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">MenuItem</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Copy/Avatar<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">ShowWindow</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">EditorWindow</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CreateInstance</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">AvatarCopy</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Show</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">Transform</span> <span class="z-variable z-other z-member z-cs">from</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">Transform</span> <span class="z-variable z-other z-member z-cs">to</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnGUI</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">from</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">EditorGUILayout</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ObjectField</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">GUIContent</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>From<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">@from</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-keyword z-operator z-reflection z-cs">typeof</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-support z-type z-cs">Transform</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span> <span class="z-keyword z-operator z-reflection z-cs">as</span> <span class="z-support z-type z-cs">Transform</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">to</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">EditorGUILayout</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ObjectField</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">GUIContent</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>To<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">to</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-keyword z-operator z-reflection z-cs">typeof</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-support z-type z-cs">Transform</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span> <span class="z-keyword z-operator z-reflection z-cs">as</span> <span class="z-support z-type z-cs">Transform</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">GUILayout</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Button</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Copy<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>广度优先
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-loop z-foreach z-cs">foreach</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">node</span> <span class="z-keyword z-control z-flow z-cs">in</span> <span class="z-variable z-other z-cs">to</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetComponentsInChildren</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Transform</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">f</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Find</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">node</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">name</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">@from</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">f</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">node</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localScale</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">f</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localScale</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">node</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localRotation</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">f</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localRotation</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">node</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localPosition</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">f</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">localPosition</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">EditorUtility</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetDirty</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">to</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">Transform</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Find</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">name</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span> <span class="z-support z-type z-cs">Transform</span> <span class="z-variable z-parameter z-cs">root</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-loop z-foreach z-cs">foreach</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-support z-type z-cs">Transform</span> <span class="z-variable z-other z-cs">child</span> <span class="z-keyword z-control z-flow z-cs">in</span> <span class="z-variable z-other z-cs">root</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetComponentsInChildren</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Transform</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">child</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">name</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-variable z-other z-cs">name</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">child</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-constant z-language z-cs">null</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span></code></pre>
+</li>
+<li>
+<p>在第一人称的Avatar Config界面中将模型拖入To中，将第三人称的T-Pose，预制体拖入From中点击Copy即可</p>
+</li>
+</ol>
+<p>    <img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0TPose.png" alt="第一人称TPose" /></p>
+<p>7.在场景中查看效果，可以发现动画Y轴的偏移对了，但肩膀位置不对，没有还原出第一人称时的扭曲</p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2Avatar%E4%B9%8B%E5%90%8E%E7%9A%84%E6%95%88%E6%9E%9C.png" alt="更换Avatar后的效果" /></p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9FGeneric%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%8A%A8%E7%94%BB%E6%9C%AC%E5%BA%94%E5%91%88%E7%8E%B0%E7%9A%84%E6%95%88%E6%9E%9C.png" alt="动画正确的显示效果" /></p>
+<ol start="8">
+<li>
+<p>要还原扭曲就得知道通常骨骼动画是怎么做的，通常在骨骼动画中我们只会对各个关节进行旋转，通过旋转来达到位移，也就是说骨骼是<strong>不会拉伸</strong>的。但在第一人称的动画中，我们可以发现，这肩膀是拉伸了的，也就是说，关节不但可以旋转，还<strong>位移</strong>了，这中东西在<strong>Generic</strong>动画系统中并没什么问题，应该Generic仅仅就是映射点，并不管其他的东西，但在<strong>Humanoid</strong>中默认骨骼是不允许位移的，这是就得开启<strong>Translation DoF</strong>选项，也就是开启位移这个自由度。第一人称和第三人称均要开启。</p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9FDoF.png" alt="DoF" /></p>
+</li>
+</ol>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E6%9C%80%E7%BB%88%E8%B0%83%E6%95%B4%E7%BB%93%E7%BB%93%E6%9E%9C.png" alt="结果" /></p>
+<h2 id="Humanoid的原理测试">Humanoid的原理测试</h2>
+<p>假设我们有两个Humanoid的Avatar A和B 均为正规的T-Pose，现在我们想让B来播放A的动作，即A映射到B身上去，正常情况下B将正常播放B的动作，此时我们将A的Avatar的根节点向后转一转，即后仰个20度并保存，此时将会导致B前倾20度，这是由于A和B均通过Unity的中间骨骼即Avatar进行映射，可能是如下过程，由于A当前设置后仰20度的状态为他的T-Pose，即标准状态，但动画中A还是直立的，所以从T-Pose到动画中的状态需要A进行前倾20度，于是乎A要完成这个动作就变成了<strong>前倾20度并完成该动画片段</strong>，将这条指令映射到B上就导致B前倾了20度。</p>
+<p>同样我们不改动A，来改动B，将B的Avatar前倾20度，最终结果将是B前倾20度，这是因为前倾20度就是B的<strong>标准状态</strong>，一切动作都是依照标准状态来做的，那么A在直立时做的标准动作，到了B这就是B前倾20度来做这动作。</p>
+<p>关于Copy avatar from other 和 Create from this的猜测，估计Avatar中记录了骨骼的长度映射关系，对于不同的第三人称模型，使用同一个avatar均没问题，这便可以排除骨骼中的位置旋转的影响，他们唯一没变的就是骨骼长度，而第一人称由于骨骼拉伸，这也导致骨骼与第三人称不匹配，所以推测avatar保存的是骨骼长度映射关系，由于这个关系导致了偏移，在上面的案例中若同时开启DoF，使用Copy的动画将会有个很巨大的放大效果，估计也是这个原因导致的。</p>
+<p><img src="https://github.com/Cnicehs/Image/raw/main/%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F%E6%8B%89%E4%BC%B8%E7%9A%84Copy.png" alt="拉伸的Copy" /></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

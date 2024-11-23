@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Unity Mesh
+        
+    </title>
+
+        
+            <meta property="og:title" content="Unity Mesh" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Unity Mesh相关的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Unity Mesh相关的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Unity Mesh<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-03-11</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity-Mesh/#SharedMesh和Mesh的区别">SharedMesh和Mesh的区别</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity-Mesh/#Submesh和Materials">Submesh和Materials</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity-Mesh/#CombineMesh">CombineMesh</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity-Mesh/#Triangle">Triangle</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity-Mesh/#三角形条带法的一些劣势">三角形条带法的一些劣势</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="SharedMesh和Mesh的区别">SharedMesh和Mesh的区别</h2>
+<p>sharedMesh是指MeshFilter组件中共享的mesh，它会影响所有使用这个mesh的对象。如果你想修改一个对象的mesh而不影响其他对象，你可以使用MeshFilter组件中的mesh属性，它会返回一个新的mesh副本。</p>
+<h2 id="Submesh和Materials">Submesh和Materials</h2>
+<p>Submesh 是指一个 mesh 中的一部分，可以用来给不同的部分应用不同的材质。对应到 Blender 中则是一个 object 中存在多个分开的网格，如下图 mesh 中存在两个 submesh(材质不同的时候两个，相同的话一个)。
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/Submesh_Blender.png" alt="" /></p>
+<p>Submesh和Materials对应的关系为</p>
+<ul>
+<li>若Submesh数量等于Material数量，则index对应赋值</li>
+<li>若Submesh小于Material数量，相等部分对应赋值，多出的Materials重复作用于最后的Submesh上</li>
+<li>若Submesh大于Material，相等部分对应赋值，剩下的Submesh都使用最后的一个Material</li>
+</ul>
+<h2 id="CombineMesh">CombineMesh</h2>
+<p>CombineMesh有一个参数叫mergeSubMeshes，它可以控制合并后的mesh是否只有一个submesh。如果你设置为true，所有的submesh都会合并成一个submesh。如果你设置为false，每个submesh都会保留在不同的submesh中即需要一个drawcall。</p>
+<blockquote>
+<p>CombineMesh的好处<br />
+当mergeSubMeshes为false的时候，可以看出来他的drawcall并没有降低，对于类似换装系统这样的功能来说倒是可以将多个SkinmeshRender变成一个SkinmeshRender，可能从结果上来看可以减少一些渲染状态切换之类的东西，例如每次渲染Unity都需要设置一些渲染参数，比如材质、光照、混合模式等。如果你把多个mesh合并成一个mesh，你就可以减少这些参数的设置次数，从而提高效率。</p>
+</blockquote>
+<h2 id="Triangle">Triangle</h2>
+<p>在存储顶点以及确定它们的三角面时通常会有如下几种方法:</p>
+<ul>
+<li>
+<p>三角形条带法：这是一种绘制三维图形的方法，它可以减少顶点数据的冗余，提高渲染效率。它的原理是，按照一定的顺序指定一系列顶点，然后每相邻的三个顶点构成一个三角形。例如，如果指定了7个顶点v1,v2,v3,v4,v5,v6,v7，则会绘制出4个三角形：v1v2v3, v2v3v4, v3v4v5, v4v5v6。</p>
+</li>
+<li>
+<p>三角形扇法：这也是一种绘制三维图形的方法，它可以用较少的顶点数据来表示圆锥或球体等曲面。它的原理是，以一个顶点为中心，与其他顶点依次构成一系列扇形的三角形。例如，如果指定了6个顶点v1,v2,v3,v4,v5,v6，则会绘制出5个三角形：v1v2v3, v1v3v4, v1v4v5, v1v5v6, v1v6v2。</p>
+</li>
+<li>
+<p>四边形条带法：这是一种绘制四边形网格的方法，它可以用两条线把一系列四边形交错起来。它的原理是，按照一定的顺序指定一系列顶点，然后每相邻的四个顶点构成一个四边形。例如，如果指定了8个顶点 v1,v2,v3,v4,v5,v6,v7,v8，则会绘制出3个四边形：</p>
+</li>
+<li>
+<p>v1-v2-v4-v3</p>
+</li>
+<li>
+<p>v3-v4-v6-v5</p>
+</li>
+<li>
+<p>v5-v6-v8-v7</p>
+</li>
+<li>
+<p>索引缓冲法：这是一种优化渲染性能和内存使用的方法，它可以避免重复存储相同的顶点数据。它的原理是，使用一个数组来存储所有不重复的顶点数据（称为顶点缓冲），然后使用另一个数组来存储每个图元（如三角形或四边形）所需的顶点索引（称为索引缓冲）。例如，如果要绘制一个立方体，则只需要8个不同的顶点和36个索引。</p>
+</li>
+</ul>
+<p>在Unity在Meshfileter的<code>triangles</code>属性就是使用的<strong>索引缓冲法</strong>。对于不同的存储方法，在OpenGL中也是有对应不同的绘制方法，有些图元类型是每三个点认为一个三角的索引缓冲法，比如GL_TRIANGLES，有些图元类型是用的三角形条带法，比如GL_TRIANGLE_STRIP。</p>
+<h3 id="三角形条带法的一些劣势">三角形条带法的一些劣势</h3>
+<p>人物的网格通常是非常复杂和不规则的，很难用一系列连接的三角形来表示。如果要用三角形条带法来绘制人物，就需要分割成很多小的条带，并且使用很多退化的三角形来连接它们，这样就会降低效率和质量。</p>
+<p>三角形条带法有可能无法画特点拓扑的模型，它只能用一系列连接的三角形来表示网格，而不能自由地指定任意顶点之间的连接关系。
+这样就会导致一些问题，例如：</p>
+<ul>
+<li>三角形条带法不能绘制具有洞或凹陷的模型，因为这些模型需要断开或跳过一些顶点。</li>
+<li>三角形条带法不能绘制具有复杂曲面或细节的模型，因为这些模型需要更多或更少的顶点来控制曲率或密度。
+<ul>
+<li>如果模型需要在某些地方有很高的法曲率，就需要增加顶点来使三角形条带能够适应这种弯曲变化。</li>
+<li>如果模型需要在某些地方有很低的法曲率，就需要减少顶点来使三角形条带能够保持平滑和均匀。</li>
+<li>但是三角形条带法只能用顺序的顶点来表示网格，不能根据不同位置和方向调整顶点数量和位置。</li>
+</ul>
+</li>
+<li>三角形条带法不能绘制具有动画或变形的模型，因为这些模型需要更好的拓扑结构来保持平滑和连贯。</li>
+<li>三角形条带法的定义是：一系列连接的三角形，其中每个新顶点与前两个顶点共享一条边。三角形条带法的实现是：使用一个数组或缓冲区来存储顶点数据，然后按照固定的规则来遍历这些顶点并绘制三角形。因此，如果要改变顶点数量或位置，就需要重新创建或修改数组或缓冲区，并重新遍历和绘制所有顶点和三角形。这样就会增加计算和内存开销，并降低渲染效率。</li>
+</ul>
+<p>索引缓冲法则可以更灵活地指定任意顶点之间的连接关系，从而可以绘制任何形状的网格，包括人物。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

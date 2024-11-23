@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Linux Disk
+        
+    </title>
+
+        
+            <meta property="og:title" content="Linux Disk" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="一些关于在Linux下操作Disk的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="一些关于在Linux下操作Disk的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Linux Disk<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-05-04</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/disk/" class="post-tag">Disk</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux Disk/#运行环境">运行环境</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux Disk/#创建新的分区">创建新的分区</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux Disk/#扩容现有磁盘">扩容现有磁盘</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Linux Disk/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  最近在使用exis时经常要使用到关于磁盘操作的指令，故在此记录一下这些指令的使用场景和用法。</p>
+<h1 id="运行环境">运行环境</h1>
+<ol>
+<li>
+<p>exsi 7.0.3</p>
+</li>
+<li>
+<p>ubuntu-22.04-live-server-amd64</p>
+</li>
+<li>
+<p>安装ubuntu时选择了<strong>Set up this disk as an LVM group</strong></p>
+</li>
+</ol>
+<h1 id="创建新的分区">创建新的分区</h1>
+<p>在使用exsi时，如果我们后续给ubuntu新增一块硬盘时需要在ubuntu中对其分区格式化操作后才能使用，其具体步骤如下。</p>
+<ol>
+<li>
+<p><code>fdisk -l</code> 找到形如下边的<strong>Disk</strong>，这既是刚刚挂在上去的磁盘</p>
+<pre class="z-code"><code><span class="z-text z-plain">Disk /dev/sda: 400 GiB, 429496729600 bytes, 838860800 sectors
+</span><span class="z-text z-plain">Disk model: Virtual disk    
+</span><span class="z-text z-plain">Units: sectors of 1 * 512 = 512 bytes
+</span><span class="z-text z-plain">Sector size (logical/physical): 512 bytes / 512 bytes
+</span><span class="z-text z-plain">I/O size (minimum/optimal): 512 bytes / 512 bytes
+</span><span class="z-text z-plain">Disklabel type: dos
+</span><span class="z-text z-plain">Disk identifier: 0x280990c6
+</span></code></pre>
+</li>
+<li>
+<p><code>fdisk /dev/sda</code> 为磁盘创建分区，具体操作可参考该博文<a href="https://blog.csdn.net/weixin_43674090/article/details/117419843">Ubuntu如何新建分区</a></p>
+<p>创建后使用<code>fdisk -l</code>查看可以看到新增的<strong>Device</strong></p>
+<pre class="z-code"><code><span class="z-text z-plain">Device     Boot Start       End   Sectors  Size Id Type
+</span><span class="z-text z-plain">/dev/sda1        2048 838860799 838858752  400G 83 Linux
+</span></code></pre>
+</li>
+<li>
+<p><code>partprobe</code> 同步分区表至系统</p>
+</li>
+<li>
+<p><code>mkfs.ext4 /dev/sda1</code> 格式化分区</p>
+</li>
+<li>
+<p><code>mkdir /mnt/disk</code> 新建挂载目录</p>
+</li>
+<li>
+<p>添加<code>/dev/sda1 /mnt/disk ext4 defaults 0 1</code>至<code>/etc/fstab</code>文件</p>
+<pre class="z-code"><code><span class="z-text z-plain"># /etc/fstab: static file system information.
+</span><span class="z-text z-plain">#
+</span><span class="z-text z-plain"># Use &#39;blkid&#39; to print the universally unique identifier for a
+</span><span class="z-text z-plain"># device; this may be used with UUID= as a more robust way to name devices
+</span><span class="z-text z-plain"># that works even if disks are added and removed. See fstab(5).
+</span><span class="z-text z-plain">#
+</span><span class="z-text z-plain"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;
+</span><span class="z-text z-plain"># / was on /dev/ubuntu-vg/ubuntu-lv during curtin installation
+</span><span class="z-text z-plain">/dev/disk/by-id/dm-uuid-LVM-UG7dOVca40ecQwEntS5Bm2YkYgCCJ1iJdFHVKxx0OBv16rf3wbOadnwSVhRHa4Xl / ext4 defaults 0 1
+</span><span class="z-text z-plain"># /boot was on /dev/sda2 during curtin installation
+</span><span class="z-text z-plain">/dev/disk/by-uuid/c34aad53-5edb-4135-997d-68a1e7fac8ca /boot ext4 defaults 0 1
+</span><span class="z-text z-plain">/dev/sda1       /mnt/disk       ext4    defaults        0       1
+</span></code></pre>
+</li>
+<li>
+<p><code>mount -a</code>挂载全部文件</p>
+</li>
+<li>
+<p><code>df -h</code>查看挂载情况，出现<code>def/sda1</code>即成功挂载</p>
+<pre class="z-code"><code><span class="z-text z-plain">Filesystem                         Size  Used Avail Use% Mounted on
+</span><span class="z-text z-plain">tmpfs                              393M  1.3M  392M   1% /run
+</span><span class="z-text z-plain">/dev/mapper/ubuntu--vg-ubuntu--lv   18G  5.4G   12G  32% /
+</span><span class="z-text z-plain">tmpfs                              2.0G     0  2.0G   0% /dev/shm
+</span><span class="z-text z-plain">tmpfs                              5.0M     0  5.0M   0% /run/lock
+</span><span class="z-text z-plain">tmpfs                              2.0G     0  2.0G   0% /run/qemu
+</span><span class="z-text z-plain">/dev/sdb2                          1.7G  125M  1.5G   8% /boot
+</span><span class="z-text z-plain">tmpfs                              393M  4.0K  393M   1% /run/user/1000
+</span><span class="z-text z-plain">/dev/sda1                          393G   25G  348G   7% /mnt/disk
+</span></code></pre>
+</li>
+</ol>
+<h1 id="扩容现有磁盘">扩容现有磁盘</h1>
+<p>  在ubuntu编译openwrt时，编译到最后出现磁盘空间不足的报错，于是需要给现在挂载的磁盘进行扩容操作，<strong>此处假设扩容2G</strong>。</p>
+<ol>
+<li>
+<p>在exsi给指定磁盘分配更大的空间</p>
+</li>
+<li>
+<p>分区大小调整</p>
+<ol>
+<li>
+<p>使用<strong>gparted</strong>调整分区大小，具体操作参考<a href="https://www.cnblogs.com/ericdee/p/14025692.html">Ubuntu server在ESXi下进行磁盘无损扩容</a></p>
+</li>
+<li>
+<p>使用<strong>parted</strong>扩容</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">parted</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/nvme0n1</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">GNU</span></span><span class="z-meta z-function-call z-arguments z-shell"> Parted 3.2</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Using</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/sda</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Welcome</span></span><span class="z-meta z-function-call z-arguments z-shell"> to GNU Parted! Type <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>help<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> to view a list of commands.</span>
+</span><span class="z-source z-shell z-bash"><span class="z-punctuation z-definition z-compound z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">parted</span></span><span class="z-punctuation z-definition z-compound z-end z-shell">)</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">print    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">打印</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Model:</span></span><span class="z-meta z-function-call z-arguments z-shell"> VMware, VMware Virtual S (scsi</span><span class="z-meta z-function-call z-shell"></span>)
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Disk</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/nvme0n1: 62.3GB</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Sector</span></span><span class="z-meta z-function-call z-arguments z-shell"> size (logical/physical</span><span class="z-meta z-function-call z-shell"></span>)<span class="z-meta z-function-call z-shell"><span class="z-support z-function z-colon z-shell">:</span></span><span class="z-meta z-function-call z-arguments z-shell"> 512B/512B</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Partition</span></span><span class="z-meta z-function-call z-arguments z-shell"> Table: gpt</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Disk</span></span><span class="z-meta z-function-call z-arguments z-shell"> Flags:</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Number</span></span><span class="z-meta z-function-call z-arguments z-shell">  Start   End     Size    File system  Name  Flags</span>
+</span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">1</span></span><span class="z-meta z-function-call z-arguments z-shell">      17.4kB  1049kB  1031kB                     bios_grub</span>
+</span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">2</span></span><span class="z-meta z-function-call z-arguments z-shell">      1049kB  538MB   537MB   fat32              boot, esp</span>
+</span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">3</span></span><span class="z-meta z-function-call z-arguments z-shell">      538MB   34.4GB  33.8GB                     lvm</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">resizepart</span></span><span class="z-meta z-function-call z-arguments z-shell"> 3 100<span class="z-meta z-group z-expansion z-job z-shell"><span class="z-punctuation z-definition z-variable z-job z-shell">%</span></span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">quit</span></span>
+</span></code></pre>
+</li>
+<li>
+<p>使用<strong>gdisk</strong>调整分区大小</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> 此处假设分区为3</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">gdisk</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/nvme0n1</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">d    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">删除原本的分区</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">n    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">创建新的分区</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">w    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">将结果写入</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">partprobe   <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">应用gdisk的写入</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pvdisplay</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/nvme0n1p3    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">此时应该还是显示的以前的大小</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">pvresize</span></span><span class="z-meta z-function-call z-arguments z-shell"> /dev/nvme0n1p3  <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">通知更新pv容量</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></code></pre>
+</li>
+</ol>
+</li>
+<li>
+<p><code>lvdisplay</code> 显示逻辑磁盘，此处可以知道逻辑磁盘路径为<code>/dev/ubuntu-vg/ubuntu-lv</code></p>
+<pre class="z-code"><code><span class="z-text z-plain">  LV Path                /dev/ubuntu-vg/ubuntu-lv
+</span><span class="z-text z-plain">  LV Name                ubuntu-lv
+</span><span class="z-text z-plain">  VG Name                ubuntu-vg
+</span><span class="z-text z-plain">  LV UUID                dFHVKx-x0OB-v16r-f3wb-Oadn-wSVh-RHa4Xl
+</span><span class="z-text z-plain">  LV Write Access        read/write
+</span><span class="z-text z-plain">  LV Creation host, time ubuntu-server, 2022-05-01 15:20:34 +0000
+</span><span class="z-text z-plain">  LV Status              available
+</span><span class="z-text z-plain">  # open                 1
+</span><span class="z-text z-plain">  LV Size                18.24 GiB
+</span><span class="z-text z-plain">  Current LE             4670
+</span><span class="z-text z-plain">  Segments               1
+</span><span class="z-text z-plain">  Allocation             inherit
+</span><span class="z-text z-plain">  Read ahead sectors     auto
+</span><span class="z-text z-plain">  - currently set to     256
+</span><span class="z-text z-plain">  Block device           253:0
+</span></code></pre>
+</li>
+<li>
+<p><code>pvdisplay</code> 查看物理磁盘路径</p>
+<pre class="z-code"><code><span class="z-text z-plain">  --- Physical volume ---
+</span><span class="z-text z-plain">  PV Name               /dev/sdb3
+</span><span class="z-text z-plain">  VG Name               ubuntu-vg
+</span><span class="z-text z-plain">  PV Size               &lt;18.25 GiB / not usable 1.00 MiB
+</span><span class="z-text z-plain">  Allocatable           yes 
+</span><span class="z-text z-plain">  PE Size               4.00 MiB
+</span><span class="z-text z-plain">  Total PE              4671
+</span><span class="z-text z-plain">  Free PE               2048 GiB
+</span><span class="z-text z-plain">  Allocated PE          4670
+</span><span class="z-text z-plain">  PV UUID               W43JRR-y8fM-Xbfs-5Um9-RtAa-itw0-Rrk1lC
+</span></code></pre>
+</li>
+<li>
+<p><code>vgs</code> 查看vg空间是否满足LV扩容</p>
+<pre class="z-code"><code><span class="z-text z-plain">  VG        #PV #LV #SN Attr   VSize   VFree
+</span><span class="z-text z-plain">  ubuntu-vg   1   1   0 wz--n- &lt;18.25g 2.0g
+</span></code></pre>
+</li>
+<li>
+<p>扩容</p>
+<ol>
+<li>
+<p><code>lvextend -L +2GB /dev/ubuntu-vg/ubuntu-lv</code></p>
+</li>
+<li>
+<p><code>lvextend -L +100%FREE /dev/ubuntu-vg/ubuntu-lv</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p><code>resize2fs /dev/ubuntu-vg/ubuntu-lv</code>重新加载逻辑卷</p>
+</li>
+<li>
+<p><code>df -h</code>查看结果即可</p>
+</li>
+</ol>
+<h1 id="参考资料">参考资料</h1>
+<ol>
+<li>
+<p><a href="https://www.jianshu.com/p/4c7acf819046">LV扩容(lvextend) - 简书</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/ericdee/p/14025692.html">Ubuntu server在ESXi下进行磁盘无损扩容 - ericdee - 博客园</a></p>
+</li>
+<li>
+<p><a href="https://blog.51cto.com/u_11601346/1831795">Esxi上Linux虚拟机硬盘（LVM）扩容文档</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/weixin_43674090/article/details/117419843">Ubuntu如何新建分区</a></p>
+</li>
+<li>
+<p><a href="https://www.wnark.com/archives/118.html">Proxmox VE（PVE）进行硬盘扩容操作教程 - 方舟基地</a></p>
+</li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

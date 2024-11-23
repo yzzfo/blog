@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         HybridCLR笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="HybridCLR笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="记录一些使用HybridCLR出现的问题" />
+         
+     
+
+     
+         
+             <meta name="description" content="记录一些使用HybridCLR出现的问题" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        HybridCLR笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-04-24</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/HybridCLR笔记/#遇到的问题">遇到的问题</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/HybridCLR笔记/#BuildTool">BuildTool</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="遇到的问题">遇到的问题</h2>
+<ol>
+<li>Build 时出现 Link 相关的报错，例如 Link Hotfix.dll failed ，可能原因是在非热更程序集中用到了 Hotfix 中的类，例如在 Assembly-CSharp 中使用了 Hotfix 中的类型。</li>
+</ol>
+<h2 id="BuildTool">BuildTool</h2>
+<p>使用 BuildTool 时出现找不到 ManagedStripped 文件夹或者 miss script 等错误，原因在于 HybridCLR 源码在判断平台时采用的是 <code>宏</code> 进而导致无法在 A 平台下执行 B 平台构建所需要的事情，以及获得相关数据。关于在 Unity 中 miss script 本质的原因是在 Assembly 列表文件中，如 PC 端下的 <code>ScriptingAssemblies.json</code> 文件，而在 HybridCLR 中已经做了补全的操作，只不过因为宏被禁用了而已，所以解决方法很简单，只需要将代码中的宏改为通过 <code>BuildTarget</code> 枚举进行判断即可。例如 PatchScriptingAssemblyList.cs 文件</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs">        <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnPostprocessBuild</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">BuildReport</span> <span class="z-variable z-parameter z-cs">report</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs">        </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 如果target为Android,由于已经在OnPostGenerateGradelAndroidProject中处理过，  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 这里不再重复处理  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> #if !UNITY_ANDROID &amp;&amp; !UNITY_WEBGL  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">report</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">summary</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">platform</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">BuildTarget</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Android</span> <span class="z-keyword z-operator z-cs">&amp;&amp;</span> <span class="z-variable z-other z-cs">report</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">summary</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">platform</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">BuildTarget</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">WebGL</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">                <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">PathScriptingAssembilesFile</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">report</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">summary</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">outputPath</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> #endif  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

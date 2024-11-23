@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         All in one 软路由
+        
+    </title>
+
+        
+            <meta property="og:title" content="All in one 软路由" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="All in one的一种方法" />
+         
+     
+
+     
+         
+             <meta name="description" content="All in one的一种方法" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        All in one 软路由<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-04-23</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/openwrt/" class="post-tag">Openwrt</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/ruan-lu-you/" class="post-tag">软路由</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/exsi/" class="post-tag">exsi</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#EXSi的安装">EXSi的安装</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#拓扑设计">拓扑设计</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#网口设置">网口设置</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#IP设置">IP设置</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#Openwrt安装">Openwrt安装</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#安装其他系统">安装其他系统</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/All in one 软路由/#其他的一些坑">其他的一些坑</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  昨天N6005主机到了于是学习了一下如何让其作为主路由来使用。如果直接硬件刷<strong>Openwrt</strong>的话主路由的设置还是比较容易的，就是一个网口连外网充当<strong>wan</strong>，一个连内充当<strong>lan</strong>罢了，但鉴于这样实在是浪费了N6005的性能还是要上<strong>ESXi</strong>才行,<strong>EXSi</strong>就是VMware的一个虚拟机系统，依托该系统来让主机有更多的功能支持。</p>
+<h1 id="EXSi的安装">EXSi的安装</h1>
+<p>  具体安装过程参考 <a href="https://zhuanlan.zhihu.com/p/166568514">vSphere ESXI 7.0部署详细安装指南，奶妈级安装教程(附镜像)</a></p>
+<h1 id="拓扑设计">拓扑设计</h1>
+<p>  由于后续系统都将基于<strong>EXSi</strong>来进行安装，所以在这先进行网络的拓扑设计。<br />
+<img src="https://github.com/Cnicehs/Image/raw/main/N6005%E7%BD%91%E5%8F%A3%E6%8B%93%E6%89%91.png" alt="N6005拓扑" /></p>
+<h1 id="网口设置">网口设置</h1>
+<p>  由上边拓扑可以确定现在的EXSi的网口应该进行如下设置</p>
+<ol>
+<li>eth0 保持原本的虚拟模式</li>
+<li>eth1，eth2，eth3设置为直通模式</li>
+<li>为了后续也能在eth1，2，3中接入的设备也能进入EXSi管理界面，需要打开虚拟交换机的混杂模式。<br />
+可参考该视频</li>
+</ol>
+<iframe src="//player.bilibili.com/player.html?aid=552695056&bvid=BV1Li4y1Q7dJ&cid=560962457&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>  
+<h1 id="IP设置">IP设置</h1>
+<ol>
+<li>首先将Exsi设置为静态IP 这里以 192.168.3.2 为例，网关设置为192.168.3.1</li>
+<li>电脑若连不上，则需要手动设置电脑IP到192.168.3.x网段</li>
+<li>后续的Openwrt中lan设置为192.168.3.1</li>
+</ol>
+<h1 id="Openwrt安装">Openwrt安装</h1>
+<p>  Openwrt的固件这边选择<strong>eSir</strong>编译的<a href="https://drive.google.com/drive/folders/1uRXg_krKHPrQneI3F2GNcSVRoCgkqESr">固件</a>,固件下载好后配合img转vmdk工具<strong>starwindconverter</strong>来生成EXSi所要使用文件，具体参考<a href="https://post.smzdm.com/p/axl4n0gd/">img转vmdk步骤以及安装</a>  至此就完成了Openwrt的安装，其他设备应该也能正常上网了，若无法正常上网可能是固件原因，尝试换个版本看看。</p>
+<h1 id="安装其他系统">安装其他系统</h1>
+<p>  安装其他系统只需要使用默认网卡配置即可，这样所有设备都将走Openwrt来进行网络处理了，这样基于EXSi的主路由就告一段落了</p>
+<h1 id="其他的一些坑">其他的一些坑</h1>
+<p>  本来准备给这个主机配一个1T的固态的，在淘宝中买了七彩虹CN600，没想到居然不兼容，这也是太难得了，后来在群里询问后获得一个兼容表单，里面还一个不兼容的品牌就是爱国者，看来国产芯片的兼容性还有待提供啊，以后还是老老实实的买正统牌子吧。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

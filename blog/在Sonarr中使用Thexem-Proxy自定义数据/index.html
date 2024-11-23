@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         在Sonarr中使用Thexem-Proxy自定义数据
+        
+    </title>
+
+        
+            <meta property="og:title" content="在Sonarr中使用Thexem-Proxy自定义数据" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="使用Thexem-Proxy来自定义Alternate Titles" />
+         
+     
+
+     
+         
+             <meta name="description" content="使用Thexem-Proxy来自定义Alternate Titles" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        在Sonarr中使用Thexem-Proxy自定义数据<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-12-03</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-12</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/https/" class="post-tag">Https</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/ssl/" class="post-tag">SSL</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#环境">环境</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#起因">起因</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#Docker-Compose">Docker-Compose</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#xem-mapping.yml">xem-mapping.yml</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#配置DNSMASQ">配置DNSMASQ</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#Nginx">Nginx</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#申请自签证书">申请自签证书</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#配置Sonarr信任证书">配置Sonarr信任证书</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Sonarr中使用Thexem-Proxy自定义数据/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="环境">环境</h2>
+<ol>
+<li>ubuntu22.04</li>
+<li>sonarr 3.0.9.1549</li>
+</ol>
+<h2 id="起因">起因</h2>
+<p>在获取动漫数据时发现部分动漫没有<strong>Alternate Titles</strong>，于是想自己添加合适的<strong>Alternate Titles</strong>用于搜索(当前sonarr只会使用全英文的Title去搜索，会跳过非英文的Title)，查看源码后发现Sonarr是使用<strong>thexem.info</strong>来获取<strong>scene mapping</strong>数据的，但<strong>thexem.info</strong>只能是注册用户才能进行修改于是找到了<a href="https://github.com/uilton-oliveira/thexem-proxy">thexem-proxy</a>这个项目来解决这个问题。</p>
+<h2 id="Docker-Compose">Docker-Compose</h2>
+<pre data-lang="yml" class="language-yml z-code"><code class="language-yml" data-lang="yml"><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">thexem-proxy</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">image</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">ghcr.io/uilton-oliveira/thexem-proxy:latest</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">container_name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">thexem-proxy</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">volumes</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">./thexem-proxy/config:/thexem/config</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">environment</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">    <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>   - NODE_TLS_REJECT_UNAUTHORIZED=0
+</span></span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">API_URL=172.67.160.240</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">HEADER_HOST=thexem.info</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">networks</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">main</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">ports</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3005:3005</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restart</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">unless-stopped</span>
+</span></code></pre>
+<h2 id="xem-mapping.yml">xem-mapping.yml</h2>
+<pre data-lang="yml" class="language-yml z-code"><code class="language-yml" data-lang="yml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">exclude</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml"><span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> TVDB-ID
+</span></span><span class="z-source z-yaml"><span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>72241<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">include</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>326732<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Ze Tian Ji</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">-1</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>Tvdb-ID<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Example All Seasons Title 1</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">-1</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Example All Seasons Title 2</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">-1</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Example Season 1 Title</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Example Season 2 Title</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">2</span>
+</span><span class="z-source z-yaml">  <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">Example Season 3 Title</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">3</span>
+</span><span class="z-source z-yaml">
+</span></code></pre>
+<h2 id="配置DNSMASQ">配置DNSMASQ</h2>
+<pre class="z-code"><code><span class="z-text z-plain">address=/thexem.de/10.0.0.115
+</span></code></pre>
+<h2 id="Nginx">Nginx</h2>
+<pre class="z-code"><code><span class="z-text z-plain">server {
+</span><span class="z-text z-plain">  listen        443;
+</span><span class="z-text z-plain">  server_name   thexem.info;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">  location / {
+</span><span class="z-text z-plain">	proxy_pass http://thexem-proxy:3005/;
+</span><span class="z-text z-plain">	proxy_set_header X-Real-IP $remote_addr;
+</span><span class="z-text z-plain">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span class="z-text z-plain">	proxy_set_header X-Forwarded-Proto $scheme;
+</span><span class="z-text z-plain">	proxy_set_header X-Forwarded-Host $http_host;
+</span><span class="z-text z-plain">	proxy_redirect off;
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<h2 id="申请自签证书">申请自签证书</h2>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">mkdir</span></span><span class="z-meta z-function-call z-arguments z-shell"> ssl</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> ssl</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">nano</span></span><span class="z-meta z-function-call z-arguments z-shell"> localhost.conf</span>
+</span></code></pre>
+<pre data-lang="ini" class="language-ini z-code"><code class="language-ini" data-lang="ini"><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">[req]
+</span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">default_bits</span>       <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-constant z-numeric z-genconfig">2048</span>
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">default_keyfile</span>    <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-meta z-url z-genconfig"><span class="z-constant z-other z-genconfig">localhost</span></span><span class="z-keyword z-operator z-genconfig">.</span>key
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">distinguished_name</span> <span class="z-keyword z-operator z-genconfig">=</span></span> req_distinguished_name
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">req_extensions</span>     <span class="z-keyword z-operator z-genconfig">=</span></span> req_ext
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">x509_extensions</span>    <span class="z-keyword z-operator z-genconfig">=</span></span> v3_ca
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">[req_distinguished_name]
+</span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">countryName</span>                 <span class="z-keyword z-operator z-genconfig">=</span></span> Country Name (<span class="z-constant z-numeric z-genconfig">2</span> letter code)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">countryName_default</span>         <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-support z-constant z-genconfig">US</span>
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">stateOrProvinceName</span>         <span class="z-keyword z-operator z-genconfig">=</span></span> State or Province Name (full name)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">stateOrProvinceName_default</span> <span class="z-keyword z-operator z-genconfig">=</span></span> New York
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">localityName</span>                <span class="z-keyword z-operator z-genconfig">=</span></span> Locality Name (eg<span class="z-keyword z-operator z-genconfig">,</span> city)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">localityName_default</span>        <span class="z-keyword z-operator z-genconfig">=</span></span> Rochester
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">organizationName</span>            <span class="z-keyword z-operator z-genconfig">=</span></span> Organization Name (eg<span class="z-keyword z-operator z-genconfig">,</span> company)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">organizationName_default</span>    <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-meta z-url z-genconfig"><span class="z-constant z-other z-genconfig">localhost</span></span>
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">organizationalUnitName</span>      <span class="z-keyword z-operator z-genconfig">=</span></span> organizationalunit
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">organizationalUnitName_default</span> <span class="z-keyword z-operator z-genconfig">=</span></span> Development
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">commonName</span>                  <span class="z-keyword z-operator z-genconfig">=</span></span> Common Name (e<span class="z-keyword z-operator z-genconfig">.</span>g<span class="z-keyword z-operator z-genconfig">.</span> server <span class="z-support z-constant z-genconfig">FQDN</span> or <span class="z-support z-constant z-genconfig">YOUR</span> name)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">commonName_default</span>          <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-meta z-url z-genconfig"><span class="z-constant z-other z-genconfig">localhost</span></span>
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">commonName_max</span>              <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-constant z-numeric z-genconfig">64</span>
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">[req_ext]
+</span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">subjectAltName</span> <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-storage z-source z-genconfig">@alt_names</span>
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">[v3_ca]
+</span></span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">subjectAltName</span> <span class="z-keyword z-operator z-genconfig">=</span></span> <span class="z-storage z-source z-genconfig">@alt_names</span>
+</span><span class="z-source z-genconfig">
+</span><span class="z-source z-genconfig"><span class="z-storage z-type z-genconfig">[alt_names]
+</span></span><span class="z-source z-genconfig"><span class="z-support z-constant z-genconfig">DNS</span><span class="z-keyword z-operator z-genconfig">.</span><span class="z-constant z-numeric z-genconfig">1</span>   <span class="z-keyword z-operator z-genconfig">=</span> thexem<span class="z-keyword z-operator z-genconfig">.</span>info
+</span><span class="z-source z-genconfig"><span class="z-support z-constant z-genconfig">DNS</span><span class="z-keyword z-operator z-genconfig">.</span><span class="z-constant z-numeric z-genconfig">2</span>   <span class="z-keyword z-operator z-genconfig">=</span> <span class="z-meta z-ip z-genconfig"><span class="z-constant z-other z-genconfig">192.168.3.2</span></span><span class="z-meta z-comment z-genconfig"> <span class="z-comment z-line z-number-sign z-genconfig">#自己的ip
+</span></span></span></code></pre>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> 生成私钥key和证书crt</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">openssl</span></span><span class="z-meta z-function-call z-arguments z-shell"> req<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>x509</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>nodes</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>days</span> 365<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>newkey</span> rsa:2048<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>keyout</span> localhost.key<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>out</span> localhost.crt<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>config</span> localhost.conf</span>
+</span></code></pre>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cp</span></span><span class="z-meta z-function-call z-arguments z-shell"> localhost.crt /etc/ssl/certs/localhost.crt</span>
+</span></code></pre>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cp</span></span><span class="z-meta z-function-call z-arguments z-shell"> localhost.key /etc/ssl/private/localhost.key</span>
+</span></code></pre>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> 将证书写入ca-certificates中，使curl之类的可以信任该https连接</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> /etc/ssl/certs/localhost.crt <span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;&gt;</span> /etc/ssl/certs/ca-certificates.crt</span>
+</span></code></pre>
+<h2 id="配置Sonarr信任证书">配置Sonarr信任证书</h2>
+<p>到sonarr中执行如下命令即可</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cert-sync</span></span><span class="z-meta z-function-call z-arguments z-shell"> /etc/ssl/certs/ca-certificates.crt</span>
+</span></code></pre>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a href="https://wiki.servarr.com/sonarr/installation#mono-ssl-issues">mono-ssl-issues</a></li>
+<li><a href="https://www.humankode.com/ssl/create-a-selfsigned-certificate-for-nginx-in-5-minutes/">Create a Self-Signed Certificate for Nginx in 5 Minutes</a></li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Shader Semantics
+        
+    </title>
+
+        
+            <meta property="og:title" content="Shader Semantics" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Shader语义" />
+         
+     
+
+     
+         
+             <meta name="description" content="Shader语义" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Shader Semantics<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-03-05</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/shaderlab/" class="post-tag">Shaderlab</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#作用">作用</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#语义的规则或限制">语义的规则或限制</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#为什么要使用语义">为什么要使用语义</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#系统语义">系统语义</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#Note">Note</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Shader-Semantics/#SV_POSITION">SV_POSITION</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader-Semantics/#参考">参考</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  在学习Shader是经常会看到诸如<code>TEXCOORD0</code>,<code>POSITION</code>,这样的东西，这些东西叫做<strong>Semantics</strong>中文叫做<strong>语义</strong>。</p>
+<h2 id="作用">作用</h2>
+<p>在Unity的shader中，TEXCOORD0，POSITION等都是用来表示顶点和片元的数据的语义。<a href="https://docs.unity3d.com/Manual/SL-ShaderSemantics.html">语义是用来指示HLSL shader程序中输入和输出变量的意图的。</a></p>
+<p>例如，POSITION语义表示顶点在裁剪空间中的位置，以便GPU知道屏幕上的光栅化位置和深度。 TEXCOORD0，TEXCOORD1等语义用于表示任意高精度数据，如纹理坐标和位置。 顶点输出和片元输入的COLOR0和COLOR1语义用于表示低精度0到1范围的数据（如简单的颜色值）。</p>
+<h2 id="语义的规则或限制">语义的规则或限制</h2>
+<ul>
+<li>语义必须是从以下列表中选择的：POSITION，NORMAL，TANGENT，TEXCOORD0-7，COLOR0-1，SV_Target等。</li>
+<li>语义必须与变量的类型和维度匹配。例如，POSITION必须是float3或float4，COLOR0必须是float[2|3|4]等。</li>
+<li>语义不能重复使用。例如，不能有两个变量都使用TEXCOORD0语义。</li>
+<li>片元shader的输出语义通常是SV_Target，表示输出的颜色值。</li>
+</ul>
+<p>可以参考<a href="https://learn.microsoft.com/zh-cn/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics?redirectedfrom=MSDN">MSDN</a>上的Semantics文档来了解更多细节。</p>
+<h2 id="为什么要使用语义">为什么要使用语义</h2>
+<p>使用这些语义的原因是，它们可以传递关于参数的预期用途的信息，从而使shader程序与GPU和其他shader阶段之间的通信更加清晰和有效。</p>
+<p>例如，POSITION语义告诉GPU这个变量是用来表示顶点位置的，而TEXCOORD0语义告诉GPU这个变量是用来表示纹理坐标的。这样，GPU就可以根据语义来正确地处理和插值数据，并将其传递给下一个shader阶段（如片元shader）。</p>
+<p>可以把语义看作是一种约定或标签，它们帮助组织和管理shader代码，并避免一些错误或混乱。</p>
+<h2 id="系统语义">系统语义</h2>
+<p>为什么MSDN上TEXCOORD0为float4，使用时却可以声明为float2，但在<a href="https://yzzfo.github.io/blog/Shader-Semantics/#%E8%AF%AD%E4%B9%89%E7%9A%84%E8%A7%84%E5%88%99%E6%88%96%E9%99%90%E5%88%B6">规则或限制</a>中却说了类型必须匹配？</p>
+<blockquote>
+<p>之前说的POSITION必须是float3或float4类型，是指在顶点shader输出或片元shader输入时，使用的SV_POSITION语义，这个语义是用来表示顶点在<a href="https://yzzfo.github.io/blog/Shader-Semantics/#SV_POSITION"><strong>裁剪空间或屏幕空间</strong></a>的位置的，它是GPU栅格化和深度测试所必需的</p>
+<p>由于裁剪空间和屏幕空间都是三维或四维的，所以SV_POSITION语义必须使用float3或float4类型来声明。 如果使用其他类型，例如float2，那么GPU将无法正确地计算顶点的位置和深度，从而导致渲染错误。</p>
+<p>COLOR也同理，指的shader片元输出时的SV_Target语义。</p>
+<p><a href="https://learn.microsoft.com/zh-cn/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics?redirectedfrom=MSDN#mapping-to-direct3d-9-semantics">根据MSDN中所述DX10的SV_Target等效DX9的COLOR</a>,所以在Unity中会看到一些宏定义将SV_Target定为COLOR</p>
+<p>而TEXCOORD0语义则不同，它只是用来表示纹理坐标或其他任意数据的，并不影响GPU栅格化和深度测试。 因此，TEXCOORD0语义可以使用任何合适的类型来声明，只要与其他shader阶段之间的数据传递保持一致即可。</p>
+<p>他们之间的差别就在于SV_POSITION语义是一个特殊的系统值语义（System-Value Semantics），它有一些固定的规则和约束，而TEXCOORD0语义则是一个普通的用户定义语义（User-Defined Semantics），它有更多的灵活性和自由度。</p>
+</blockquote>
+<h3 id="Note">Note</h3>
+<h4 id="SV_POSITION">SV_POSITION</h4>
+<p>以<strong>SV_POSITION</strong>为例，他在Vertex和Frag阶段时所代表的数据是<strong>不同的</strong></p>
+<pre class="z-code"><code><span class="z-text z-plain">struct v2f  
+</span><span class="z-text z-plain">{  
+</span><span class="z-text z-plain">    float4 vertex: SV_POSITION;  
+</span><span class="z-text z-plain">};  
+</span><span class="z-text z-plain">  
+</span><span class="z-text z-plain">v2f vert(appdata v)  
+</span><span class="z-text z-plain">{  
+</span><span class="z-text z-plain">    v2f o;  
+</span><span class="z-text z-plain">    o.vertex = UnityObjectToClipPos(v.vertex);  // 此时SV_POSITION为裁剪坐标系下的位置
+</span><span class="z-text z-plain">    return o;  
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">fixed4 frag(v2f i): SV_Target  
+</span><span class="z-text z-plain">{  
+</span><span class="z-text z-plain">	// 此时SV_POSITION 为屏幕空间位置
+</span><span class="z-text z-plain">	// 这个时候 i.vertex.xy 并不是裁剪坐标下的位置，而是屏幕位置
+</span><span class="z-text z-plain">    return fixed4(i.vertex.xy/_ScreenParams.xy,0,1); //计算屏幕UV
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://stackoverflow.com/questions/22064165/why-does-hlsl-have-semantics">glsl - 为什么HLSL有语义？- 堆栈溢出 (stackoverflow.com)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/455189480">SV_POSITION 在Pixel Shader中的使用 - 知乎 (zhihu.com)</a></li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

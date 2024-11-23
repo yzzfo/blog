@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         T4模板
+        
+    </title>
+
+        
+            <meta property="og:title" content="T4模板" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="用T4模板生成重复代码" />
+         
+     
+
+     
+         
+             <meta name="description" content="用T4模板生成重复代码" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        T4模板<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-11-20</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/c/" class="post-tag">C#</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/t4/" class="post-tag">T4</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/dai-ma-sheng-cheng/" class="post-tag">代码生成</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#开发环境">开发环境</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#编写T4文件">编写T4文件</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#保存文件">保存文件</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#引用Unity的Dll">引用Unity的Dll</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/T4模板/#Editor中进行基础设置">Editor中进行基础设置</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/T4模板/#使用环境变量">使用环境变量</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#csproj中设置Property">csproj中设置Property</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/T4模板/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>最碰到了一些代码生成的需求，按以往的一些生成代码的简单方法就是使用<code>string.Format</code>来格式化一个字符串，但想来总觉得太暴力了，也没啥维护可言，于是网上搜了搜C#的代码生成方案发现了T4模板这个玩意。</p>
+<h2 id="开发环境">开发环境</h2>
+<ul>
+<li>Rider2021.2</li>
+<li>Unity2020</li>
+</ul>
+<p>要在Unity中使用T4需要在<code>Eidt&gt;Preferences&gt;External Tools的Extension中添加后缀tt和ttinclude</code>，并重新生成项目文件。<br />
+Rider在Unity中的插件版本更新为最新，在版本2.0.7中为当前Unity推荐版本，但使用T4有bug，时好时坏，更新到3.0.7就可以正常运行了。<a href="https://youtrack.jetbrains.com/issue/RIDER-64870?clearDraft=true&amp;description=%0A%0AVersion:%20RD-211.7442.29%0ATimezone:%20Europe%2FParis%0AEvaluation:%20false%0AEnvironment:%20RD-211.7442.29,%20JRE%2011.0.11%209-b1341.57x64%20JetBrains%20s.r.o.,%20OS%20Linux(amd64)%20v5.4.0-77-generic,%20screens%202560.0x1440.0%0A.NET%20Core%205.0.5%0AUnity:%202020.3.9f1%0ALogs:%20https:%2F%2Fdotnet-ea.services.jetbrains.com%2Ffiles%2Fsmall%2Fd50b6708-3b17-431f-a82d-515754600db2%2Frider-logs-attachment.tar.xz&amp;c=Affected%20versions%202021.1.3%20(211.7442.29)">参考</a><br />
+运行T4文件则是<code>在Rider中选择T4文件 &gt; 点击T4文件编辑界面第一行左边的绿色三角形即可</code></p>
+<h2 id="编写T4文件"><a href="https://docs.microsoft.com/zh-cn/visualstudio/modeling/writing-a-t4-text-template?view=vs-2022&amp;redirectedfrom=MSDN&amp;viewFallbackFrom=vs-2015">编写T4文件</a></h2>
+<p>T4文件编写时可以直接使用C#代码，这样就可以在模板中直接调用开发环境的API来快速获得想要的数据了。<br />
+简单的例子</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">template</span> <span class="z-variable z-other z-cs">language</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>C#<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-variable z-other z-cs">hostspecific</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>true<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>设置模板属性
+</span></span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.Text<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>导库
+</span></span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.Collections.Generic<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.IO<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">assembly</span> <span class="z-variable z-other z-cs">name</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>       <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>导入程序集
+</span></span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.Linq<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>Linq包含在上面的程序集，所以要它之后才能导入Linq
+</span></span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">output</span> <span class="z-variable z-other z-cs">extension</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>cs<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>输出的后缀
+</span></span><span class="z-source z-cs"><span class="z-comment z-block z-cs"><span class="z-punctuation z-definition z-comment z-begin z-cs">/*</span>
+</span></span><span class="z-source z-cs"><span class="z-comment z-block z-cs">      生成的代码
+</span></span><span class="z-source z-cs"><span class="z-comment z-block z-cs"><span class="z-punctuation z-definition z-comment z-end z-cs">*/</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-keyword z-other z-cs">class</span> <span class="z-variable z-other z-cs">HelloWorld</span>
+</span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs">      <span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetOne</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>使用函数 #&gt;
+</span></span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>逻辑块
+</span></span><span class="z-source z-cs">      <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>循环打印十次循环体内容
+</span></span><span class="z-source z-cs">    <span class="z-keyword z-other z-cs">for</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">i</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span>; <span class="z-variable z-other z-cs">i</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">10</span>; <span class="z-variable z-other z-cs">i</span><span class="z-keyword z-operator z-cs">+</span><span class="z-keyword z-operator z-cs">+</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span><span class="z-source z-cs">    <span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs">      <span class="z-comment z-block z-cs"><span class="z-punctuation z-definition z-comment z-begin z-cs">/*</span>
+</span></span><span class="z-source z-cs"><span class="z-comment z-block z-cs">            循环体内容
+</span></span><span class="z-source z-cs"><span class="z-comment z-block z-cs">      <span class="z-punctuation z-definition z-comment z-end z-cs">*/</span></span>
+</span><span class="z-source z-cs">      <span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetOne</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>使用函数 #&gt;
+</span></span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>逻辑块，连上上面的中括号
+</span></span><span class="z-source z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-keyword z-operator z-cs">+</span>   <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>定义函数
+</span></span><span class="z-source z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetOne</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span>
+</span><span class="z-source z-cs">      <span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs">            <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>one<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span></code></pre>
+<h2 id="保存文件">保存文件</h2>
+<p>默认保存方式只能保存一份代码，保存的名字为T4文件名+定义的后缀。要同时生成多个文件需要进行相应的代码编写。
+一个简单的保存<a href="https://stackoverflow.com/a/44340464">示例</a></p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">template</span> <span class="z-variable z-other z-cs">debug</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>false<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-variable z-other z-cs">hostspecific</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>true<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-variable z-other z-cs">language</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>C#<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">assembly</span> <span class="z-variable z-other z-cs">name</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.Core<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-other z-cs">namespace</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>System.IO<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">output</span> <span class="z-variable z-other z-cs">extension</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>.txt<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#
+</span><span class="z-source z-cs"><span class="z-keyword z-other z-cs">for</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">Int32</span> <span class="z-variable z-other z-cs">i</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span>; <span class="z-variable z-other z-cs">i</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">10</span>; <span class="z-keyword z-operator z-cs">+</span><span class="z-keyword z-operator z-cs">+</span><span class="z-variable z-other z-cs">i</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Content</span> <span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">i</span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#
+</span><span class="z-source z-cs">  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> End of file.
+</span></span><span class="z-source z-cs">  <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SaveOutput</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Content<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">i</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>.txt<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-keyword z-operator z-cs">+</span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SaveOutput</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-cs">outputFileName</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span> <span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span><span class="z-source z-cs">  <span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-cs">templateDirectory</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Path</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetDirectoryName</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">Host</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">TemplateFile</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">  <span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-cs">outputFilePath</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Path</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Combine</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">templateDirectory</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">outputFileName</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">  <span class="z-variable z-other z-cs">File</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">WriteAllText</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">outputFilePath</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">GenerationEnvironment</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span> 
+</span><span class="z-source z-cs">  <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">GenerationEnvironment</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Remove</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">0</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">GenerationEnvironment</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Length</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-invalid z-illegal z-cs">&gt;</span></span>
+</span></code></pre>
+<p>这种方式可以多文件保存，但默认保存方式的文件并不会因此就不再生成，所以通常会多出一个不想要的空文件，暂时也没找到什么有效的解决方法，索性在<code>SaveOutput</code>之后加入一些说明文本之类的，然它输出到这个默认文件中用作类似README的存在。</p>
+<h2 id="引用Unity的Dll">引用Unity的Dll</h2>
+<p>在T4中引用其他的Dll需要输入他们的路径，但不同的Unity版本他们的Dll所在的位置也有所不同，所以需要在Unity中设置一个环境变量用于表示该目录，这样T4模板中导入的路径就不用每次更换版本的时候进行改动了。</p>
+<h3 id="Editor中进行基础设置">Editor中进行基础设置</h3>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 进行T4的基本设置
+</span></span><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">InitializeOnLoadMethod</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>  
+</span><span class="z-source z-cs"><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">MenuItem</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>InitT4Setting<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>  
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">SetT4</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 让Unity识别T4模板
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-keyword z-operator z-cs">!</span><span class="z-variable z-other z-cs">EditorSettings</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">projectGenerationUserExtensions</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Contains</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>tt<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">		<span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">exts</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">EditorSettings</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">projectGenerationUserExtensions</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToList</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">		<span class="z-variable z-other z-cs">exts</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Add</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>tt<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">		<span class="z-variable z-other z-cs">exts</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Add</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>ttinclude<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">		<span class="z-variable z-other z-cs">EditorSettings</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">projectGenerationUserExtensions</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">exts</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToArray</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">		<span class="z-variable z-other z-cs">Logger</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>完成添加 tt ttinclude后缀到项目中<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">	</span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-variable z-other z-cs">System</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Environment</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetEnvironmentVariable</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>T4UnityPath<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetUnityDLLPath</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>.<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>  
+</span><span class="z-source z-cs">  
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">string</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetUnityDLLPath</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">string</span> <span class="z-variable z-parameter z-cs">projectFilePath</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-storage z-type z-cs">string</span> <span class="z-variable z-other z-cs">content</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">System</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">IO</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">File</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ReadAllText</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">projectFilePath</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>/Assembly-CSharp.csproj<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-support z-type z-cs">Regex</span> <span class="z-variable z-other z-cs">regex</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Regex</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>&lt;HintPath&gt;(.*?)UnityEngine<span class="z-constant z-character z-escape z-cs">\\</span>.dll&lt;/HintPath&gt;<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-other z-cs">regex</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Match</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">content</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Groups</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">1</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Value</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h3 id="使用环境变量">使用环境变量</h3>
+<p>设置环境变量后需要关闭编辑器，并通过<strong>在Unity中双击脚本重新打开编辑器</strong>才能使得环境编辑在编辑器中生效，之后通过如下方式在T4中导入dll。</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">assembly</span> <span class="z-variable z-other z-cs">name</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>%T4UnityPath%/UnityEngine.dll<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span>#<span class="z-keyword z-operator z-cs">&gt;</span>
+</span><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">assembly</span> <span class="z-variable z-other z-cs">name</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>$(T4UnityPath)/UnityEngine.dll<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span>#<span class="z-keyword z-operator z-cs">&gt;</span>
+</span></code></pre>
+<ul>
+<li><code>%XXX%</code>  格式只能用于环境变量</li>
+<li><code>$(XXX)</code> property和环境变量都可以使用</li>
+</ul>
+<h2 id="csproj中设置Property"><a href="https://learn.microsoft.com/zh-cn/previous-versions/visualstudio/visual-studio-2015/modeling/t4-assembly-directive?view=vs-2015&amp;redirectedfrom=MSDN#msbuild">csproj中设置Property</a></h2>
+<pre data-lang="xml" class="language-xml z-code"><code class="language-xml" data-lang="xml"><span class="z-text z-xml"><span class="z-comment z-block z-xml"><span class="z-punctuation z-definition z-comment z-begin z-xml">&lt;!--</span> Define a project property, myLibFolder: <span class="z-punctuation z-definition z-comment z-end z-xml">--&gt;</span></span>
+</span><span class="z-text z-xml"><span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;</span><span class="z-entity z-name z-tag z-localname z-xml">PropertyGroup</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml">    <span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;</span><span class="z-entity z-name z-tag z-localname z-xml">myLibFolder</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>$(MSBuildProjectDirectory)\..\libs<span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;/</span><span class="z-entity z-name z-tag z-localname z-xml">myLibFolder</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml"><span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;/</span><span class="z-entity z-name z-tag z-localname z-xml">PropertyGroup</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml">
+</span><span class="z-text z-xml"><span class="z-comment z-block z-xml"><span class="z-punctuation z-definition z-comment z-begin z-xml">&lt;!--</span> MSBuild才需要下面的，普通情况只需要在上边定义即可使用属性了 <span class="z-punctuation z-definition z-comment z-end z-xml">--&gt;</span></span>
+</span><span class="z-text z-xml"><span class="z-comment z-block z-xml"><span class="z-punctuation z-definition z-comment z-begin z-xml">&lt;!--</span> Tell the MSBuild T4 task to make the property available: <span class="z-punctuation z-definition z-comment z-end z-xml">--&gt;</span></span>
+</span><span class="z-text z-xml"><span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;</span><span class="z-entity z-name z-tag z-localname z-xml">ItemGroup</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml">    <span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;</span><span class="z-entity z-name z-tag z-localname z-xml">T4ParameterValues</span> <span class="z-entity z-other z-attribute-name z-localname z-xml">Include</span><span class="z-punctuation z-separator z-key-value z-xml">=</span><span class="z-string z-quoted z-double z-xml"><span class="z-punctuation z-definition z-string z-begin z-xml">&quot;</span>myLibFolder<span class="z-punctuation z-definition z-string z-end z-xml">&quot;</span></span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml">      <span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;</span><span class="z-entity z-name z-tag z-localname z-xml">Value</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>$(myLibFolder)<span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;/</span><span class="z-entity z-name z-tag z-localname z-xml">Value</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml">    <span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;/</span><span class="z-entity z-name z-tag z-localname z-xml">T4ParameterValues</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span><span class="z-text z-xml"><span class="z-meta z-tag z-xml"><span class="z-punctuation z-definition z-tag z-begin z-xml">&lt;/</span><span class="z-entity z-name z-tag z-localname z-xml">ItemGroup</span><span class="z-punctuation z-definition z-tag z-end z-xml">&gt;</span></span>
+</span></code></pre>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-operator z-cs">&lt;</span>#<span class="z-invalid z-illegal z-reserved-char z-cs">@</span> <span class="z-variable z-other z-cs">assembly</span> <span class="z-variable z-other z-cs">name</span><span class="z-keyword z-operator z-assignment z-cs">=</span><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>$(myLibFolder)<span class="z-invalid z-illegal z-lone-escape z-cs">\</span>MyLib.dll<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> #<span class="z-keyword z-operator z-cs">&gt;</span>
+</span></code></pre>
+<p>T4使用反射时对象为MonoBehaviour时出现错误，提示无法加载netstandard.dll
+出现错误时的Csproj
+C:\Program Files\Unity\Hub\Editor\2020.3.42f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\netstandard.dll
+正常的Csproj
+C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</p>
+<p>原因在于.NetFramwork的选择 4.x时会出现错误路径，需要使用2.1</p>
+<h2 id="参考资料">参考资料</h2>
+<p>https://docs.microsoft.com/zh-cn/visualstudio/modeling/writing-a-t4-text-template?view=vs-2022&amp;redirectedfrom=MSDN&amp;viewFallbackFrom=vs-2015<br />
+https://stackoverflow.com/questions/33575419/how-to-create-multiple-output-files-from-a-single-t4-template-using-tangible-edi<br />
+https://learn.microsoft.com/en-us/archive/msdn-magazine/2012/may/t4-templates-managing-complexity-in-t4-code-generation-solutions<br />
+https://learn.microsoft.com/zh-cn/previous-versions/visualstudio/visual-studio-2015/modeling/t4-assembly-directive?view=vs-2015&amp;redirectedfrom=MSDN</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

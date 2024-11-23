@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         V2ray笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="V2ray笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="使用Vray时的一些笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="使用Vray时的一些笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        V2ray笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-11-13</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/v2ray/" class="post-tag">V2ray</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/V2ray笔记/#一些不错的工具">一些不错的工具</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/V2ray笔记/#使用nginx反代x-ui">使用nginx反代x-ui</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/V2ray笔记/#unblockmusic">unblockmusic</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h3 id="一些不错的工具">一些不错的工具</h3>
+<ol>
+<li><a href="https://github.com/Jrohy/multi-v2ray">multi-v2ray</a></li>
+<li><a href="https://github.com/vaxilu/x-ui">x-ui</a></li>
+</ol>
+<h3 id="使用nginx反代x-ui">使用nginx反代x-ui</h3>
+<ol>
+<li>在x-ui启用ws形式的代理(不用开启tls)</li>
+<li>在nginx中反代刚刚的ws即可<pre class="z-code"><code><span class="z-text z-plain">  location /wspath {     # wspath填你前面设置的ws的路径
+</span><span class="z-text z-plain">       proxy_redirect off;
+</span><span class="z-text z-plain">       proxy_pass http://x-ui:443; #443 为ws的端口
+</span><span class="z-text z-plain">       proxy_http_version 1.1;
+</span><span class="z-text z-plain">       proxy_set_header Upgrade $http_upgrade;
+</span><span class="z-text z-plain">       proxy_set_header Connection &quot;upgrade&quot;;
+</span><span class="z-text z-plain">       proxy_set_header Host $http_host;
+</span><span class="z-text z-plain">       proxy_read_timeout 300s;
+</span><span class="z-text z-plain">       # Show realip in v2ray access.log
+</span><span class="z-text z-plain">       proxy_set_header X-Real-IP $remote_addr;
+</span><span class="z-text z-plain">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span class="z-text z-plain">}  
+</span></code></pre>
+</li>
+</ol>
+<h3 id="unblockmusic">unblockmusic</h3>
+<p>docker-compose.yaml</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">unblockmusic</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">container_name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">unblockmusic</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restart</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">always</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">image</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">nondanee/unblockneteasemusic:latest</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">environment</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">NODE_ENV</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">production</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">networks</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">main</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">mainv6</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">command</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">-p 8080:8081 -s -e https://music.163.com</span>
+</span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">unblockv2ray</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">container_name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">unblockv2ray</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restart</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">always</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">image</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">v2fly/v2fly-core:latest</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">networks</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">main</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">volumes</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">./unblockmusic/v2ray/config.json:/etc/v2ray/config.json</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">depends_on</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">unblockmusic</span>
+</span></code></pre>
+<p>config.json</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>log<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>loglevel<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>warning<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">    <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>inbounds<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">        <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>port<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-numeric z-integer z-decimal z-json">55555</span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>protocol<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>vmess<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>settings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>clients<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                    <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>id<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>b470e733-d15f-497c-b891-0eabc68acaaa<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>alterId<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-numeric z-integer z-decimal z-json">0</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                    <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>streamSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>network<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>ws<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>tcpSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>kcpSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>httpSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>wsSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">                    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>path<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>/0dJV3NYl/<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>headers<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">                        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>Host<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>hostname<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                    <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>quicSettings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>hostname<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">        <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>outbounds<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">        <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>protocol<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>http<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>settings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>servers<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                    <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>address<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>unblockmusic<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>port<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-numeric z-integer z-decimal z-json">8080</span>
+</span></span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                    <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>tag<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>music<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">        <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">        <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>tag<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>direct<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>protocol<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>freedom<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>settings<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">        <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>routing<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domainStrategy<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>IPIfNonMatch<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domainMatcher<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>linear<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">        </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>rules<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">            <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>   <span class="z-invalid z-illegal z-expected-mapping-key z-json">#</span> <span class="z-invalid z-illegal z-expected-mapping-key z-json">域</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">名</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">r</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">u</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">l</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">e</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">和</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">I</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">P</span> <span class="z-invalid z-illegal z-expected-mapping-key z-json">r</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">u</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">l</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">e</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">不</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">能</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">写</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">在</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">一</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">起</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                <span class="z-invalid z-illegal z-expected-mapping-key z-json">#</span> <span class="z-invalid z-illegal z-expected-mapping-key z-json">写</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">一</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">起</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">的</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">话</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">是</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">并</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">的</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">关</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">系</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">，</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">解</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">析</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">完</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">域</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">名</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">后</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">还</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">要</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">i</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">p</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">为</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">i</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">p</span> <span class="z-invalid z-illegal z-expected-mapping-key z-json">r</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">u</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">l</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">e</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">才</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">会</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">代</span><span class="z-invalid z-illegal z-expected-mapping-key z-json">理</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>type<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>field<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>outboundTag<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>music<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>enabled<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:baidu.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:music.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:interface.music.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:interface3.music.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:apm.music.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:apm3.music.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:mam.netease.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>domain:api.iplay.163.com<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span> 
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">            <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>type<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>field<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>outboundTag<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>music<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>enabled<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>ip<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>103.126.92.132<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>103.126.92.133<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>223.252.199.67<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>223.252.199.66<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.181.38<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.160.197<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.181.35<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.181.60<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.160.195<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>59.111.181.155<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">                <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">            <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>type<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>field<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>port<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>0-65535<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>outboundTag<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>direct<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">                </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>enabled<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span>
+</span></span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-meta z-mapping z-value z-json">            <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">        <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">  <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

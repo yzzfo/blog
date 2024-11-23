@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         13代Intel PVE直通
+        
+    </title>
+
+        
+            <meta property="og:title" content="13代Intel PVE直通" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="13代Intel PVE直通" />
+         
+     
+
+     
+         
+             <meta name="description" content="13代Intel PVE直通" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        13代Intel PVE直通<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-06-08</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/pve/" class="post-tag">PVE</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/zhi-tong/" class="post-tag">直通</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#8.0清华源">8.0清华源</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#security_updates">security updates</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#8.0">8.0</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#block_AMD_driver">block AMD driver</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#block_NVIDIA_driver">block NVIDIA driver</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/13代Intel-PVE直通/#block_INTEL_driver">block INTEL driver</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>下面是教程，主要说关于UHD770，或者叫10代-13代核显的直通教程：</p>
+<p>前言</p>
+<p>在创建win10虚拟机里面请选择默认 ovmf+i440fx 7.2版本或者最新以上机型（不能选q35！QEMU不支持Q35 核显Legacy模式下显示，可以定制QEMU支持Q35，不在本文讨论）</p>
+<p>bios选择ovmf（BIOS必须OVMF，Intel核显已不支持传统BIOS启动）。添加sriov设备的时候，勾选pcie和主gpu，勾了主gpu之后，pve就不会显示画面了，可以尝试吧显卡改成virtio-gpu，这样就可以显示控制台。如果装驱动43，把显示该成无（none）。</p>
+<p>虚拟机内存至少4G</p>
+<p>客户端选 win10 不要选 win11 （用Win11 i7-13620h成功测试）</p>
+<p>下载资源
+https://www.123pan.com/s/20P0Vv-yxd6H.html</p>
+<p>提取码:mura</p>
+<p>备份资源： https://github.com/Cnicehs/igd ， 可以直接使用 2in1_rom/igd_rpls.rom 这个rom</p>
+<p>下载后解压，具体如何使用，详细参考其中的readme文件</p>
+<p>重点其实就是两个文件：gen12_igd.rom和gen12_gop.rom，10-13代核显可以直接把这两个放进 pve 的</p>
+<p>/usr/share/kvm</p>
+<p>路径下即可</p>
+<p>注：本资源来自于：https://github.com/gangqizai/igd，感谢原作者复出，本次仅做搬运，转载请注明出处！</p>
+<p>bios设置
+虚拟化vtd vtx 多线程</p>
+<p>开启iommu</p>
+<p>关闭CSM尽量只用UEFI</p>
+<p>注意BIOS设定：DVMT pre allocated，不要大过64M，64M对应x-igd-gms=0x2，如果超过64M,x-igd-gms要加大！</p>
+<p>开始PVE配置：</p>
+<p>换源
+执行</p>
+<p>apt install apt-transport-https ca-certificates
+先更改</p>
+<p>vi /etc/apt/sources.list
+原来的注释或全部删除，用下面的代替</p>
+<h1 id="8.0清华源">8.0清华源</h1>
+<p>deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware</p>
+<h1 id="security_updates">security updates</h1>
+<p>deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware</p>
+<p>更改</p>
+<p>vi /etc/apt/sources.list.d/pve-enterprise.list
+用下面的代替</p>
+<h1 id="8.0">8.0</h1>
+<p>deb https://mirrors.tuna.tsinghua.edu.cn/proxmox/debian bookworm pve-no-subscription</p>
+<p>PVE8还需要改一下ceph</p>
+<p>vi /etc/apt/sources.list.d/ceph.list
+修改：</p>
+<p>deb https://mirrors.ustc.edu.cn/proxmox/debian/ceph-quincy bookworm no-subscription</p>
+<p>最后更新一下：</p>
+<p>apt-get update</p>
+<p>pvetools
+先删除企业源：</p>
+<p>rm /etc/apt/sources.list.d/pve-enterprise.list
+安装</p>
+<p>export LC_ALL=en_US.UTF-8
+apt update &amp;&amp; apt -y install git &amp;&amp; git clone https://github.com/ivanhao/pvetools.git
+启动工具（cd到目录，启动工具）</p>
+<p>cd ~/pvetools</p>
+<p>./pvetools.sh</p>
+<p>如果你没有外网，需要改为以下命令来运行，搬运：</p>
+<p>export LC_ALL=en_US.UTF-8
+apt update &amp;&amp; apt -y install git &amp;&amp; git clone https://gitee.com/fanjinhong/pvetools8.git
+之后需要改一下权限</p>
+<p>cd ~ &amp;&amp; chmod -R 777 pvetools8</p>
+<p>对应的启动工具（cd到目录，启动工具）</p>
+<p>cd ~/pvetools8</p>
+<p>./pvetools.sh</p>
+<p>注意：不要用“去除订阅提示”，可能有bug，“cpu省电”可能导致cpu性能不足，其余可以适当配置，如无需要不要乱配</p>
+<p>开启IOMMU
+此步骤几乎为必须</p>
+<p>启动内核IOMMU支持</p>
+<p>vi /etc/default/grub</p>
+<p>修改/etc/default/grub，i915.enable_guc=7</p>
+<p>GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt initcall_blacklist=sysfb_init multifunction pcie_acs_override=downstream i915.enable_guc=7"</p>
+<p>update-grub</p>
+<p>屏蔽驱动
+vi /etc/modprobe.d/blacklist.conf</p>
+<p>添加内容</p>
+<h1 id="block_AMD_driver">block AMD driver</h1>
+<p>blacklist radeon
+blacklist amdgpu</p>
+<h1 id="block_NVIDIA_driver">block NVIDIA driver</h1>
+<p>blacklist nouveau
+blacklist nvidia
+blacklist nvidiafb</p>
+<h1 id="block_INTEL_driver">block INTEL driver</h1>
+<p>blacklist snd_hda_intel
+blacklist snd_hda_codec_hdmi
+blacklist i915</p>
+<p>options vfio_iommu_type1 allow_unsafe_interrupts=1</p>
+<p>屏蔽三大显卡驱动，屏蔽hdmi声音驱动；options vfio_iommu_type1 allow_unsafe_interrupts=1 允许不安全的设备中断</p>
+<p>update-initramfs -u -k all</p>
+<p>增加module</p>
+<p>vi /etc/modules
+然后添加</p>
+<p>vfio
+vfio_iommu_type1
+vfio_pci
+vfio_virqfd</p>
+<p>将设备加入进vfio
+找到id</p>
+<p>lspci -D -nnk | grep VGA
+得到</p>
+<p>0000:00:02.0 VGA compatible controller [0300]: Intel Corporation Alder Lake-S GT1 [UHD Graphics 770] [8086:4690] (rev 0c)</p>
+<p>0000:03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23 [Radeon RX 6600/6600 XT/6600M] [1002:73ff] (rev c7)
+id就是（12代UHD770基本都是这个代号）</p>
+<p>8086:4690</p>
+<p>用于添加直通组</p>
+<p>vim /etc/modprobe.d/vfio.conf
+改为（vifo.conf 没有 disable_vga=1，有的删掉！）</p>
+<p>options vfio-pci ids=8086:4690</p>
+<p>update-initramfs -u</p>
+<p>虚拟机配置（这个才是重点）
+具体根据自己的虚拟机来配置</p>
+<p>vim /etc/pve/qemu-server/100.conf</p>
+<p>给出示例：注意仅做参考，前面是行号</p>
+<p>1 agent: 1
+2 args: -set device.hostpci0.addr=02.0 -set device.hostpci0.x-igd-gms=0x2 -set device.hostpci0.x-igd-opregion=on -debugcon file:/root/igd_debug.log     -global isa-debugcon.iobase=0x402
+3 balloon: 0
+4 bios: ovmf
+5 boot: order=sata0;ide0
+6 cores: 4
+7 cpu: host
+8 efidisk0: local-lvm:vm-100-disk-0,efitype=4m,size=4M
+9 hostpci0: 0000:00:02.0,legacy-igd=1,romfile=gen12_igd.rom
+10 hostpci1: 0000:00:1f.3,romfile=gen12_gop.rom
+11 ide0: local:iso/virtio-win-0.1.229.iso,media=cdrom,size=522284K
+12 machine: pc-i440fx-8.0
+13 memory: 4096
+14 meta: creation-qemu=8.0.2,ctime=1692294184
+15 name: wintest
+16 net0: virtio=7A:1E:CC:A8:81:D2,bridge=vmbr0,firewall=1
+17 numa: 1
+18 ostype: win10
+19 sata0: local-lvm:vm-100-disk-1,size=40G,ssd=1
+20 scsihw: virtio-scsi-single
+21 smbios1: uuid=adaf615c-2ff8-43a9-b8f5-6433e379aa6d
+22 sockets: 1
+23 usb0: host=062a:4101,usb3=1
+24 usb1: host=1a81:1202,usb3=1
+25 vga: none
+26 vmgenid: 69c57031-908b-4795-a197-215c209e43e2
+这里面的重点是：2、 9 、10 、25行</p>
+<p>2 args: -set device.hostpci0.addr=02.0 -set device.hostpci0.x-igd-gms=0x2 -set device.hostpci0.x-igd-opregion=on -debugcon file:/root/igd_debug.log     -global isa-debugcon.iobase=0x402</p>
+<p>9 hostpci0: 0000:00:02.0,legacy-igd=1,romfile=gen12_igd.rom
+10 hostpci1: 0000:00:1f.3,romfile=gen12_gop.rom</p>
+<p>25 vga: none</p>
+<p>之后需要自己用工具，把两个文件，通过sftp等方式，放进pve下的 /usr/share/kvm/下</p>
+<p>然后需要自行安装驱动才能真正运行正常</p>
+<p>安装驱动：最好是用Windows更新来安装，实在不行，可以从下面二选一：</p>
+<p>https://www.intel.cn/content/www/cn/zh/download/729157/intel-arc-iris-xe-graphics-beta-windows.html</p>
+<p>https://www.intel.cn/content/www/cn/zh/download/785597/intel-arc-iris-xe-graphics-windows.html?</p>
+<p>捡垃圾、黑苹果、瞎吹牛逼QQ群：805190737</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

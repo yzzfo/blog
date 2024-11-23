@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         纹理压缩
+        
+    </title>
+
+        
+            <meta property="og:title" content="纹理压缩" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="纹理压缩" />
+         
+     
+
+     
+         
+             <meta name="description" content="纹理压缩" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        纹理压缩<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-12-22</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/texture/" class="post-tag">Texture</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/you-hua/" class="post-tag">优化</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/纹理压缩/#ASTC">ASTC</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/纹理压缩/#DXT">DXT</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/纹理压缩/#参考">参考</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>在Unity中直接载入png,jpg之类图片的时候对内存的压力是很大的，在Android和IOS可以使用astc格式，win下则可以使用dxt格式格式进行内存压缩，在使用3000x8000图片的时候能将内存从100M降低到10M左右。</p>
+<h2 id="ASTC">ASTC</h2>
+<p>从https://github.com/ARM-software/astc-encoder下载相应软件后执行类似<code>./astcenc-avx2.exe -cl ./测试.png test.astc 8x8 -medium -yflip</code>指令即可生成astc图片，<code>-yflip</code>用于翻转图片以适应Unity。<br />
+ASTC的前16字节用于描述该图片的信息</p>
+<pre data-lang="cpp" class="language-cpp z-code"><code class="language-cpp" data-lang="cpp"><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-storage z-type z-c++">struct</span> </span><span class="z-meta z-struct z-c++"><span class="z-entity z-name z-struct z-c++">astc_header</span></span><span class="z-meta z-struct z-c++">
+</span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++"><span class="z-punctuation z-section z-block z-begin z-c++">{</span></span></span><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> magic<span class="z-meta z-brackets z-c++"><span class="z-punctuation z-section z-brackets z-begin z-c++">[</span><span class="z-constant z-numeric z-integer z-decimal z-c++">4</span><span class="z-punctuation z-section z-brackets z-end z-c++">]</span></span><span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> block_x<span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> block_y<span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> block_z<span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> dim_x<span class="z-meta z-brackets z-c++"><span class="z-punctuation z-section z-brackets z-begin z-c++">[</span><span class="z-constant z-numeric z-integer z-decimal z-c++">3</span><span class="z-punctuation z-section z-brackets z-end z-c++">]</span></span><span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> dim_y<span class="z-meta z-brackets z-c++"><span class="z-punctuation z-section z-brackets z-begin z-c++">[</span><span class="z-constant z-numeric z-integer z-decimal z-c++">3</span><span class="z-punctuation z-section z-brackets z-end z-c++">]</span></span><span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++">    <span class="z-support z-type z-stdint z-c">uint8_t</span> dim_z<span class="z-meta z-brackets z-c++"><span class="z-punctuation z-section z-brackets z-begin z-c++">[</span><span class="z-constant z-numeric z-integer z-decimal z-c++">3</span><span class="z-punctuation z-section z-brackets z-end z-c++">]</span></span><span class="z-punctuation z-terminator z-c++">;</span>
+</span></span></span><span class="z-source z-c++"><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++"></span></span><span class="z-meta z-struct z-c++"><span class="z-meta z-block z-c++"><span class="z-punctuation z-section z-block z-end z-c++">}</span></span></span><span class="z-punctuation z-terminator z-c++">;</span>
+</span></code></pre>
+<p>通过dim_x和dim_y即可获得图片尺寸(小端字节序)<br />
+width = dim_x[0] + (dim_x[1] &lt;&lt; 8) + (dim_x[2] &lt;&lt; 16);<br />
+height = dim_y[0] + (dim_y[1] &lt;&lt; 8) + (dim_y[2] &lt;&lt; 16);</p>
+<p>在Unity中载入ASTC需要剔除文件头(16字节<a href="https://forum.unity.com/threads/loading-astc-texture-from-file.945125/">Loading ASTC texture from file</a>)</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-type z-cs">sbyte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-variable z-other z-cs">sbytes</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">sbyte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-meta z-cast z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-support z-type z-cs">Array</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-variable z-other z-cs">img_bytes</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">width</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">7</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">8</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">&lt;&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">8</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">9</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">&lt;&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">16</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">height</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">10</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">11</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">&lt;&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">8</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">sbytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">12</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">&lt;&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">16</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">tex</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Texture2D</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">width</span><span class="z-punctuation z-separator z-argument z-cs">,</span><span class="z-variable z-other z-cs">height</span><span class="z-punctuation z-separator z-argument z-cs">,</span><span class="z-variable z-other z-cs">ASTC_4x4</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">tex</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LoadRawTextureData</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">img_bytes</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Skip</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">6</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToArray</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">tex</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Apply</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></code></pre>
+<h2 id="DXT">DXT</h2>
+<p>下载https://github.com/FrozenStormInteractive/Crunch2，通过如下命令<code>crunch -file blah.tga -fileformat dds -dxt1 -mipmode none</code>生成dxt文件</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> <span class="z-markup z-underline z-link z-cs">https://discussions.unity.com/t/can-you-load-dds-textures-during-runtime/84192/2</span>
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-support z-type z-cs">Texture2D</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">LoadTextureDXT</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-storage z-type z-cs">byte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-variable z-parameter z-cs">ddsBytes</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span> <span class="z-support z-type z-cs">TextureFormat</span> <span class="z-variable z-parameter z-cs">textureFormat</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">textureFormat</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">TextureFormat</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">DXT1</span> <span class="z-keyword z-operator z-cs">&amp;&amp;</span> <span class="z-variable z-other z-cs">textureFormat</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">TextureFormat</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">DXT5</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-trycatch z-throw z-cs">throw</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Exception</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Invalid TextureFormat. Only DXT1 and DXT5 formats are supported by this method.<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">byte</span> <span class="z-variable z-other z-cs">ddsSizeCheck</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">4</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">ddsSizeCheck</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">124</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-trycatch z-throw z-cs">throw</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Exception</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Invalid DDS DXTn texture. Unable to read<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>this header byte should be 124 for DDS image files
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">height</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">13</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">256</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">12</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">width</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">17</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">256</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-constant z-numeric z-integer z-decimal z-cs">16</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">DDS_HEADER_SIZE</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">128</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">byte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span> <span class="z-variable z-other z-cs">dxtBytes</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-storage z-type z-cs">byte</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span><span class="z-variable z-other z-cs">ddsBytes</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Length</span> <span class="z-keyword z-operator z-cs">-</span> <span class="z-variable z-other z-cs">DDS_HEADER_SIZE</span><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">Buffer</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">BlockCopy</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">ddsBytes</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">DDS_HEADER_SIZE</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">dxtBytes</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">ddsBytes</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Length</span> <span class="z-keyword z-operator z-cs">-</span> <span class="z-variable z-other z-cs">DDS_HEADER_SIZE</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-support z-type z-cs">Texture2D</span> <span class="z-variable z-other z-cs">texture</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Texture2D</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">width</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">height</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">textureFormat</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">texture</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LoadRawTextureData</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">dxtBytes</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">texture</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Apply</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-meta z-cast z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-support z-type z-cs">texture</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h2 id="参考">参考</h2>
+<p>https://discussions.unity.com/t/can-you-load-dds-textures-during-runtime/84192/2<br />
+https://stackoverflow.com/questions/25402080/does-endianness-apply-to-bit-order-too<br />
+https://huailiang.github.io/blog/2022/astc/<br />
+https://forum.unity.com/threads/loading-astc-texture-from-file.945125/<br />
+https://dench.flatlib.jp/ddsformat<br />
+<a href="https://gist.github.com/tilkinsc/d1a8a46853dea160dc86aa48618be6f9">dds_texture_loader.c</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

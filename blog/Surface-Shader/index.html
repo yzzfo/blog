@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Surface Shader
+        
+    </title>
+
+        
+            <meta property="og:title" content="Surface Shader" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Surface Shader笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Surface Shader笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Surface Shader<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-03-06</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/shaderlab/" class="post-tag">Shaderlab</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#使用方法">使用方法</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#编译指令">编译指令</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#Input">Input</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#顶点动画">顶点动画</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#阴影">阴影</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#一个Dissovle的例子">一个Dissovle的例子</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Surface-Shader/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  Surface Shader是Unity进行抽象过的一层Shader，有时候想基于Unity默认Shader的基础上加一些特效时使用Suface Shader在合适不过了，创建默认的Surf Shader时便以及实现了PBR相关的功能。</p>
+<h2 id="使用方法">使用方法</h2>
+<h3 id="编译指令">编译指令</h3>
+<p><code># pragma surface surfaceFunction lightModel [optionalparams]</code>
+类似透明度测试之类的东西需要在<code>optionalparams</code>处声明</p>
+<h3 id="Input">Input</h3>
+<p>只能使用Unity提供的相关变量，诸如worldPos，screenPos等</p>
+<h3 id="顶点动画">顶点动画</h3>
+<p>在<code>optionalparams</code>中加入<code>vertex:VertexFunction</code>，并编写对应函数即可</p>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-meta z-preprocessor z-glsl"><span class="z-keyword z-control z-import z-glsl">#pragma</span> surface surf Lambert vertex:vert 
+</span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-storage z-type z-glsl">struct</span> <span class="z-entity z-name z-struct z-glsl">Input</span> 
+</span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"> 
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">	float2 uv_MainTex<span class="z-punctuation z-terminator z-glsl">;</span> 
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span> 
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> _Amount<span class="z-punctuation z-terminator z-glsl">;</span>
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">void</span> <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">vert</span></span><span class="z-meta z-function z-glsl"> </span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-storage z-modifier z-glsl">inout</span> appdata_full <span class="z-variable z-parameter z-glsl">v</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-function z-glsl"> 
+</span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"> 
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">	v<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xyz</span> <span class="z-keyword z-operator z-assignment z-augmented z-glsl">+=</span> v<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">normal</span> <span class="z-keyword z-operator z-glsl">*</span> _Amount<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span>
+</span></code></pre>
+<h3 id="阴影">阴影</h3>
+<p>在默认的模板情况下，我们直接使用alphatest剔除像素后，该物体所投射的阴影依旧是完整的，这时需要在optionalparams加入<code>addshadow</code>指令</p>
+<h3 id="一个Dissovle的例子">一个Dissovle的例子</h3>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl">Shader &quot;Custom<span class="z-keyword z-operator z-arithmetic z-glsl">/</span>NewSurfaceShader&quot;  
+</span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    Properties  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Color</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Color&quot;<span class="z-punctuation z-separator z-glsl">,</span> Color</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span>HDR<span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_HColor</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;HColor&quot;<span class="z-punctuation z-separator z-glsl">,</span> Color</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_MainTex</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;<span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Albedo</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">RGB</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>&quot;<span class="z-punctuation z-separator z-glsl">,</span> 2D</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> &quot;white&quot; <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Noise</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;<span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Noise</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">RGB</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>&quot;<span class="z-punctuation z-separator z-glsl">,</span> 2D</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> &quot;white&quot; <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Glossiness</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Smoothness&quot;<span class="z-punctuation z-separator z-glsl">,</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Range</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">0.5</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Metallic</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Metallic&quot;<span class="z-punctuation z-separator z-glsl">,</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Range</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">0.0</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Height</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Height&quot;<span class="z-punctuation z-separator z-glsl">,</span><span class="z-storage z-type z-glsl">float</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">0</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Clip</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Clip&quot;<span class="z-punctuation z-separator z-glsl">,</span><span class="z-storage z-type z-glsl">float</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-keyword z-operator z-assignment z-glsl">=</span><span class="z-constant z-numeric z-glsl">0.01</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    SubShader  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        Tags  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            &quot;RenderType&quot;<span class="z-keyword z-operator z-assignment z-glsl">=</span>&quot;Opaque&quot;  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        LOD <span class="z-constant z-numeric z-glsl">200</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        CGPROGRAM  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Physically based Standard lighting model, and enable shadows on all light types  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">        <span class="z-keyword z-control z-import z-glsl">#pragma</span> surface surf Standard fullforwardshadows alphatest:_Clip addshadow
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Use shader model 3.0 target, to get nicer looking lighting  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">        <span class="z-keyword z-control z-import z-glsl">#pragma</span> target 3.0  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-storage z-type z-glsl">sampler2D</span> _MainTex<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-storage z-type z-glsl">sampler2D</span> _Noise<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-storage z-type z-glsl">struct</span> Input  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            float2 uv_MainTex<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            float2 uv_Noise<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            float3 worldPos<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> _Glossiness<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> _Metallic<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        fixed4 _Color<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        float4 _HColor<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-storage z-type z-glsl">float</span> _Height<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Add instancing support for this shader. You need to check &#39;Enable Instancing&#39; on materials that use the shader.  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.        // #pragma instancing_options assumeuniformscaling        UNITY_INSTANCING_BUFFER_START(Props)  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> put more per-instance properties here  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">UNITY_INSTANCING_BUFFER_END</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">Props</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-storage z-type z-glsl">void</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">surf</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">Input IN<span class="z-punctuation z-separator z-glsl">,</span> <span class="z-storage z-modifier z-glsl">inout</span> SurfaceOutputStandard o</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>            <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Albedo comes from a texture tinted by color  
+</span></span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            fixed4 c <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">tex2D</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_MainTex<span class="z-punctuation z-separator z-glsl">,</span> IN<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">uv_MainTex</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-glsl">*</span> _Color<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Albedo</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> c<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">rgb</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Metallic and smoothness come from slider variables  
+</span></span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Metallic</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> _Metallic<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Smoothness</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> _Glossiness<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            float3 move <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">float3</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">UNITY_MATRIX_M<span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span><span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">w</span><span class="z-punctuation z-separator z-glsl">,</span> UNITY_MATRIX_M<span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">w</span><span class="z-punctuation z-separator z-glsl">,</span> UNITY_MATRIX_M<span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span><span class="z-constant z-numeric z-glsl">2</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">w</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            <span class="z-storage z-type z-glsl">float</span> height <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span>IN<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">worldPos</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> move<span class="z-punctuation z-section z-group z-end z-glsl">)</span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">y</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            <span class="z-storage z-type z-glsl">float</span> alpha <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">1</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> <span class="z-meta z-function-call z-glsl"><span class="z-support z-function z-glsl">smoothstep</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_Height<span class="z-punctuation z-separator z-glsl">,</span> _Height <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">0.1</span><span class="z-punctuation z-separator z-glsl">,</span> height</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span> <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> 0-1  
+</span></span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Alpha</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> alpha<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> ifNotGrand <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-support z-function z-glsl">step</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0.99</span><span class="z-punctuation z-separator z-glsl">,</span> alpha</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span> <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span>0 则是渐变区域, 1是非渐变  
+</span></span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> ifGrand <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">1</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> ifNotGrand<span class="z-punctuation z-section z-group z-end z-glsl">)</span></span><span class="z-punctuation z-terminator z-glsl">;</span> <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span>1 则是渐变，0则是非渐变  
+</span></span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Alpha</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> ifNotGrand <span class="z-keyword z-operator z-glsl">*</span> o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Alpha</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> ifGrand <span class="z-keyword z-operator z-glsl">*</span> o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Alpha</span> <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-function-call z-glsl"><span class="z-support z-function z-glsl">step</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0.1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">tex2D</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_Noise<span class="z-punctuation z-separator z-glsl">,</span> IN<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">uv_Noise</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">r</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">            o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Albedo</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> ifNotGrand <span class="z-keyword z-operator z-glsl">*</span> o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Albedo</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> ifGrand <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span>alpha <span class="z-keyword z-operator z-glsl">*</span> o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">Albedo</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span>_HColor <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">1</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> alpha<span class="z-punctuation z-section z-group z-end z-glsl">)</span></span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>        ENDCG  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    FallBack &quot;Diffuse&quot;  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://docs.unity3d.com/cn/current/Manual/SL-SurfaceShaders.html">编写表面着色器 - Unity 手册 (unity3d.com)</a>
+<a href="https://docs.unity3d.com/Manual/SL-SurfaceShaderExamples.html">Surface Shader examples</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

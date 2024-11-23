@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         修改Editor
+        
+    </title>
+
+        
+            <meta property="og:title" content="修改Editor" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="修改Editor" />
+         
+     
+
+     
+         
+             <meta name="description" content="修改Editor" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        修改Editor<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-04-23</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/editor/" class="post-tag">Editor</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/修改Editor/#修改ObjectField">修改ObjectField</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/修改Editor/#入口">入口</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>   最近在制作技能的时候感觉到 Unity 内建的资源选择工具在选择自建类型的资源时十分的难受，所以尝试来修改一下 Unity 的编辑器。</p>
+<p>整体方案参考 <code>Ultimate Editor Enhancer</code> 这个插件，其修改内建元素时采用的是 <code>Harmony</code> 这个插件，其原理与在<a href="https://yzzfo.github.io/blog/%E4%BF%AE%E6%94%B9Editor/%E9%9B%A8%E4%B8%AD%E5%86%92%E9%99%A9mod%E5%88%B6%E4%BD%9C.md">雨中冒险mod制作</a> 一文中的 <code>BepInEx</code> 差不多，都是通过 Hook 的方式进行修改。</p>
+<h2 id="修改ObjectField">修改ObjectField</h2>
+<h3 id="入口">入口</h3>
+<p>ObjectField 的绘制入口是 EditorGUI 下的 <code>DoObjectField</code> 函数，他已经在 <code>ObjectFieldInterceptor</code> 类中被 Hook 了，可以在 <code>Prefix</code> 中劫持点击事件，并打开自己对于的选择界面。</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 注册Hook
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-cs">static</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ObjectFieldSelector</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span>  
+</span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span><span class="z-source z-cs">    <span class="z-variable z-other z-cs">ObjectFieldInterceptor</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OnGUIBefore</span> <span class="z-keyword z-operator z-cs">+=</span> <span class="z-variable z-other z-cs">OnGUIBefore</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 执行Hook相关的逻辑
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnGUIBefore</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Rect</span> <span class="z-variable z-parameter z-cs">position</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Rect</span> <span class="z-variable z-parameter z-cs">dropRect</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-parameter z-cs">id</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Object</span> <span class="z-variable z-parameter z-cs">obj</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Object</span> <span class="z-variable z-parameter z-cs">objBeingEdited</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Type</span> <span class="z-variable z-parameter z-cs">objType</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">Type</span> <span class="z-variable z-parameter z-cs">additionalType</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">SerializedProperty</span> <span class="z-variable z-parameter z-cs">property</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-storage z-type z-cs">object</span> <span class="z-variable z-parameter z-cs">validator</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-storage z-type z-cs">bool</span> <span class="z-variable z-parameter z-cs">allowSceneObjects</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-parameters z-cs">    <span class="z-support z-type z-cs">GUIStyle</span> <span class="z-variable z-parameter z-cs">style</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-keyword z-operator z-cs">!</span><span class="z-variable z-other z-cs">Prefs</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">objectFieldSelector</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">property</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-constant z-language z-cs">null</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 检查事件
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-support z-type z-cs">Event</span> <span class="z-variable z-other z-cs">e</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Event</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">current</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">type</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-variable z-other z-cs">EventType</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">MouseUp</span> <span class="z-keyword z-operator z-cs">&amp;&amp;</span> <span class="z-variable z-other z-cs">blockMouseUp</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">blockMouseUp</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Use</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 将事件消耗掉，防止他触发原本的ObjectField点击事件
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">type</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">EventType</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">MouseDown</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">button</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Rect</span> <span class="z-variable z-other z-cs">rect</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Rect</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">position</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMin</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMax</span> <span class="z-keyword z-operator z-cs">-</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">16</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-keyword z-operator z-cs">!</span><span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Contains</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">mousePosition</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>    <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">button</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Rect</span> <span class="z-variable z-other z-cs">rect</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Rect</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">position</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMin</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMax</span> <span class="z-keyword z-operator z-cs">-</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">36</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMax</span> <span class="z-keyword z-operator z-cs">-=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">16</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-keyword z-operator z-cs">!</span><span class="z-variable z-other z-cs">rect</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Contains</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">mousePosition</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>    <span class="z-keyword z-control z-conditional z-else z-cs">else  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">return</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-support z-type z-cs">Type</span> <span class="z-variable z-other z-cs">type</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">objType</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">blockMouseUp</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-language z-cs">true</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">e</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Use</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-variable z-other z-cs">position</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">xMin</span> <span class="z-keyword z-operator z-cs">+=</span> <span class="z-variable z-other z-cs">EditorGUIUtility</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">labelWidth</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">	<span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 打开界面
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">OpenAssetSelector</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">id</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">type</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

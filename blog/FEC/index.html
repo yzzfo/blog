@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         FEC
+        
+    </title>
+
+        
+            <meta property="og:title" content="FEC" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="学习一下在网络传输时的一些纠错方式" />
+         
+     
+
+     
+         
+             <meta name="description" content="学习一下在网络传输时的一些纠错方式" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        FEC<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-02-26</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/wang-luo/" class="post-tag">网络</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FEC/#XOR_FEC">XOR FEC</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FEC/#Reed-Solomon_Codes">Reed-Solomon Codes</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  在游戏开发时人们经常会实现一些网络传输方案，在使用tcp时，由于其的确认机制及拥塞控制通常会导致网络波动，而udp则过于简单仅包含一份数据传输时所需的基本信息，这也使得udp可以快速传递信息。对于游戏而言我们希望的传输协议应该具有一下几点:</p>
+<ol>
+<li>低延迟</li>
+<li>尽可能的可靠</li>
+<li>有序</li>
+</ol>
+<p>为了实现这一点通常就是使用udp来实现一个简易的tcp，剔除tcp中一些繁杂的检测机制，在传递信息时我们允许一些丢包而不是在那一直等待，例如在同步玩家位置这类并非十分关键的数据时，中间丢失几帧的信息是可以允许的。</p>
+<p>tcp在传递数据时采用的滑动窗口来保证数据的可靠及有序，在出现丢包时会触发重传机制，这也就导致了延迟的增大，这时就需要使用FEC技术。</p>
+<p>FEC即Forward Error Correction的缩写，中文为前向纠错，FEC是利用数据进行传输冗长信息的方法,当传输中出现错误,将允许接收方修复数据。</p>
+<h2 id="XOR_FEC">XOR FEC</h2>
+<p>在二进制情况下异或操作有如下特性,其实本质就是不进位加法</p>
+<ol>
+<li><code>1</code>为取反</li>
+<li><code>0</code>保持不变</li>
+<li><code>0^1^0^1^1^X</code> 当<strong>1的总数为奇数</strong>时结果为<code>1</code><strong>偶数</strong>为<code>0</code></li>
+</ol>
+<p>所以当我们有N组数据时，通过将N组数据进行异或操作，即可获得一份纠错数据，例如:</p>
+<pre class="z-code"><code><span class="z-text z-plain">0101
+</span><span class="z-text z-plain">1111 =&gt; 1010
+</span><span class="z-text z-plain">0000
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">更具第3点,此时1010可以看作是数据奇偶的特征
+</span><span class="z-text z-plain">若奇偶性不变则 =&gt; 0
+</span><span class="z-text z-plain">改变则 =&gt; 1
+</span><span class="z-text z-plain">由于奇偶性不变时其异或的结果也与特征结果一致可以推出X^X=0，改变时则与其相X^1，则我们能直接通过异或运算得出丢失的数据。
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">例如此时我们任意丢失一组数据0101，对余下的数据进行异或操作可以得到1111，1111^1010 = 0101
+</span></code></pre>
+<p>该方法的好处在于当只丢失任意<strong>一份</strong>数据时，我们都能找回来，即增加1/N的冗余数据即可保护剩下的N份数据。</p>
+<h2 id="Reed-Solomon_Codes">Reed-Solomon Codes</h2>
+<p>当希望在丢失更多份数据时也能恢复出原本的数据时就需要使用里德-所罗门码，具体细节参考</p>
+<ol>
+<li>https://www.geeksforgeeks.org/what-is-reed-solomon-code/</li>
+<li>https://zhuanlan.zhihu.com/p/104579290</li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

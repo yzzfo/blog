@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         在Unity中实现Illustrator中的文本排版
+        
+    </title>
+
+        
+            <meta property="og:title" content="在Unity中实现Illustrator中的文本排版" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="在Unity中实现Illustrator中的文本排版" />
+         
+     
+
+     
+         
+             <meta name="description" content="在Unity中实现Illustrator中的文本排版" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        在Unity中实现Illustrator中的文本排版<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-06-20</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/font/" class="post-tag">Font</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/illustrator/" class="post-tag">Illustrator</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#在横版的情况下">在横版的情况下</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#如何确定字体高度">如何确定字体高度</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#如何确定字体宽度">如何确定字体宽度</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#如何确定字体位置">如何确定字体位置</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#行高">行高</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#Unity">Unity</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#Illustrator">Illustrator</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#文字高度">文字高度</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#Illustrator-1">Illustrator</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#在竖版的情况">在竖版的情况</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#Illustrator-2">Illustrator</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#罗马排布形式">罗马排布形式</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#非罗马排布">非罗马排布</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#行距">行距</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#Unity-1">Unity</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#其他">其他</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#工具">工具</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/在Unity中实现Illustrator中的文本排版/#参考资料">参考资料</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>最近需要在Unity中实现和Illustrator中一样的文本渲染效果，但Unity的TextMeshPro和Illustrator差别还是蛮大的，所以在这记录一下相关的内容。</p>
+<p><img src="https://yzzfo.github.io/blog/%E5%9C%A8Unity%E4%B8%AD%E5%AE%9E%E7%8E%B0Illustrator%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC%E6%8E%92%E7%89%88/%E5%AD%97%E4%BD%93%E8%AF%B4%E6%98%8E.png" alt="img" /></p>
+<h1 id="在横版的情况下">在横版的情况下</h1>
+<h2 id="如何确定字体高度">如何确定字体高度</h2>
+<p>  有时候我们将fontSize设置为12px的时候却发现他的preferHeight却是14px，那么这是怎么来的呢？为了明白这个问题，我们需要先知道字体中的三个基础属性:</p>
+<ol>
+<li>UPM：Units per Em，通常为1000，fontSize将对应该值，可以理解为标准字体大小</li>
+<li>Ascent: 上界距离基线的距离</li>
+<li>Descent: 下界距离基线的距离</li>
+</ol>
+<p>Ascent与Descent组合在一起用于确定字体最大的高度<code>Height=Ascent-Descent</code>，preferHeight对应该值。所以可以得到<code>height_px = Height / UPM * fontsize_px</code>，这点在Unity和Illustrator中是一致的。</p>
+<p>例如：UPM=1000，Ascent：852 Descent：-248 ，那我们可以知道该字体大小为  (852+248)/1000 = 1.1 em即当fontSize设置为10pt的时候，他实际大小为11pt。</p>
+<h2 id="如何确定字体宽度">如何确定字体宽度</h2>
+<p>  宽度和高度基本同理，但宽度的数据在每个字的内部，即<code>Width=glyph.metrics.horizontalAdvance</code>。  <code>width_px = Width / UPM * fontsize_px</code></p>
+<h2 id="如何确定字体位置">如何确定字体位置</h2>
+<p>  确定了字体大小也只是确定了包围盒,但位置并不知道，他以哪个地方为锚点开始画也不知道，这个时候就轮到了<strong>baseline</strong>这个属性，根据公式<code>Top = (Ascent-baseline)/Height</code>和<code>Bottom = (baseline-Descent)/Height</code>，可以算出<strong>baseline</strong>所在的位置，<code>bottom_offset = height_px * Bottom</code>，从底部向上偏移<code>bottom_offset</code>这么多就是<strong>baseline</strong>的位置，字体在设计的时候也是根据<strong>baseline</strong>进行设计的，这样就确定了位置。</p>
+<h2 id="行高">行高</h2>
+<h3 id="Unity">Unity</h3>
+<p>  TextMeshPro LineHeight=0的时候默认使用的是，TextMeshProAsset中的LineHeigt属性以下称为<strong>T_LineHeight</strong>，<strong>T_LineHeight</strong>属性单位和Ascent是一样的，所以计算px的算法也是一致的，<code>lineHeight_px = T_LineHeight / UPM * fontSize_px</code>。<strong>LineHeight</strong>单位为<code>1em/100</code>，即<code>lineHeight_px = T_LineHeight / UPM * fontSize_px + LineHeight * fontSize / 100</code></p>
+<h3 id="Illustrator">Illustrator</h3>
+<p>  行高就是在位置属性中设置的大小，比如12pt那么一行就是12pt，即换行文字向下偏移12pt。</p>
+<h2 id="文字高度">文字高度</h2>
+<h3 id="Illustrator-1">Illustrator</h3>
+<p>文字高度不同于行高（行高指偏移，文字高度指单行时元素高度），此处文字高度指如下图所示的文字框的高度。</p>
+<p><img src="https://yzzfo.github.io/blog/%E5%9C%A8Unity%E4%B8%AD%E5%AE%9E%E7%8E%B0Illustrator%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC%E6%8E%92%E7%89%88/%E6%A8%AA%E7%89%88%E6%80%9D%E6%BA%90%E9%BB%91%E4%BD%93.png" alt="img" /></p>
+<h4 id="下边界">下边界</h4>
+<p>在Illustrator中，如下思源黑体之所以出现如此大的高度原因在于其字体内存在glyph，该glyph的<strong>ymin</strong>比<strong>Descent</strong>更小，因此导致框的下边界下移，即:  若<strong>字体中</strong>glyph的<strong>ymin</strong>小于<strong>Descent</strong>，则导致下边框下移，要解决这种问题可以尝试将哪些过高的glyph删除。</p>
+<h4 id="上边界">上边界</h4>
+<p>对于上边框，此处采用 https://www.glyphrstudio.com/app/ 该软件中的数值为基准进行计算，影响上边界的属性为<code>Capital letter height</code>，从<strong>baseline</strong>到上边界的距离符合<code>h = 0.6*fontSize + 0.5*capital_letter_height/UMP</code>，若文本本身高度超过了该计算值，则该值为文本高度。</p>
+<p>总上所述，文字高度总公式为<code>h = 0.6*fontSize + 0.5*capital_letter_height/UMP - Descent/UPM * fontSize</code>,该公式适用于一般不超过默认边界线的文本，若出现超出的字符则按照相应规则对其中的数值进行替换处理。</p>
+<h5 id="踩坑点">踩坑点</h5>
+<p>  在探索上边界规则的时候一开始使用的FontCreator来查看修改的字体数据，但其导出的数据似乎存在兼容性等问题有些字体数据符合预期有些又是不符合预期的，导出的字体在glyphrstudio查看数据发现有些字体与修改的数据不一致，通过在glyphrstudio修改数据后在到Illustrator中进行校验才能算出符合预期的结果。<a href="https://typedrawers.com/discussion/1005/how-does-illustrator-calculate-text-frame-height">How does Illustrator calculate text frame height</a> 这篇文字中指出<strong>OS/2</strong>相关的数据，也可能是FontCreator中这部分数据存在问题导致输出字体存在差异。</p>
+<h1 id="在竖版的情况">在竖版的情况</h1>
+<p>  竖版情况下Unity和Illustrator兼容的部分相当有限，这里就记录以下每个部分的渲染逻辑。</p>
+<h2 id="Illustrator-2">Illustrator</h2>
+<h3 id="罗马排布形式">罗马排布形式</h3>
+<p>  罗马排布形式即字母符号不会旋转90度。</p>
+<h4 id="文字高度/行高">文字高度/行高</h4>
+<p>文字大小依赖如下属性:</p>
+<ol>
+<li>UPM</li>
+<li>glyphRect</li>
+</ol>
+<p>利用UPM来算出字体高度的最小值，glyphRect算出实际高度，例如<code>j</code>会比UMP大一些，<code>a</code>比UMP小，此时得到的高度<code>a</code>为UPM，<code>j</code>为glyphRect算出的高度，换而言之渲染时若字符小于<code>1em</code>则让其占用<code>1em</code>高度，若大于<code>1em</code>，则按实际高度。<br />
+例外，若有字体中有Vertical属性，就以(Vertical_Ascent - Vertical_Descent)为基准。</p>
+<h3 id="非罗马排布">非罗马排布</h3>
+<h4 id="文字高度/行高-1">文字高度/行高</h4>
+<p>同罗马排布形式，但区别在于字母和符号，因为会旋转所以长宽需要互换。</p>
+<h3 id="行距">行距</h3>
+<p>行距离1000为1em，例如fontSize=12pt，1000即为12pt。</p>
+<h2 id="Unity-1">Unity</h2>
+<p>  Unity本质上是没竖版这类型的，可以单字绘制，大小和位置可以通过模仿Illustrator中规则来进行制作。</p>
+<h1 id="其他">其他</h1>
+<p>Unity和Illustrator读取的字体属性可能不一致，有时候例如思源黑体，Unity中的字要比Illustrator中大的多，在FontCreator查看可以发现，思源黑体的Typo Ascender和Ascender数值不一样，AI和Unity应该是读取了不同的属性导致两者发生差距，在手动修改Unity的Asset值后，AI与Unity的字体可以一致显示，或者在FontCreator中修改两者的属性值。Illustrator用的Typo Ascender</p>
+<h2 id="工具">工具</h2>
+<ol>
+<li>https://vertical-metrics.netlify.app/</li>
+<li>https://www.glyphrstudio.com/app/</li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li>https://paddywang.github.io/demo/list/css/baseline_line-height.html</li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

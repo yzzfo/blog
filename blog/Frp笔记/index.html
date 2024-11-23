@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Frp笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="Frp笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Frp笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Frp笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Frp笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-06-10</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/frp/" class="post-tag">frp</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/nps/" class="post-tag">nps</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Frp笔记/#协同_Nginx_工作">协同 Nginx 工作</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Frp笔记/#穿透内网_Https">穿透内网 Https</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Frp笔记/#NPS">NPS</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Frp笔记/#使用_Caddy_将_Https_转为_Http">使用 Caddy 将 Https 转为 Http</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  在很久以前使用过 frp，最近又在服务器上部署了以下，所以记录一下里面的问题。</p>
+<h2 id="协同_Nginx_工作">协同 Nginx 工作</h2>
+<p>由于服务器上同样有 Nginx，所以 80 和 443 自然是不能给 frp 的，但为了使 Frp 能穿透域名服务所以需要在 Nginx 下反代对应域名至 frp 中，在 <code>nginx proxy manager</code> 中可以通过直接声明类似如下的条目来指定匹配的域名  <code>server_name "~.*-frp\.host\.com";</code> 该设置将能将该正则表达式匹配到的域名都转发至 frp 中进行穿透。</p>
+<h2 id="穿透内网_Https">穿透内网 Https</h2>
+<p>PVE 系统的管理界面是强制 Https 访问的，但这样无法通过 type=http 或 type = https 直接穿透，需要使用插件 https2http 或者 tcp 穿透来解决，但 tcp 需要自己开一个新的端口，为了使用域名又得在 NPM 中单读开启一个反代才能访问，所以不选择 tcp。使用如下的配置方式便可以将内网的 https 服务穿透出去，且对外暴露的是 http 协议，这在 NPM 的视角下也统一了访问端口都是 80。</p>
+<pre class="z-code"><code><span class="z-text z-plain">[pve-dashboard]  
+</span><span class="z-text z-plain">type = http  
+</span><span class="z-text z-plain">custom_domains = [pve.example.com](http://pve.example.com/)  
+</span><span class="z-text z-plain">plugin = http2https  
+</span><span class="z-text z-plain">plugin_local_addr = 10.10.10.3:8006  
+</span><span class="z-text z-plain">plugin_host_header_rewrite = 10.10.10.3  
+</span><span class="z-text z-plain">plugin_header_X-From-Where = frp  
+</span><span class="z-text z-plain">use_compression = true  
+</span><span class="z-text z-plain">use_encryption = true
+</span></code></pre>
+<p>后续发现 https2http 还是会导致 wss 无法连接，但 Caddy 的 Https 转 Http 不会导致这种情况</p>
+<h2 id="NPS">NPS</h2>
+<p>nps 也是一个不错的内网穿透工具，相对于 frp 来说他有一个很不错的 UI 管理界面，他还能通过服务端控制内网设备穿透哪一个端口，即在 frp 中需要客户觉得暴露什么端口，但在 nps 中可以由服务端来决定客户端开启什么端口。</p>
+<p>在使用 nps 的时候发现 PVE 穿透会出现 502 的报错，问题应该和 frp 中是一样的，也需要类似 frp 中 https2http 这样的插件才能解决，但 nps 项目以及停更许久所以又改用 frp 了。</p>
+<h2 id="使用_Caddy_将_Https_转为_Http">使用 Caddy 将 Https 转为 Http</h2>
+<pre class="z-code"><code><span class="z-text z-plain">http://192.168.3.246 {
+</span><span class="z-text z-plain">    file_server
+</span><span class="z-text z-plain">    encode zstd gzip
+</span><span class="z-text z-plain">    reverse_proxy * https://192.168.3.2:8006 {
+</span><span class="z-text z-plain">        header_up Host 192.168.3.2
+</span><span class="z-text z-plain">        header_up X-Real-IP {http.request.remote.host}
+</span><span class="z-text z-plain">        header_up X-Forwarded-Port {http.request.port}
+</span><span class="z-text z-plain">        header_up X-Forwarded-Proto {http.request.proto}
+</span><span class="z-text z-plain">        transport http {
+</span><span class="z-text z-plain">            tls_insecure_skip_verify
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">    # tls /config/cer/server.pem /config/cer/server.key
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<p>https://forum.proxmox.com/threads/connection-error-401-no-ticket-nginx-reverse-proxy.94158/</p>
+<p>这种方法在本地情况下只能通过 127.0.0.1 访问，即便设置了 host 以及 scheme 只 https 也还是没效果，可能还有别的东西需要设置吧，但在 VPS 上通过 NPM 反代该端口通过 https 进行访问则可以正常进入 PVE 界面。</p>
+<pre class="z-code"><code><span class="z-text z-plain">User (http) -&gt; Caddy (http) -&gt; PVE (https) 无法登陆
+</span><span class="z-text z-plain">User (https)-&gt; VPS(http) -&gt; NPS(http) -&gt; Caddy (http) -&gt; PVE (https) 正常使用
+</span></code></pre>
+<p>在 PVE 中，登陆时会发送 Cookie 至服务端，但 Cookie 的发送条件是当前为 https/localhost 才会发送，即该功能是前端限制，故无法通过 nginx 设置 header 解决，可以通过添加证书来处理这个问题。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

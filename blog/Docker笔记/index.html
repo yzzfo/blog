@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Docker笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="Docker笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Docker相关的一些笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Docker相关的一些笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Docker笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-03-23</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/docker/" class="post-tag">Docker</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker笔记">Docker笔记</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker安装">Docker安装</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Dockerfile">Dockerfile</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Dock_Image生成方式">Dock Image生成方式</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker常用的一些指令">Docker常用的一些指令</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#UID和GID在Docker中的几种写法">UID和GID在Docker中的几种写法</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker_Network">Docker Network</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker_Dead">Docker Dead</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker-UI管理界面">Docker-UI管理界面</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#docker容器中查看容器linux版本">docker容器中查看容器linux版本</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#docker中使用ipv6">docker中使用ipv6</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Docker笔记/#Docker相关的资源">Docker相关的资源</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="Docker笔记">Docker笔记</h1>
+<h2 id="Docker安装">Docker安装</h2>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">curl</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>fsSL</span> https://get.docker.com<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>o</span> get-docker.sh</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sh</span></span><span class="z-meta z-function-call z-arguments z-shell"> get-docker.sh</span>
+</span></code></pre>
+<h2 id="Dockerfile">Dockerfile</h2>
+<ol>
+<li>
+<p><strong>FROM</strong><br />
+<strong>FROM</strong> 以某个<strong>Image</strong>为基础<br />
+<code>FROM ubuntu[:版本号|@hash]</code></p>
+</li>
+<li>
+<p><strong>LABEL</strong><br />
+<strong>LABEL</strong> 说明信息<br />
+<code>LABEL version="1.0"</code></p>
+</li>
+<li>
+<p><strong>RUN</strong><br />
+<strong>RUN</strong> build时执行的命令，每执行一条就多一层构建纪录，Docker的构建类似一个命令队列，一条一条的命令构建出一个Image，<strong>FROM image</strong>就是调用别人写好的命令，再此基础上继续添加自己的命令<br />
+<code>RUN apt-get update&amp;&amp;apt-get install xxx</code></p>
+</li>
+<li>
+<p><strong>WORKDIR</strong><br />
+<strong>WORKDIR</strong> 指定工作目录，就是进入docker后所在的目录，若不存在则创建目录<br />
+<code>WORKDIR /root</code> 进入root目录</p>
+</li>
+<li>
+<p><strong>ADD</strong> and <strong>COPY</strong><br />
+<strong>ADD and COPY</strong> 将本地文件添加到镜像里 创建文件夹的话先用<strong>WORKDIR</strong><br />
+<strong>ADD 可以解压文件</strong><br />
+<code>ADD hello.tar.gz / </code>添加并解压hello到根目录<br />
+<code>COPY hello.tar.gz / </code>添加hello.tar.gz到根目录</p>
+<ul>
+<li>COPY的另一个用处<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>复制别的镜像文件到自己的镜像中
+</span></span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>两句话在自己的镜像中构建了golang环境
+</span></span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>参考自 https://stackoverflow.com/a/59485924
+</span></span><span class="z-source z-dockerfile">COPY --from=golang:alpine /usr/local/go/ /usr/local/go/
+</span><span class="z-source z-dockerfile">ENV PATH=&quot;/usr/local/go/bin:${PATH}&quot;
+</span><span class="z-source z-dockerfile">
+</span><span class="z-source z-dockerfile">
+</span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>--from在Dockerfile中的多重构建用法
+</span></span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span> AS 用来指定名称
+</span></span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>第一个FROM
+</span></span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">FROM</span> golang:<span class="z-entity z-name z-enum z-tag-digest">alpine</span> <span class="z-keyword z-control z-dockerfile">AS</span> <span class="z-variable z-stage-name">builder</span>
+</span><span class="z-source z-dockerfile"><span class="z-invalid">xxx</span>
+</span><span class="z-source z-dockerfile"><span class="z-invalid">xxx</span>
+</span><span class="z-source z-dockerfile">
+</span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>第二个FROM
+</span></span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">FROM</span> node:<span class="z-entity z-name z-enum z-tag-digest">lts-alpine</span> <span class="z-keyword z-control z-dockerfile">AS</span> <span class="z-variable z-stage-name">builder-web</span>
+</span><span class="z-source z-dockerfile"><span class="z-invalid">xxx</span>
+</span><span class="z-source z-dockerfile"><span class="z-invalid">xxx</span>
+</span><span class="z-source z-dockerfile">
+</span><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>第三个FROM 导出第三个构建的镜像
+</span></span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">FROM</span> v2fly/v2fly-core
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">COPY</span> --from=<span class="z-variable z-stage-name">builder</span> /build/service/v2raya /usr/bin/
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">COPY</span> --from=<span class="z-variable z-stage-name">builder-web</span> /build/web /etc/v2raya-web
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ENV</strong><br />
+<strong>ENV</strong> 环境变量</p>
+<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile">ENV MYSQL_VERSION 5.6  
+</span><span class="z-source z-dockerfile">RUN apt-get install mysql-server=&quot;${MYSQL_VERSION}&quot;
+</span></code></pre>
+</li>
+<li>
+<p><strong>CMD</strong> and <strong>ENTRYPOINT</strong><br />
+不同于<strong>Run</strong>是build时运行的，<strong>CMD</strong>和<strong>ENTRYPOINT</strong>是Image&gt;&gt;&gt;Container时执行的</p>
+<ul>
+<li>
+<p>命令的两种写法</p>
+<ul>
+<li>
+<p><strong>shell</strong>格式</p>
+<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile">RUN apt-get install xxx
+</span><span class="z-source z-dockerfile">CMD echo &quot;hello&quot;
+</span><span class="z-source z-dockerfile">ENTRYPOINT echo &quot;hello&quot;
+</span></code></pre>
+</li>
+<li>
+<p><strong>exec</strong>格式</p>
+<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile">RUN [&quot;apt-get&quot;,&quot;install&quot;,&quot;vim&quot;]
+</span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>shell</strong>和<strong>exec</strong>的区别<br />
+<strong>exec</strong>格式<strong>不支持</strong> <strong>$xxx</strong> 常量替换 因为 <strong>$xxx</strong> 是shell才有的功能，可改用 <code>sh -c</code> "指令"用shell解析<br />
+<code>CMD ["sh","-c","apt-get install $xxx"]</code></p>
+<p><strong>CMD</strong>和<strong>ENTRYPOINT</strong>区别<br />
+若docker指定了其他的指令，CMD可能被忽略
+CMD作为命令情况<br />
+比如CMD前面有多个CMD，只执行最后一个CMD
+存在ENTERPOINT则CMD不执行
+CMD作为参数情况</p>
+<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">FROM</span> centos
+</span><span class="z-source z-dockerfile">
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-operator z-dockerfile">CMD </span>[<span class="z-string z-quoted z-double z-dockerfile"><span class="z-punctuation z-definition z-string z-begin z-dockerfile">&quot;</span>have not input param<span class="z-punctuation z-definition z-string z-end z-dockerfile">&quot;</span></span>]
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-operator z-dockerfile">ENTRYPOINT </span>[<span class="z-string z-quoted z-double z-dockerfile"><span class="z-punctuation z-definition z-string z-begin z-dockerfile">&quot;</span>echo<span class="z-punctuation z-definition z-string z-end z-dockerfile">&quot;</span></span>]
+</span></code></pre>
+<p>执行<code>docker run xxximage</code>会出现<code>have not input param</code>
+执行<code>docker run xxximage input param</code>会出现<code>input param</code>
+即可发现 <strong>CMD</strong> 在该例子中作为了未输入参数时所填入的 <strong>默认参数</strong><br />
+具体可看<a href="https://blog.csdn.net/u010900754/article/details/78526443">CMD和ENTRYPOINT区别</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Volume</strong></p>
+<ul>
+<li>
+<p>设置挂载点 <code>Volume ["/cfg"]</code> 会在容器内创建文件夹/cfg,容器运行时，若未 <code>-v</code> 明确指出挂载位置，则会采用匿名挂载的形式在 <code>/var/lib/docker/volumes/</code> 文件夹下面创建对应的文件</p>
+</li>
+<li>
+<p><strong>Dockerfile</strong>的命令都是有顺序的，<strong>Volume</strong>指定时便会在容器内<strong>创建</strong>指定的文件,Volume不能覆盖已存在的文件，若文件已存在则报错</p>
+<pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile"><span class="z-comment z-dockerfile"><span class="z-punctuation z-definition z-comment z-dockerfile">#</span>类似如下顺序，会产生报错
+</span></span><span class="z-source z-dockerfile">mkdir /fold &amp;&amp; touch /fold/file.cfg
+</span><span class="z-source z-dockerfile">Volume [&quot;/fold/file.cfg&quot;]
+</span></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Dock_Image生成方式">Dock Image生成方式</h2>
+<ol>
+<li>
+<p>Dockerfile方式</p>
+<pre class="z-code"><code><span class="z-text z-plain">docker build -t [DockerHub_UserName/]ImageName[:lasest] ./
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">-t 设置镜像名	[DockerHub_UserName/]为DockerHub的用户名(不指定就无法上传到dockerhub)  
+</span><span class="z-text z-plain">./ 使用当前目录的Dockerfile
+</span></code></pre>
+</li>
+<li>
+<p>将现在的容器变为镜像</p>
+<pre class="z-code"><code><span class="z-text z-plain">docker commit {容器id|容器名字} [DockerHub_UserName/]ImageName
+</span></code></pre>
+</li>
+<li>
+<p>导出Image<br />
+<strong>上述两种方式并没有直接生成一个Image文件供用户进行分享，此时可以导出Image文件供用户分享</strong></p>
+<pre class="z-code"><code><span class="z-text z-plain"> docker save -o ./ImageName.tar [DockerHub_UserName/]ImageName
+</span></code></pre>
+</li>
+<li>
+<p>导入本地Image文件</p>
+<pre class="z-code"><code><span class="z-text z-plain"> docker load -i /path/to/image
+</span></code></pre>
+</li>
+<li>
+<p>Docker-Image交叉编译</p>
+<ul>
+<li>采用<strong>Docker虚拟机</strong>
+<ol>
+<li><code>docker run --rm --privileged multiarch/qemu-user-static:register --reset</code> 注册 qemu-user-static 虚拟机</li>
+<li><a href="https://hub.docker.com/u/multiarch/">虚拟机镜像</a></li>
+<li><strong>Dockerfile</strong>的<strong>FROM</strong>换成对应架构的虚拟机镜像，其他步骤不变</li>
+</ol>
+<ul>
+<li><a href="https://github.com/Cnicehs/Raspberry_Eth">Git Action编译案例</a></li>
+<li>参考的博客<br />
+<a href="https://blog.csdn.net/whatday/article/details/86776463">x86 下制作 ARM Docker 镜像</a></li>
+</ul>
+</li>
+<li>采用buildx构建
+<ol>
+<li>如果是在drone-ci中通过docker来交叉编译则可以先编译一个支持buildx的<strong>docker容器</strong><pre data-lang="DOCKERFILE" class="language-DOCKERFILE z-code"><code class="language-DOCKERFILE" data-lang="DOCKERFILE"><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">FROM</span> docker
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">COPY</span> --from=<span class="z-variable z-stage-name">docker/buildx-bin</span> /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+</span><span class="z-source z-dockerfile"><span class="z-keyword z-control z-dockerfile">RUN </span>docker buildx version
+</span></code></pre>
+</li>
+<li>如果是采用docker容器进行buildx则需要将宿主机的<code>/var/run/docker.sock</code>绑定到容器中的<code>/var/run/docker.sock</code></li>
+<li>docker程序的通用步骤
+<ol>
+<li>登陆docker <code>docker login -u username</code></li>
+<li>挂载编译工具 <code>docker run --privileged --rm tonistiigi/binfmt --install all</code>，重启后需要重新挂</li>
+<li>创建一个builder <code>docker buildx create --name builder</code></li>
+<li>使用builder <code>docker buildx use builder</code></li>
+<li>编译并上传<code>docker buildx build --platform=linux/amd64,linux/386,linux/arm64,linux/arm/v7 -t crinte/pango --push .</code> 如果不想上传可以把<strong>push</strong>改<strong>load</strong>即载入本地</li>
+</ol>
+</li>
+<li>参考资料
+<ul>
+<li>https://docs.docker.com/buildx/working-with-buildx/</li>
+<li>https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/</li>
+<li>https://www.docker.com/blog/multi-arch-images/</li>
+<li>https://www.cnblogs.com/nihaorz/p/12021700.html</li>
+<li>https://zhuanlan.zhihu.com/p/299116754</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Docker常用的一些指令">Docker常用的一些指令</h2>
+<ul>
+<li><strong>docker pull</strong><br />
+<code>docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code></li>
+<li><strong>docker run</strong>
+<ul>
+<li>
+<p>-v/--volumes</p>
+<pre class="z-code"><code><span class="z-text z-plain">映射存储空间给容器 只能用绝对路径
+</span><span class="z-text z-plain">docker run ubuntu {-v|--volume {abs/save/path:container/path/to/save}}
+</span></code></pre>
+</li>
+<li>
+<p>--link <a href="https://blog.csdn.net/zhangyifei216/article/details/50921215">Link机制的实现原理</a></p>
+<pre class="z-code"><code><span class="z-text z-plain">docker run ubuntu --link other_container_name
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">other_container_name 在该容器中就变成域名了，直接指向other_container的ip地址
+</span></code></pre>
+</li>
+<li>
+<p>-p</p>
+<pre class="z-code"><code><span class="z-text z-plain">docker run -p 8080:80 ubuntu
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">将容器80端口映射到本地8080端口
+</span></code></pre>
+</li>
+<li>
+<p>-e</p>
+<pre class="z-code"><code><span class="z-text z-plain">#用于设置设置环境变量
+</span><span class="z-text z-plain">#以安装resilio为例
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">docker run -d \
+</span><span class="z-text z-plain">--name=resilio-sync \
+</span><span class="z-text z-plain">-e PUID=0 \
+</span><span class="z-text z-plain">-e PGID=0 \
+</span><span class="z-text z-plain">-e TZ=Europe/London \
+</span><span class="z-text z-plain">-p 8888:8888 \
+</span><span class="z-text z-plain">-p 55555:55555 \
+</span><span class="z-text z-plain">-v /path/to/config:/config \
+</span><span class="z-text z-plain">-v /path/to/downloads:/downloads \
+</span><span class="z-text z-plain">-v /path/to/data:/sync \
+</span><span class="z-text z-plain">--restart unless-stopped \
+</span><span class="z-text z-plain">ghcr.io/linuxserver/resilio-sync
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">其中PUID和PGID用于解决容器文件写入权限的问题,也可以用-u来设置
+</span><span class="z-text z-plain">以Openwrt为例
+</span><span class="z-text z-plain">输入 id 命令即可获得下面的结果，即用户的PUID和PGID
+</span><span class="z-text z-plain">得到 uid=0(root) gid=0(root)
+</span></code></pre>
+</li>
+<li>
+<p>-u<br />
+设置PUID和PGID<br />
+<code>-u 0:0</code></p>
+</li>
+<li>
+<p>--privileged
+以特权模式进行<br />
+通常情况下<strong>container</strong>的<strong>root</strong>在<strong>宿主机角度</strong>来看就是个<strong>普通用户</strong><br />
+<strong>privileged</strong>下<strong>container</strong>的<strong>root</strong>有了<strong>宿主机root</strong>的<strong>权限</strong></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/yucaifu1989/article/details/106688554/">性能设置相关的参数</a></p>
+<ul>
+<li>-cpus<br />
+分配给docker的cpu数目
+如果主机有4个cpu逻辑cpu则<code>-cpus 2</code>为占用总cpu的50%性能
+<ul>
+<li>--cpu-period和--cpu-quota<br />
+分别为cpu一个周期的时间和docker一个周期可以占用cpu的时间</li>
+</ul>
+</li>
+<li>--cpuset-cpus<br />
+<code>--cpuset-cpus="0,1,2"</code>或者<code>--cpuset-cpus="0-2"</code>使用0-2号处理器</li>
+<li>--cpu-shares<br />
+多容器竞争同一处理器时且时间不足时的分配权重</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="UID和GID在Docker中的几种写法">UID和GID在Docker中的几种写法</h2>
+<ol>
+<li><code>-u $UID:$GID </code></li>
+<li><code>-u $(id -u):$(id -g)</code></li>
+</ol>
+<h2 id="Docker_Network">Docker Network</h2>
+<ol>
+<li>
+<p>bride</p>
+</li>
+<li>
+<p>host<br />
+类似于将container直接变本地应用，端口直接就是宿主机的端口</p>
+</li>
+<li>
+<p>macvlan</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">ip</span></span><span class="z-meta z-function-call z-arguments z-shell"> link set eth0 promisc on <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">打开网卡混杂模式</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">docker</span></span><span class="z-meta z-function-call z-arguments z-shell"> network create<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>d</span> macvlan<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>subnet</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>192.168.31.0/24<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>gateway</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>192.168.31.1<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>o</span> parent=eth0 macnet</span>
+</span></code></pre>
+<p>使用macvlan时，容器无法与宿主机通信，即便在同一个网段也不能通信，<a href="https://github.com/Cnicehs/openwrt-in-docker">解决方法</a></p>
+</li>
+<li>
+<p>none</p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach">Container连接宿主机</a></p>
+</li>
+</ol>
+<h2 id="Docker_Dead"><strong>Docker Dead</strong></h2>
+<p><strong>Container</strong>处于<strong>Dead</strong>状态时无法<strong>rm</strong>掉，此时可以用下面代码进行移除</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">docker</span></span><span class="z-meta z-function-call z-arguments z-shell"> stop share-mnt <span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">1</span><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>/dev/null <span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">2</span><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;&amp;</span><span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">1</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-exit z-shell">exit</span></span><span class="z-meta z-function-call z-arguments z-shell"> 0  </span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">docker</span></span><span class="z-meta z-function-call z-arguments z-shell"> rm<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>f</span> share-mnt <span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">1</span><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>/dev/null <span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">2</span><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;&amp;</span><span class="z-constant z-numeric z-integer z-decimal z-file-descriptor z-shell">1</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-exit z-shell">exit</span></span><span class="z-meta z-function-call z-arguments z-shell"> 0  </span>
+</span></code></pre>
+<h2 id="Docker-UI管理界面">Docker-UI管理界面</h2>
+<ol>
+<li>
+<p><a href="https://documentation.portainer.io/"><strong>Portainer</strong></a><br />
+​    By default, Portainer will expose the UI over the port <code>9000</code> and expose a TCP tunnel server over the port <code>8000</code></p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">docker</span></span><span class="z-meta z-function-call z-arguments z-shell"> volume create portainer_data  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">docker</span></span><span class="z-meta z-function-call z-arguments z-shell"> run<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>d</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>p</span> 8000:8000<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>p</span> 9000:9000<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>name</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>portainer<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>restart</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>always<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>v</span> /var/run/docker.sock:/var/run/docker.sock<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>v</span> portainer_data:/data portainer/portainer-ce</span>
+</span></code></pre>
+</li>
+</ol>
+<h2 id="docker容器中查看容器linux版本">docker容器中查看容器linux版本</h2>
+<p>有时候需要登陆容器搞点事情，这时候需要看容器系统的版本，那么一条命令就能完成。<br />
+正确的姿势：<br />
+cat /etc/issue</p>
+<p>错误的姿势:<br />
+cat /proc/version 或 uname -a ，这样查到的是宿主机的系统。</p>
+<h2 id="docker中使用ipv6">docker中使用ipv6</h2>
+<p>Docker对ipv6的支持并不是很好，配置起来也有一些坑，这里记录一下简单的方法。</p>
+<ol>
+<li>编辑<code>/etc/docker/daemon.json</code><pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"> <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">     </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>ipv6<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">     </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>fixed-cidr-v6<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>fd00:dead:beef::/48<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"> <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+</li>
+<li><code>systemctl restart docker</code></li>
+<li>安装<a href="https://github.com/robbertkl/docker-ipv6nat#docker-container">docker-ipv6nat</a></li>
+<li>创建容器时使用<code>bridge</code>网络或者创建一个<code>docker network create --ipv6 --subnet fd00:dead:beee::/48 mainv6</code></li>
+<li>在docker-compose中进行相关配置<pre class="z-code"><code><span class="z-text z-plain">v3.x版本
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain"> qbittorrent:
+</span><span class="z-text z-plain">   image: superng6/qbittorrentee
+</span><span class="z-text z-plain">   container_name: qbittorrent
+</span><span class="z-text z-plain">   #可以选择bride模式
+</span><span class="z-text z-plain"> # network_mode: bridge
+</span><span class="z-text z-plain">   #或者使用自建的network，这样直接访问相同网络接口的容器
+</span><span class="z-text z-plain">   networks:
+</span><span class="z-text z-plain">     - mainv6
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">networks:
+</span><span class="z-text z-plain">  #正确方式
+</span><span class="z-text z-plain">  mainv6:
+</span><span class="z-text z-plain">    name: &quot;mainv6&quot;
+</span><span class="z-text z-plain">    external: true
+</span><span class="z-text z-plain">  
+</span><span class="z-text z-plain">  #错误方式
+</span><span class="z-text z-plain">  #3.x版本这样还是不行，还得在外部创建才可以，或者使用2.x的版本来配置ipv6
+</span><span class="z-text z-plain">  #这样即便配置了，但在容器中ipv6的gateway依旧不会自动配置
+</span><span class="z-text z-plain">  mainvTest:  
+</span><span class="z-text z-plain">    ipam:
+</span><span class="z-text z-plain">    driver: default
+</span><span class="z-text z-plain">    config:
+</span><span class="z-text z-plain">      - subnet: &quot;2001:3984:3989::/64&quot;
+</span><span class="z-text z-plain">        gateway: &quot;2001:3984:3989::1&quot;
+</span></code></pre>
+</li>
+</ol>
+<h2 id="Docker相关的资源">Docker相关的资源</h2>
+<p>1.<a href="https://labs.play-with-docker.com/">Doker-Labs</a>在线实验Docker的平台<br />
+   ssh连接Docker-Labs需要本地生成密钥<br />
+   在win10环境下安装<strong>Git-Bash</strong>后执行<code>ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa  </code>生成密钥<br />
+2.<a href="https://loocode.com/post/10105">Docker Volume详解</a><br />
+3.<a href="https://yeasy.gitbook.io/docker_practice/container/import_export">Docker入门到实践</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

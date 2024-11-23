@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Unity中的颜色空间
+        
+    </title>
+
+        
+            <meta property="og:title" content="Unity中的颜色空间" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Unity中的颜色空间" />
+         
+     
+
+     
+         
+             <meta name="description" content="Unity中的颜色空间" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Unity中的颜色空间<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-07-01</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/shader/" class="post-tag">Shader</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#颜色空间">颜色空间</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Gamma">Gamma</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Linear">Linear</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#PNG">PNG</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#sRGB">sRGB</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Unity中的颜色空间">Unity中的颜色空间</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Linear-1">Linear</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Gamma-1">Gamma</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Texture_Setting">Texture Setting</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#Color_Property">Color Property</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#例子">例子</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#图片">图片</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的颜色空间/#参考">参考</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="颜色空间">颜色空间</h2>
+<h3 id="Gamma">Gamma</h3>
+<p>  由于人眼对于暗色的变化更为敏感，所以在精度有限的情况下会分配更多的有效值用于描述暗部，于是引申出了Gamma颜色空间。通过 <code>y=x^0.45</code> 在<code>x = 0-1</code>范围内，将暗部值精度提升，本质上是对图片进行<code>增亮</code>操作。通常显示器在显示时会进行Gamma解码操作，即<code>y=x^2.2</code> 本质是进行 <code>变暗</code> 操作。
+<img src="https://pic1.zhimg.com/80/v2-cfaa2bb240c256aa6140fb6232124468_720w.webp" alt="Gamma Space" /></p>
+<h3 id="Linear">Linear</h3>
+<p>线性空间就是Gamma值为 <code>1</code> 的情况，也就没所谓的编码解码的必要了。</p>
+<h2 id="PNG">PNG</h2>
+<p>  对于PNG这种文件来说，并不关心Gamma或者Linear，他只管保存颜色的数据，至于该颜色数据读取后是该Gamma校正还是直接使用由使用者来决定。</p>
+<ol>
+<li>对于颜色(0.5,0.5,0.5)，若使用Gamma编码则其在PNG中的值为(0.73,0.73,0.73)，若使用Linear则依然是(0.5,0.5,0.5)</li>
+<li>在PNG的元数据中可以查看Gamma值，但该值并不是必须保存的，所以在没有Gamma值时并不能判断该图片是否进行过Gamma编码</li>
+</ol>
+<h2 id="sRGB">sRGB</h2>
+<p>1996年，微软和惠普一起开发了一种标准<strong>sRGB</strong>色彩空间。这种标准得到许多业界厂商的支持。<strong>sRGB对应的是Gamma0.45所在的空间</strong></p>
+<h2 id="Unity中的颜色空间">Unity中的颜色空间</h2>
+<h3 id="Linear-1">Linear</h3>
+<ol>
+<li>在Linear Space下，图片导入时若勾选<code>sRGB</code>，则在Shader中使用该图片时会自动进行Gamma校正，即对图片进行变暗操作，使颜色值回归线性，即 (0.73,0.73,0.73) =&gt; (0.5,0.5,0.5)</li>
+<li>Shader输出颜色时，Unity会自动进行Gamma编码，即假设当前frag输出(0.5,0.5,0.5)，此时若将其保存到Texture时可以发现存储的值为(0.73,0.73,0.73)，即在Linear Space下，Unity输出的图片为sRGB。</li>
+</ol>
+<h3 id="Gamma-1">Gamma</h3>
+<ol>
+<li>在Gamma Space下<code>sRGB</code>选项将不会生效，将会按照实际值传入Shader中，若要解码则需要自己在Shader中进行相应操作。</li>
+<li>Shader输出时并不会自动转换为sRGB，即frag输出(0.5,0.5,0.5)，Texture中存储的也为(0.5,0.5,0.5)。
+<img src="https://pic4.zhimg.com/80/v2-add7435e82b6227cb097b073e87da7c7_720w.webp" alt="Gamma" /></li>
+</ol>
+<h3 id="Texture_Setting">Texture Setting</h3>
+<ol>
+<li><strong>Alpha is Transparency</strong>
+<ul>
+<li>如果指定的 Alpha 通道为透明度 (Transparency)，则启用此属性<strong>可扩充颜色并避免边缘上的过滤瑕疵</strong>。</li>
+<li>由于勾选后可能会改变图片原本的RGB，所以需要更具情况选择是否启动。</li>
+</ul>
+</li>
+<li>Format
+<ul>
+<li>对于Texture的不同设置可以通过断点来具体看看不同设置对应的属性</li>
+<li>https://docs.unity3d.com/ScriptReference/Experimental.Rendering.GraphicsFormat.html</li>
+<li>例如RGB16其graphicsFormat: B5G6R5_UNormPack16 ，所以他并不支持sRGB选项，若要正常使用则需要切换格式或者在Shader中手动解码</li>
+</ul>
+</li>
+</ol>
+<h3 id="Color_Property">Color Property</h3>
+<p>在Shader中，Color属性是以sRGB模式传递的，所以在Linear空间下他会自动De-Gamma,<a href="https://docs.unity3d.com/Manual/SL-PropertiesInPrograms.html">SL-PropertiesInPrograms</a></p>
+<pre class="z-code"><code><span class="z-text z-plain">When using Linear color space, all material color properties are supplied as sRGB colors, but are converted into linear values when passed into shaders.
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">For example, if your Properties shader block contains a Color property called “MyColor“, then the corresponding ”MyColor” HLSL variable will get the linear color value.
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">For properties that are marked as Float or Vector type, no color space conversions are done by default; it is assumed that they contain non-color data. It is possible to add [Gamma] attribute for float/vector properties to indicate that they are specified in sRGB space, just like colors (see Properties).  
+</span></code></pre>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl">    <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> linear空间下
+</span></span><span class="z-source z-glsl">    Properties
+</span><span class="z-source z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> 这里的Color为Gamma值
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_Color</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;Color&quot;<span class="z-punctuation z-separator z-glsl">,</span> Color</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> 默认情况下为线性值，若声明[Gamma]则会被de-gamma
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">_VecColor</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">&quot;VecColor&quot;<span class="z-punctuation z-separator z-glsl">,</span> Vector</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl">    ...
+</span><span class="z-source z-glsl">    ...
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl">    Pass
+</span><span class="z-source z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> de-gamma
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span>此时这里的默认值为(0.217,0.217,0.217)
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        float4 _Color<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> 由于是Vector类型，这里依旧是(0.5,0.5,0.5,1)，除非上面声明[Gamma]了
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        float4 _VecColor<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<h2 id="例子">例子</h2>
+<p>导入的层级图失效</p>
+<ol>
+<li>层级图 每一层对应的R=index x 0.1 G=0.5</li>
+<li>shader中根据G&gt;=0.49，Ceil(R x 10)来判断是否属于层级，以及获取层级<br />
+失败的原因在于，用于导出层级图的Unity项目使用的Gamma Space，而主工程使用的是Linear，new Texture时默认为sRGB，导致图片整体变暗，所以G&gt;=0.49判断条件已然不满足，且后续层级获取也将出现问题，正确方法是new Texture时将linear参数设置为true。
+设置为RGB16时图片变正常了？<br />
+因为在Unity中RGB16不支持<code>sRGB</code>选项，所以使用时自动采用了PNG中的值输入到Shader中，所以正常了。</li>
+</ol>
+<h2 id="图片">图片</h2>
+<p><img src="https://raw.githubusercontent.com/Cnicehs/Image/main/layer-linear.png" alt="Linear" />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/layer-gama.png" alt="Gamma" />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/TimelineWarning.png" alt="Trans_Img1" />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/test_trans.png" alt="Trans_Img2" /></p>
+<h2 id="参考">参考</h2>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/66558476?utm_id=0">Gamma、Linear、sRGB 和Unity Color Space，你真懂了吗？</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/423301746">Gamma空间和Linear空间 全解析</a></li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

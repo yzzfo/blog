@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Shadow
+        
+    </title>
+
+        
+            <meta property="og:title" content="Shadow" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Shadow" />
+         
+     
+
+     
+         
+             <meta name="description" content="Shadow" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Shadow<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-03-07</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/shaderlab/" class="post-tag">Shaderlab</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shadow/#在普通Shader中实现接收Shadow">在普通Shader中实现接收Shadow</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shadow/#相关宏的定义">相关宏的定义</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shadow/#TRANSFER_SHADOW">TRANSFER_SHADOW</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shadow/#SHADOW_ATTENUATION">SHADOW_ATTENUATION</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shadow/#阴影投射">阴影投射</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shadow/#在普通Shader中实现阴影投射">在普通Shader中实现阴影投射</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shadow/#在Surface_Shader中实现">在Surface Shader中实现</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>Unity的shader实现阴影的方法有多种，其中一种是使用Shadow Map技术。Shadow Map是一种记录光源视角下场景深度信息的纹理，可以用来判断物体是否在阴影区域。
+<img src="http://www.opengl-tutorial.org/assets/images/tuto-16-shadow-mapping/shadowmapping.png" alt="Shadowmap" /></p>
+<p><a href="https://forum.unity.com/threads/adding-shadows-to-custom-shader-vert-frag.108612/">如果想要渲染的物体接收阴影，就要在Shader中对阴影映射纹理进行采样，通过采样结果和光照结果相乘来产生阴影效果。Unity提供了一些内置的宏和函数来方便这个过程，例如SHADOW_COORDS, TRANSFER_SHADOW, SHADOW_ATTENUATION等</a>。</p>
+<p><a href="https://forum.unity.com/threads/adding-shadows-to-custom-shader-vert-frag.108612/">如果想要渲染的物体产生阴影，就要在Shader中添加一个ShadowCaster Pass，用来告诉Unity如何生成Shadow Map。Unity也提供了一些内置的宏和函数来简化这个过程，例如SHADOW_CASTER_FRAGMENT等</a>。</p>
+<h2 id="在普通Shader中实现接收Shadow">在普通Shader中实现接收Shadow</h2>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-storage z-type z-glsl">struct</span> <span class="z-entity z-name z-struct z-glsl">v2f_surf</span> <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    float4 pos : SV_POSITION<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    float2 uv0 : TEXCOORD0<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    half3 normal : TEXCOORD1<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">SHADOW_COORDS</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">2</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl">v2f_surf <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">vert</span></span><span class="z-meta z-function z-glsl"> </span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl">appdata_full <span class="z-variable z-parameter z-glsl">v</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-function z-glsl"> </span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    v2f_surf o<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">TRANSFER_SHADOW</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">o</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> o<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span>
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl">half4 <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">frag</span></span><span class="z-meta z-function z-glsl"> </span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl">v2f_surf <span class="z-variable z-parameter z-glsl">i</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-function z-glsl"> </span>: SV_Target <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> attenuation <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">SHADOW_ATTENUATION</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">i</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    directColor <span class="z-keyword z-operator z-assignment z-glsl">=</span> directColor <span class="z-keyword z-operator z-glsl">*</span> atten<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<h4 id="相关宏的定义">相关宏的定义</h4>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span>AutoLight.cginc
+</span></span><span class="z-source z-glsl"><span class="z-meta z-preprocessor z-macro z-glsl"><span class="z-keyword z-control z-import z-define z-glsl">#define</span></span><span class="z-meta z-preprocessor z-macro z-glsl"> <span class="z-entity z-name z-function z-preprocessor z-glsl">SHADOW_COORDS</span></span><span class="z-meta z-preprocessor z-macro z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-variable z-parameter z-glsl">idx1</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-preprocessor z-macro z-glsl"> float4 _ShadowCoord : TEXCOORD##idx1<span class="z-punctuation z-terminator z-glsl">;</span></span>
+</span><span class="z-source z-glsl"><span class="z-meta z-preprocessor z-macro z-glsl"><span class="z-keyword z-control z-import z-define z-glsl">#define</span></span><span class="z-meta z-preprocessor z-macro z-glsl"> <span class="z-entity z-name z-function z-preprocessor z-glsl">TRANSFER_SHADOW</span></span><span class="z-meta z-preprocessor z-macro z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-variable z-parameter z-glsl">a</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-preprocessor z-macro z-glsl"> a<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">_ShadowCoord</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">mul</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"> _ShadowMatrix<span class="z-punctuation z-separator z-glsl">,</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">mul</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"> _Object2World<span class="z-punctuation z-separator z-glsl">,</span> v<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span> </span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> </span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span></span>
+</span><span class="z-source z-glsl"><span class="z-meta z-preprocessor z-macro z-glsl"><span class="z-keyword z-control z-import z-define z-glsl">#define</span></span><span class="z-meta z-preprocessor z-macro z-glsl"> <span class="z-entity z-name z-function z-preprocessor z-glsl">SHADOW_ATTENUATION</span></span><span class="z-meta z-preprocessor z-macro z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-variable z-parameter z-glsl">a</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-preprocessor z-macro z-glsl"> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">unitySampleShadow</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">a<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">_ShadowCoord</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span>
+</span></code></pre>
+<h4 id="TRANSFER_SHADOW">TRANSFER_SHADOW</h4>
+<p>将顶点坐标转换到阴影视锥的空间中</p>
+<h4 id="SHADOW_ATTENUATION">SHADOW_ATTENUATION</h4>
+<p>采样</p>
+<h2 id="阴影投射">阴影投射</h2>
+<h3 id="在普通Shader中实现阴影投射">在普通Shader中实现阴影投射</h3>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Pass to render object as a shadow caster
+</span></span><span class="z-source z-glsl">Pass 
+</span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">Name &quot;ShadowCaster&quot;
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">Tags <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span> &quot;LightMode&quot; <span class="z-keyword z-operator z-assignment z-glsl">=</span> &quot;ShadowCaster&quot; <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    CGPROGRAM
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#pragma</span> vertex vert
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#pragma</span> fragment frag
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#pragma</span> target 2.0
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#pragma</span> multi_compile_shadowcaster
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#pragma</span> multi_compile_instancing <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> allow instanced shadow pass for most of the shaders</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-include z-glsl">    <span class="z-keyword z-control z-import z-include z-glsl">#include</span> <span class="z-string z-quoted z-double z-include z-glsl"><span class="z-punctuation z-definition z-string z-begin z-glsl">&quot;</span>UnityCG.cginc<span class="z-punctuation z-definition z-string z-end z-glsl">&quot;</span></span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-storage z-type z-glsl">struct</span> v2f <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        V2F_SHADOW_CASTER<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        UNITY_VERTEX_OUTPUT_STEREO
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    v2f <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">vert</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">appdata_base v</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        v2f o<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">UNITY_SETUP_INSTANCE_ID</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">v</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">o</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">TRANSFER_SHADOW_CASTER_NORMALOFFSET</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">o</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-keyword z-control z-glsl">return</span> o<span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    float4 <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">frag</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">v2f i</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> : SV_Target
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">SHADOW_CASTER_FRAGMENT</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">i</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    ENDCG
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<h3 id="在Surface_Shader中实现">在Surface Shader中实现</h3>
+<p>在默认的模板情况下，我们直接使用alphatest剔除像素后，该物体所投射的阴影依旧是完整的，这时需要在optionalparams加入<code>addshadow</code>指令</p>
+<p><a href="https://blog.csdn.net/weixin_43839583/article/details/104138205">除了Shadow Map之外，还有其他的实现阴影的方法，例如Screen Space Shadow Map</a><a href="https://github.com/keijiro/ShadowDrawer">、Shadow Matte Shader</a><a href="https://forum.unity.com/threads/how-to-make-unlit-shader-that-casts-shadow.646246/">、Unlit Shader with Shadow Caster Pass</a>等。</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

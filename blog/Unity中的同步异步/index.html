@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Unity中的同步异步
+        
+    </title>
+
+        
+            <meta property="og:title" content="Unity中的同步异步" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="在Unity中使用await&#x2F;async" />
+         
+     
+
+     
+         
+             <meta name="description" content="在Unity中使用await&#x2F;async" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Unity中的同步异步<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-11-20</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/c/" class="post-tag">C#</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/async/" class="post-tag">async</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#async和await">async和await</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#await的调用逻辑">await的调用逻辑</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#C#中实现xlua的asyncTosync">C#中实现xlua的asyncTosync</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#实现线程同步">实现线程同步</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#C#中Task的一些东西">C#中Task的一些东西</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Unity中的同步异步/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>最近看接触xlua时发现一个挺有意思的<a href="https://github.com/Tencent/xLua/blob/master/Assets/XLua/Examples/07_AsyncTest/Resources/async_test.lua.txt">例子</a>,该例子中将原本的<strong>异步逻辑变为了同步逻辑</strong>,xlua中的实现是基于lua协程，于是我也想试一试在C#中实现类似的功能，lua协程简单来看也就是改变了调度顺序而已，看起来就像将异步方法放yeild中回调后续内容一样，在C#中类似的概念就是<code>async</code>和<code>await</code>，Unity在2017后就支持了C#中的<code>async</code>和<code>await</code>关键字，于是开始尝试着使用这两个关键字去实现这种功能。</p>
+<h1 id="async和await">async和await</h1>
+<p>使用规则</p>
+<ol>
+<li>
+<p>async</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> async函数中必须包含await的方法
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">async</span> <span class="z-support z-type z-cs">Task</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">AsyncFunc</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-keyword z-control z-other z-cs">await</span> <span class="z-variable z-other z-cs">xxx</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Call</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-keyword z-control z-other z-cs">await</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">AsyncFunc</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>      <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>阻塞执行
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">AsyncFunc</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>非阻塞       
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+</li>
+<li>
+<p>await<br />
+await属于编译范畴的内容，可以被await的对象要符合一下条件</p>
+<ul>
+<li>存在一个GetAwaiter方法，该方法可以是对象自身的也可以是拓展方法，返回一个Awaiter对象
+<ul>
+<li>Awaiter对象也是一个编译范畴的概念，也要符合如下条件
+<ul>
+<li>继承INotifyCompletion接口</li>
+<li>存在一个GetResult()方法，返回类型不限</li>
+<li>存在一个IsCompleted的bool变量或属性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>一个基本的例子</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs">  <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">abstract</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">BaseAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">T</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">INotifyCompletion</span> <span class="z-storage z-modifier z-cs">where</span> <span class="z-support z-type z-cs">T</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">BaseAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">T</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs">  </span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">virtual</span> <span class="z-storage z-type z-cs">bool</span> <span class="z-meta z-property z-cs"><span class="z-variable z-other z-member z-cs">IsCompleted </span><span class="z-meta z-method z-cs"><span class="z-storage z-type z-function z-accessor z-get z-cs">=&gt;</span> </span></span><span class="z-meta z-property z-cs"><span class="z-meta z-method z-cs"><span class="z-constant z-language z-cs">false</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">abstract</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnCompleted</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">Action</span> <span class="z-variable z-parameter z-cs">continuation</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs"><span class="z-punctuation z-terminator z-cs">;</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">T</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetAwaiter</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">        </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">              <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-language z-cs">this</span> <span class="z-keyword z-operator z-reflection z-cs">as</span> <span class="z-support z-type z-cs">T</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">  <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs">  <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">abstract</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">VoidBaseAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">T</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">BaseAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">VoidBaseAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">T</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs">  </span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetResult</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">        </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">  <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+</li>
+</ol>
+<h1 id="await的调用逻辑">await的调用逻辑</h1>
+<p>先从await的调用逻辑看起</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">AsyncJob</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">INotifyCompletion</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">bool</span> <span class="z-meta z-property z-cs"><span class="z-variable z-other z-member z-cs">IsCompleted </span><span class="z-meta z-method z-cs"><span class="z-storage z-type z-function z-accessor z-get z-cs">=&gt;</span> </span></span><span class="z-meta z-property z-cs"><span class="z-meta z-method z-cs"><span class="z-constant z-language z-cs">false</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnCompleted</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">Action</span> <span class="z-variable z-parameter z-cs">continuation</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">continuation</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">AsyncJob</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetAwaiter</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetResult</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>编辑器中的代码
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">async</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Start</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-keyword z-control z-other z-cs">await</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">AsyncJob</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Async job<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>实际操作逻辑
+</span></span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">async</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Start</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">waiter</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">AsyncJob</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetAwaiter</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>IsCompleted就是用来判断那些还没开始就已经结束的任务
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-keyword z-control z-conditional z-if z-cs">if</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">waiter</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">IsCompleted</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">waiter</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetResult</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">      </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span><span class="z-keyword z-control z-conditional z-else z-cs">else
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>本质就是把下文内容给封成了委托用来注册回调
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">waiter</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">OnCompleted</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-keyword z-operator z-cs">=&gt;</span><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">                 <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>GetResult()等等
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">                 <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Async job<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">            <span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">      </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h1 id="C#中实现xlua的asyncTosync">C#中实现xlua的asyncTosync</h1>
+<p>通过await的调用逻辑就不难发现，他其实和lua协程基本一样，<code>await</code>也不过是个委托封装器，专门把后续代码封装成委托的一个关键词罢了，那么思路就变成了通过<code>await</code>将后续方法注册给对应要等待的回调<br />
+伪代码</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-support z-type z-cs">Button</span> <span class="z-variable z-other z-cs">okBtn</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Confirm</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-keyword z-control z-other z-cs">await</span> <span class="z-variable z-other z-cs">okBtn</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OnClick</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Click<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h1 id="实现线程同步">实现线程同步</h1>
+<p>Unity中经常要进行线程同步操作，比如常用的事件模型，若想在网络回调中使用则需要在其中加入线程同步操作，通常来说都是维护一个任务队列之类的东西来进行同步，但通过<code>awiat</code>可以很容易实现线程切换。<br />
+<code>await</code>线程切换本质也就是把下文委托传递给不同线程去调用。</p>
+<ol>
+<li>主线程<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-support z-type z-cs">SynchronizationContext</span> <span class="z-variable z-other z-cs">UnityThreadContex</span> <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span> <span class="z-variable z-other z-cs">get</span><span class="z-punctuation z-terminator z-statement z-cs">;</span> <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-variable z-other z-cs">set</span><span class="z-punctuation z-terminator z-statement z-cs">;</span> <span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">Awake</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-variable z-other z-cs">UnityThreadContex</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">SynchronizationContext</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Current</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">MainJob</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">INotifyCompletion</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">bool</span> <span class="z-meta z-property z-cs"><span class="z-variable z-other z-member z-cs">IsCompleted </span><span class="z-meta z-method z-cs"><span class="z-storage z-type z-function z-accessor z-get z-cs">=&gt;</span> </span></span><span class="z-meta z-property z-cs"><span class="z-meta z-method z-cs"><span class="z-constant z-language z-cs">false</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnCompleted</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">Action</span> <span class="z-variable z-parameter z-cs">continuation</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">UnityThreadContex</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Post</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-parameter z-cs">x</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span></span></span><span class="z-meta z-function z-anonymous z-cs"> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">continuation</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-language z-cs">null</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">MainJob</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetAwaiter</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-variable z-language z-cs">this</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">GetResult</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">      </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">      <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+</li>
+<li>线程池<br />
+线程池思路也和上变一样，就是改变<code>OnCompleted</code>中的调用线程而已。</li>
+</ol>
+<h1 id="C#中Task的一些东西">C#中Task的一些东西</h1>
+<p>Task是C#中自带的一些Await实现，他们大都执行时在调用时的<code>SynchronizationContext.Current</code>中，也有一些比如<code>await Task.Delay(10)</code>改变线程，究其原因在于Delay是采用另一线程来执行计数的，如果不是另一个线程那么也就阻塞本线程其他的东西了，那么<code>async</code>也就没什么意义了。</p>
+<h1 id="参考资料">参考资料</h1>
+<p>https://www.jacksondunstan.com/articles/4918<br />
+https://gametorrahod.com/unity-and-async-await/</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

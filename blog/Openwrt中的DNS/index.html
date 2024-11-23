@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Openwrt中的DNS
+        
+    </title>
+
+        
+            <meta property="og:title" content="Openwrt中的DNS" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="关于在Openwrt中与DNS相关的知识" />
+         
+     
+
+     
+         
+             <meta name="description" content="关于在Openwrt中与DNS相关的知识" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Openwrt中的DNS<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-05-01</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/openwrt/" class="post-tag">Openwrt</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/dns/" class="post-tag">DNS</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#基础DNS设置">基础DNS设置</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#总结">总结</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#DNS防污染">DNS防污染</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#gfwlist">gfwlist</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#SmartDNS">SmartDNS</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#SmartDNS的配置文件">SmartDNS的配置文件</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#SSR_Plus">SSR Plus</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#SSR_Plus分流的原理">SSR Plus分流的原理</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#dnsmasq设置">dnsmasq设置</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#在_OpenClash_中设置_AdGuard">在 OpenClash 中设置 AdGuard</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Openwrt中的DNS/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>在Openwrt中有许多关于DNS的设置，为了理清各种关系和流程，故在此记录一下。</p>
+<h1 id="基础DNS设置">基础DNS设置</h1>
+<ol>
+<li><strong>Wan</strong>口DNS设置: 路由器访问网络时使用的DNS地址</li>
+<li><strong>Lan</strong>口DNS设置: DHCP下发给其他设备的DNS地址</li>
+<li><strong>DHCP/DNS</strong>该功能其实是<strong>dnsmasq</strong>，其<strong>uci</strong>对应<em><strong>/etc/config/dhcp.conf</strong></em><br />
+3.1 <strong>DNS 转发</strong>: 将请求本地53端口的请求转发给设置的DNS<br />
+3.2 <strong>解析文件</strong>: 通常该文件是<em><strong>/tmp/resolv.conf.d/resolv.conf.auto</strong></em>,该文件中的DNS地址为Wan口中的DNS地址。<br />
+3.3 <strong>两个选择之间的关系</strong>: 经过测试，只要其中一个选择设置正确即可通过使用<strong>nslookup</strong>获取到解析的域名，故推测两者为并行关系。</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>  对于设置静态DNS的人来说，这几个选项对其没有任何影响，只有当Lan口DNS设置为当前路由IP或者不填时（默认路由IP），其他机器才会访问<strong>dnsmasq</strong>进而产生影响。</p>
+<h1 id="DNS防污染">DNS防污染</h1>
+<p>  由于通常情况下DNS是明文传输很容易做到篡改，也就造成了国内去访问国外域名时很容易获取到受到污染的IP地址，这种情况下就两种选择，一种是直接本地解析域名即<strong>host</strong>文件，另一种走加密的DNS，本地解析这种方法过于粗犷，所以还是采用加密DNS，但为了DNS能够有更好的速度应该采用特定域名查询采用加密，正常的域名走老方法。</p>
+<h2 id="gfwlist"><a href="https://github.com/gfwlist/gfwlist">gfwlist</a></h2>
+<p>  gfwlist是一个包含了大量国内被墙或污染的域名列表，通过它我们可以获取什么域名应该走加密的DNS请求。</p>
+<h2 id="SmartDNS">SmartDNS</h2>
+<p>  SmartDNS是一个本地DNS服务器，可以设置多个上游DNS服务器，它自带两个DNS服务器设置，这正是我们想要的，一个用来走加密查询，一个用来走常规查询。</p>
+<h3 id="SmartDNS的配置文件">SmartDNS的配置文件</h3>
+<p>位置: <code>/etc/config/smartdns</code></p>
+<pre class="z-code"><code><span class="z-text z-plain">config smartdns
+</span><span class="z-text z-plain">	option server_name &#39;smartdns&#39;
+</span><span class="z-text z-plain">	option ipv6_server &#39;0&#39;
+</span><span class="z-text z-plain">	option dualstack_ip_selection &#39;0&#39;
+</span><span class="z-text z-plain">	option prefetch_domain &#39;1&#39;
+</span><span class="z-text z-plain">	option serve_expired &#39;1&#39;
+</span><span class="z-text z-plain">	option rr_ttl_min &#39;300&#39;
+</span><span class="z-text z-plain">	option seconddns_tcp_server &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_no_rule_nameserver &#39;0&#39;
+</span><span class="z-text z-plain">	option seconddns_no_rule_ipset &#39;0&#39;
+</span><span class="z-text z-plain">	option seconddns_no_rule_soa &#39;0&#39;
+</span><span class="z-text z-plain">	option force_aaaa_soa &#39;0&#39;
+</span><span class="z-text z-plain">	option coredump &#39;0&#39;
+</span><span class="z-text z-plain">	option seconddns_no_speed_check &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_no_rule_addr &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_no_dualstack_selection &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_no_cache &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">	option port &#39;6335&#39;
+</span><span class="z-text z-plain">	option seconddns_enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option seconddns_port &#39;5335&#39;
+</span><span class="z-text z-plain">	option tcp_server &#39;0&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option redirect &#39;dnsmasq-upstream&#39;
+</span><span class="z-text z-plain">	option cache_size &#39;1000000&#39;
+</span><span class="z-text z-plain">	list old_redirect &#39;dnsmasq-upstream&#39;
+</span><span class="z-text z-plain">	list old_port &#39;6335&#39;
+</span><span class="z-text z-plain">	list old_enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;tcp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;180.76.76.76&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;tcp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;114.114.114.114&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;tcp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;119.29.29.29&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;tcp&#39;
+</span><span class="z-text z-plain">	option ip &#39;223.5.5.5&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;udp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;180.76.76.76&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;udp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;114.114.114.114&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;udp&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option ip &#39;119.29.29.29&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option type &#39;udp&#39;
+</span><span class="z-text z-plain">	option ip &#39;223.5.5.5&#39;
+</span><span class="z-text z-plain">	option name &#39;cn&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://1.1.1.1/dns-query&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://1.0.0.1/dns-query&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://1dot1dot1dot1.cloudflare-dns.com&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option http_host &#39;1dot1dot1dot1.cloudflare-dns.com&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://dns.google/dns-query&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option http_host &#39;dns.google&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://8.8.8.8/dns-query&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">config server
+</span><span class="z-text z-plain">	option enabled &#39;1&#39;
+</span><span class="z-text z-plain">	option name &#39;https&#39;
+</span><span class="z-text z-plain">	option ip &#39;https://8.8.4.4/dns-query&#39;
+</span><span class="z-text z-plain">	option type &#39;https&#39;
+</span><span class="z-text z-plain">	option blacklist_ip &#39;0&#39;
+</span><span class="z-text z-plain">	option server_group &#39;proxy&#39;
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span></code></pre>
+<p>在上游DNS设置中<strong>server_group</strong>为<strong>proxy</strong>的均选择了支持https的DNS服务器，
+在该配置中<strong>6335</strong>端口用于之后访问在<strong>gfwlist</strong>以外的域名，<strong>5335</strong>则访问<strong>gfwlst</strong>之内的域名。</p>
+<h2 id="SSR_Plus">SSR Plus</h2>
+<p>  是一款代理软件，其支持使用<strong>gfwlist</strong>进行分流操作，在<strong>运行模式</strong>选择<strong>GFW运行模式</strong>以及<strong>DNS解析方式</strong>中选择<strong>使用本机端口为5335的DNS服务</strong>，即可当收到包含在<strong>gfwlist</strong>中的域名需要进行DNS查询时将会走到<strong>SmartDNS的5335</strong>服务中去。</p>
+<h3 id="SSR_Plus分流的原理">SSR Plus分流的原理</h3>
+<p>  SSR Plus分流是基于dnsmasq实现的，具体可查看<code>/var/dnsmasq.d/dnsmasq-ssrplus.d</code>下的文件，在该文件夹下面包含了许多生成的dnsmasq的分流规则</p>
+<pre class="z-code"><code><span class="z-text z-plain">server=/google.to/127.0.0.1#5335    // 域名google.to通过127.0.0.1#5335 去解析
+</span><span class="z-text z-plain">ipset=/google.to/gfwlist    // 域名google.to解析后的IP设置到gfwlist集合中 
+</span></code></pre>
+<p>可以看到这些规则不但定义了分流规则，也为之后的代理对ip进行了分类，后续通过iptable将所有处于<strong>gfwlist</strong>集合中的ip转发给代理。(<code>ipset list</code> 可以看到所有集合)</p>
+<h4 id="DNS查询代理">DNS查询代理</h4>
+<p>  分流过后DNS污染其实是已经解决了，但返回的IP其实是离我们当前路由器最近的节点，这是由于我们查询时是使用我们本机的IP查询的，为了让代理服务器访问最适合他的IP，我们应该让代理服务器去查询DNS，这时候我们应该让DNS的查询请求也走代理才可以。<br />
+DNS走代理有几个注意点:</p>
+<ol>
+<li>例如 <strong>https://dns.google/dns-query</strong>这个https的DNS查询服务，如若加密分流都是这种域名类型的，要使用这个查询服务就必须先解析<strong>dns.google</strong>这个域名，所以我们不能让<strong>dns.google</strong>这个域名的查询走当前设置的加密分流，因为这将陷入死循环，为了解析<strong>dns.google</strong>而去通过<strong>dns.gooogle</strong>解析<strong>dns.gooogle</strong>。只有当存在明确IP地址的dns存在时才能让其走加密，否则将陷入循环之中。</li>
+<li>尽量直接使用IP地址类型的DNS，这样就可以直接在代理中强制设置IP走代理，也无需注意第一点中的问题了。</li>
+<li>代理服务器的域名解析不可走代理。</li>
+</ol>
+<h2 id="dnsmasq设置">dnsmasq设置</h2>
+<p>  在<strong>SSR Plus</strong>仅仅设置了处于<strong>gfwlist</strong>内时的行为，需要在<strong>dnsmasq</strong>中修改默认行为来适配<strong>gfwlist</strong>外的域名，<strong>dnsmasq</strong>中将<strong>DNS 转发</strong>设置为<code>127.0.0.1#6335</code>同时关闭<strong>解析文件</strong>即可。</p>
+<h2 id="在_OpenClash_中设置_AdGuard">在 OpenClash 中设置 AdGuard</h2>
+<p>DNS 查询顺序 Client =&gt; OP: 53 =&gt; AD =&gt; OpenClash</p>
+<p>之所以 AD 要位于 OpenClash 之前是因为 OpenClash 在查询需要代理的域名时将采用远程解析，即跳过上游 DNS 直接转发至代理服务器去解析 DNS。</p>
+<p>所以设置方法为，AD 中设置劫持 53 端口，将上游 DNS 设置为 OpenClash 即 <code>127.0.0.1:7874</code> 在 OpenClash 中关闭 DNS 劫持，并设置上游 DNS。</p>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="https://renyili.org/post/openwrt_dns_process/">Lean OpenWrt DNS解析流程研究</a><br />
+<a href="https://www.visionyu.xyz/2020/06/29/dnsmasq-ipset-iptables-%E5%AE%9E%E7%8E%B0%E5%AF%B9%E6%B5%81%E9%87%8F%E8%BF%9B%E8%A1%8C%E5%88%86%E6%B5%81/">dnsmasq ipset iptables 实现对流量进行分流</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         使用Dnsmasq来让host通过名称访问Docker
+        
+    </title>
+
+        
+            <meta property="og:title" content="使用Dnsmasq来让host通过名称访问Docker" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="使用Dnsmasq来让host通过名称访问Docker" />
+         
+     
+
+     
+         
+             <meta name="description" content="使用Dnsmasq来让host通过名称访问Docker" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        使用Dnsmasq来让host通过名称访问Docker<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-10-26</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/docker/" class="post-tag">Docker</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#思路">思路</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#Adguard">Adguard</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#Dnsmasq和Adguard组合">Dnsmasq和Adguard组合</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#排查时使用的命令">排查时使用的命令</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#adguard+dnsmasq_结构拓扑">adguard+dnsmasq 结构拓扑</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/使用Dnsmasq来让host通过名称访问Docker/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  最近在使用Docker的时候遇到了这种问题，首先我想让这个容器能够自由的开放端口供外部访问(例如V2ray的管理面板)，其二我还需要访问其他容器例如(Nginx Proxy)，要完成第一个任务通常使用host模式即可，完成第二件事通常就是创建一个功能的network接口，所有容器都使用这个network接口互相通过域名访问。但现在遇到的需求则是需要同时满足两者的特性，这时候我们可以通过使用Dnsmasq来实现这个。</p>
+<h2 id="思路">思路</h2>
+<p>配置Dnsmasq容器<code>jpillora/dnsmasq</code>，让其开放53端口供外部访问，同时使用一个network接口A，其他的容器例如<code>alist</code>,<code>webdav</code>这类希望通过反代访问的容器，也使用network A接口，这样在dnsmasq中我们便能通过容器名称访问到这些容器了，但在默认情况下改容器的<code>/etc/resolv.conf</code>并未配置正常的DNS可以用于解析外部域名例如<code>google.com</code>，所以需要在里面加上一条<code>nameserver 1.1.1.1</code>这样改容器自身便能进行DNS解析了，之后配置Dnsmasq，<code>no-resolv</code>要删除，仅保留<code>server=127.0.0.11</code>这一个server，其他server都删除，这样便配置完成了。</p>
+<p>第二步，设置我们的目标容器为host模式，这样我们便能够自由开放端口，为了通过名称访问其他的容器，我们还需要让本机的dns解析走Dnsmasq去解析，参考<a href="https://yzzfo.github.io/blog/%E4%BD%BF%E7%94%A8Dnsmasq%E6%9D%A5%E8%AE%A9host%E9%80%9A%E8%BF%87%E5%90%8D%E7%A7%B0%E8%AE%BF%E9%97%AEDocker/Linux%E7%AC%94%E8%AE%B0#%E6%B0%B8%E4%B9%85%E8%AE%BE%E7%BD%AEDNS">设置DNS</a>进行DNS设置，这样我们在宿主机便能通过容器名称访问容器了。</p>
+<p>整体DNS解析流程类似这样</p>
+<pre data-lang="txt" class="language-txt z-code"><code class="language-txt" data-lang="txt"><span class="z-text z-plain">host -&gt; localhost:53 -&gt; dnsmasq -&gt; container /etc/resolv.conf -&gt; docker dns
+</span><span class="z-text z-plain">                                                               \ -&gt; 1.1.1.1  
+</span></code></pre>
+<h2 id="Adguard">Adguard</h2>
+<p>当使用Dnsmasq时若遇到查询不存在的容器名称时会导致出现DNS查询的死循环，其提供的<code>dns-loop-detect</code>使用后又无法查找本地的DNS，在改为使用Adguard后可以解决这个问题，原理和之前的Dnsmasq一样,DNS中添加<code>127.0.0.11</code>(11为Docker内置的DNS),但在设置时需要选择<code>最快的IP地址</code>这个DNS查询选项，只有这个才能保证Adguard在查询时会去调用<code>127.0.0.11</code>,其他两个选择不能确保必定走<code>127.0.0.11</code>进行查询。</p>
+<h2 id="Dnsmasq和Adguard组合">Dnsmasq和Adguard组合</h2>
+<p>  最近在使用qbittorent的是否发现<code>docker-proxy</code>内存占用过高了，参考这个<a href="https://www.wqeq.com/?p=19045">教程</a>,进行了一下排查发现是adguard导致的，重启几次后发现他的内存占用还是缓慢上升，估计是产生了类似dnsmasq的循环查询导致的，将其改为并发查询后内存有所缓解，但依旧还是维持在比较高的水平，再将<code>127.0.0.11:53</code>给删除之后重启，内存保存在了正常水平，为了解决host模式下解析容器ip的问题最终选择采用adguard+dnsmasq的形式。</p>
+<h3 id="排查时使用的命令">排查时使用的命令</h3>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">ps</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>ax</span></span><span class="z-keyword z-operator z-logical z-pipe z-shell">|</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">grep</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker-proxy</span>
+</span></code></pre>
+<h3 id="adguard+dnsmasq_结构拓扑">adguard+dnsmasq 结构拓扑</h3>
+<p>在宿主机容器中修改resolve.conf或者对特定程序例如nginx在解析时指定127.0.0.2时即可<br />
+<img src="https://yzzfo.github.io/blog/%E4%BD%BF%E7%94%A8Dnsmasq%E6%9D%A5%E8%AE%A9host%E9%80%9A%E8%BF%87%E5%90%8D%E7%A7%B0%E8%AE%BF%E9%97%AEDocker/%E6%8B%93%E6%89%91.jpg" alt="拓扑" /></p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://stackoverflow.com/questions/41707573/how-does-docker-embedded-dns-resolver-work">how does Docker Embedded DNS resolver work?</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

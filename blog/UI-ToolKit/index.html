@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         UI ToolKit
+        
+    </title>
+
+        
+            <meta property="og:title" content="UI ToolKit" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="用UI ToolKit制作Editor" />
+         
+     
+
+     
+         
+             <meta name="description" content="用UI ToolKit制作Editor" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        UI ToolKit<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-03-26</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/editor/" class="post-tag">Editor</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#基本结构">基本结构</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#监听UI事件">监听UI事件</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#ListView">ListView</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#拖拽相关内容">拖拽相关内容</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#修改鼠标样式">修改鼠标样式</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#获取拖拽的物品">获取拖拽的物品</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/UI-ToolKit/#修改Sprite">修改Sprite</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  Unity在2019之后就可以使用UI ToolKit来制作，其制作理念和web前端基本一致，所有这里记录一下相关的内容。</p>
+<h2 id="基本结构">基本结构</h2>
+<p>通过<code>Create &gt; UI Toolkit &gt; Editor Window</code>即可创建一个最基本的Editor窗口</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEditor</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEngine</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEngine</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">UIElements</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs">  
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">CustomEditor</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">EditorWindow</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">SerializeField</span><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">private</span> <span class="z-support z-type z-cs">VisualTreeAsset</span> <span class="z-variable z-other z-member z-cs">m_VisualTreeAsset</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-keyword z-other z-cs">default</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">MenuItem</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Window/UI Toolkit/CustomEditor<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-modifier z-cs">static</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">ShowExample</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>        <span class="z-support z-type z-cs">CustomEditor</span> <span class="z-variable z-other z-cs">wnd</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetWindow</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">CustomEditor</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">wnd</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">titleContent</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">GUIContent</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>CustomEditor<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">CreateGUI</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>        
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> Each editor window contains a root VisualElement object  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">VisualElement</span> <span class="z-variable z-other z-cs">root</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">rootVisualElement</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> VisualElements objects can contain other VisualElement following a tree hierarchy.  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">VisualElement</span> <span class="z-variable z-other z-cs">label</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Label</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Hello World! From C#<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">root</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Add</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">label</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> Instantiate UXML  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">VisualElement</span> <span class="z-variable z-other z-cs">labelFromUXML</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">m_VisualTreeAsset</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Instantiate</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">root</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Add</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">labelFromUXML</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h2 id="监听UI事件">监听UI事件</h2>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">element</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">VisualElement</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">element</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">style</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">width</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">100</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">element</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">style</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">height</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">100</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 当拖拽着东西，且鼠标移动到该Element范围时触发
+</span></span><span class="z-source z-cs"><span class="z-variable z-other z-cs">element</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">RegisterCallback</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">DragUpdatedEvent</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-keyword z-operator z-cs">=&gt;</span><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 同上，拖拽结束事件=&gt;即鼠标松开时触发
+</span></span><span class="z-source z-cs"><span class="z-variable z-other z-cs">element</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">RegisterCallback</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">DragExitedEvent</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-keyword z-operator z-cs">=&gt;</span><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> MouseUpEvent，仅当在A按下时，且在A上松开鼠标MouseUpEvent才会触发
+</span></span></code></pre>
+<h2 id="ListView">ListView</h2>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">list</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">ListView</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-support z-type z-cs">List</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-storage z-type z-cs">string</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span></span> <span class="z-variable z-other z-cs">source</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">List</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-storage z-type z-cs">string</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">list</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">itemsSource</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">source</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">list</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">makeItem</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span></span></span><span class="z-meta z-function z-anonymous z-cs"> <span class="z-punctuation z-section z-block z-begin z-cs">{</span></span> <span class="z-keyword z-control z-flow z-return z-cs">return</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">Label</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span> <span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">list</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">bindItem</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-parameter z-cs">element</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span> <span class="z-variable z-parameter z-cs">i</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span></span></span><span class="z-meta z-function z-anonymous z-cs"> <span class="z-punctuation z-section z-block z-begin z-cs">{</span></span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-variable z-other z-cs">element</span> <span class="z-keyword z-operator z-reflection z-cs">as</span> <span class="z-support z-type z-cs">Label</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">text</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">source</span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-begin z-cs">[</span></span><span class="z-meta z-brackets z-cs"><span class="z-variable z-other z-cs">i</span></span><span class="z-meta z-brackets z-cs"><span class="z-punctuation z-section z-brackets z-end z-cs">]</span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span> <span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 当list改变时，手动触发Rebuild
+</span></span><span class="z-source z-cs"><span class="z-variable z-other z-cs">list</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Rebuild</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></code></pre>
+<h2 id="拖拽相关内容">拖拽相关内容</h2>
+<h3 id="修改鼠标样式">修改鼠标样式</h3>
+<p>  在反编译查看了下<code>ObjectField</code>后发现了<code>DragAndDrop.visualMode = DragAndDropVisualMode.Generic</code>这一行代码，试了一下后发现可以用于修改拖拽时的鼠标样式</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-variable z-other z-cs">element</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">RegisterCallback</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">DragUpdatedEvent</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-variable z-parameter z-cs">x</span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">DragAndDrop</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">visualMode</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">DragAndDropVisualMode</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Generic</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></code></pre>
+<h3 id="获取拖拽的物品">获取拖拽的物品</h3>
+<p>  可以通过<code>DragAndDrop</code>或者<code>Selection</code>下的属性来获取相关内容</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-variable z-other z-cs">DragAndDrop</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">paths</span> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>资源路径
+</span></span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Selection</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">objects</span> <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>拖拽资源,通过将其设置为null，也可以取消选择
+</span></span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 等等
+</span></span></code></pre>
+<h3 id="修改Sprite">修改Sprite</h3>
+<p>修改资源时需要修改对应的Importer，<code>AssetImporter.GetAtPath</code>，有些修改项不在import中需要使用对应的<code>ImporterSettings</code>，如下面例子。</p>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 由于import setting一直处于选择状态的时候通过代码去改变会导致最后返回界面时再次弹出确实保存的框  
+</span></span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 即选择状态下下面的东西没生效，需要点击一次保存  
+</span></span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 取消选择则不会出现这种问题
+</span></span><span class="z-source z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">select</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Selection</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">objects</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Selection</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">objects</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-language z-cs">null</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 批量修改Sprite的Pivot
+</span></span><span class="z-source z-cs"><span class="z-variable z-other z-cs">_spritePaths</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Select</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-variable z-parameter z-cs">x</span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span> <span class="z-variable z-other z-cs">AssetImporter</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetAtPath</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Where</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-variable z-parameter z-cs">x</span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span> <span class="z-variable z-other z-cs">x</span> <span class="z-keyword z-operator z-reflection z-cs">is</span> <span class="z-support z-type z-cs">TextureImporter</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ForEach</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-variable z-parameter z-cs">x</span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-support z-type z-cs">TextureImporter</span> <span class="z-variable z-other z-cs">import</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-cast z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-support z-type z-cs">TextureImporter</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-variable z-other z-cs">x</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">Texture</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">AssetDatabase</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LoadAssetAtPath</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Texture</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">assetPath</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">import</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">spritePixelsPerUnit</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">Texture</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">width</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">xy</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">root</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Query</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">Vector2Field</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">First</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-language z-cs">value</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 创建ImporterSettings
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-support z-type z-cs">TextureImporterSettings</span> <span class="z-variable z-other z-cs">texSettings</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">TextureImporterSettings</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> Copy之前的设置到ImporterSettings中  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">import</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ReadTextureSettings</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">texSettings</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 修改项目  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">texSettings</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">spriteAlignment</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-cast z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-storage z-type z-cs">int</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span><span class="z-variable z-other z-cs">SpriteAlignment</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Custom</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">texSettings</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">spritePivot</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">xy</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 将ImporterSettings写入import
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">import</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetTextureSettings</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">texSettings</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">	<span class="z-variable z-other z-cs">import</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SaveAndReimport</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">AssetDatabase</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">WriteImportSettingsIfDirty</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">assetPath</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">AssetDatabase</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SaveAssetIfDirty</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">import</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Selection</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">objects</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">select</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

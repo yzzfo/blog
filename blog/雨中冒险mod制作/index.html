@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         雨中冒险mod制作
+        
+    </title>
+
+        
+            <meta property="og:title" content="雨中冒险mod制作" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="雨中冒险mod制作" />
+         
+     
+
+     
+         
+             <meta name="description" content="雨中冒险mod制作" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        雨中冒险mod制作<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-04-08</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/you-xi/" class="post-tag">游戏</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/mod/" class="post-tag">Mod</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/fan-bian-yi/" class="post-tag">反编译</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/dnspy/" class="post-tag">dnSpy</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/雨中冒险mod制作/#雨中冒险Mod环境安装">雨中冒险Mod环境安装</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/雨中冒险mod制作/#新建Mod项目">新建Mod项目</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/雨中冒险mod制作/#断点调试Mod">断点调试Mod</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/雨中冒险mod制作/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>最近开始玩起来了<strong>雨中冒险2</strong>这款游戏，发现这款游戏是使用<strong>Unity</strong>制作的而且还支持<strong>Mod</strong>于是就打算来修改修改游戏内的逻辑。</p>
+<h2 id="雨中冒险Mod环境安装">雨中冒险Mod环境安装</h2>
+<ol>
+<li>下载 <a href="https://thunderstore.io/package/bbepis/BepInExPack/">BepInExPack</a> 并解压至游戏根目录</li>
+<li>安装 <a href="https://thunderstore.io/package/tristanmcpherson/R2API/">R2API</a> 放在**Risk of Rain 2/Bepinex/plugins/**目录下</li>
+</ol>
+<h2 id="新建Mod项目">新建Mod项目</h2>
+<ol>
+<li>使用<strong>Rider</strong>创建新的<strong>C# Class Library项目</strong>，Framework选择<strong>netstandard 2.0</strong>，SDK选择<strong>3.0</strong>以上。</li>
+<li>创建插件<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Generic</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Reflection</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">BepInEx</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">EntityStates</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">RoR2</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">GenericSkill</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-path z-cs">On</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">RoR2</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">GenericSkill</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">HarmonyLib</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">IL</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">RoR2</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Skills</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">R2API</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Utils</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEngine</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs"> <span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">DelayBlast</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-meta z-path z-cs">On</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">RoR2</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">DelayBlast</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"> <span class="z-meta z-namespace z-cs"><span class="z-storage z-type z-namespace z-cs">namespace</span> <span class="z-entity z-name z-namespace z-cs">MyMod</span>
+</span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"> <span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span></span></span><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>GUID -&gt; www.hello.app /config下的配置与GUID同名
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>Name -&gt; 插件名
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">     <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>Ver -&gt; 1.0 版本号
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">     <span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-begin z-cs">[</span><span class="z-variable z-annotation z-cs">BepInPlugin</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>www.hello.app<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>Hello<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>1.0<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-meta z-annotation z-cs"><span class="z-punctuation z-definition z-annotation z-end z-cs">]</span></span>
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs">     <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">Mod</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">BaseUnityPlugin</span>  <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>插件基类
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-cs">     </span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">         <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-method z-constructor z-cs"><span class="z-entity z-name z-function z-constructor z-cs">Mod</span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span></span><span class="z-meta z-method z-constructor z-cs"><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span>
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-constructor z-cs">         </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">             <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>Hook 原本的逻辑
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">             <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>RoR2.ChestBehavior.ItemDrop为原本的函数
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">             <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>On.RoR2.ChestBehavior.ItemDrop为原本函数调用事件，将原本函数Hook到该事件中
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">             <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span>开箱是随机增加掉落数量
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">             <span class="z-variable z-other z-cs">On</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">RoR2</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">ChestBehavior</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">ItemDrop</span> <span class="z-keyword z-operator z-cs">+=</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-parameter z-cs">orig</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span> <span class="z-variable z-parameter z-cs">self</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span></span></span><span class="z-meta z-function z-anonymous z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs">             <span class="z-punctuation z-section z-block z-begin z-cs">{</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-storage z-type z-cs">float</span> <span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">UnityEngine</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Random</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Range</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-storage z-type z-numeric z-cs">f</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-numeric z-float z-decimal z-cs">1<span class="z-storage z-type z-numeric z-cs">f</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>005<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">10</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>03<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">5</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>13<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">3</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>33<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">2</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>63<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-elseif z-cs">else if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">per</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-float z-decimal z-cs">0<span class="z-punctuation z-separator z-decimal z-cs">.</span>631<span class="z-storage z-type z-numeric z-cs">f</span></span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">add</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-keyword z-operator z-cs">-</span><span class="z-constant z-numeric z-integer z-decimal z-cs">1</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">filed</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">self</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetType</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetField</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>dropCount<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">BindingFlags</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">NonPublic</span> <span class="z-keyword z-operator z-cs">|</span> <span class="z-variable z-other z-cs">BindingFlags</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Instance</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-storage z-type z-cs">int</span> <span class="z-variable z-other z-cs">ordCount</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-cast z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-storage z-type z-cs">int</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-variable z-other z-cs">filed</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetValue</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">self</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">tarInt</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">ordCount</span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">add</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">tarInt</span> <span class="z-keyword z-operator z-cs">&lt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                     <span class="z-variable z-other z-cs">tarInt</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-block z-cs">                 </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-variable z-other z-cs">filed</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetValue</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">self</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">tarInt</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">                 <span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">orig</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">self</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">             <span class="z-punctuation z-section z-block z-end z-cs">}</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-group z-cs">     </span><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-namespace z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"> <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></span></span></code></pre>
+<ol start="3">
+<li>Build该工程，在<strong>Risk of Rain 2/Bepinex/plugins/<strong>目录中创建文件夹并将Build后的</strong>dll</strong>文件放入其中，至此Mod安装完毕。</li>
+</ol>
+</li>
+</ol>
+<h2 id="断点调试Mod">断点调试Mod</h2>
+<ol>
+<li>安装<a href="https://github.com/dnSpy/dnSpy/releases">dnSpy</a></li>
+<li>查看游戏使用的<strong>Unity</strong>版本<br />
+<img src="https://github.com/Cnicehs/Image/raw/main/%E9%9B%A8%E4%B8%AD%E5%86%92%E9%99%A9Unity%E7%89%88%E6%9C%AC.png" alt="雨中冒险Unity版本" /></li>
+<li>查看<strong>Risk of Rain 2\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll</strong> PE头中的时间戳<br />
+3.1 方法一：使用<strong>dnSpy</strong>查看时间戳，该时间戳为本地时间
+<img src="https://github.com/Cnicehs/Image/raw/main/dnSpy%E6%9F%A5%E7%9C%8B%E6%97%B6%E9%97%B4%E6%88%B3.png" alt="dnSpy查看时间戳" /><br />
+3.2 方法二：使用<strong>umpatcher</strong>查看时间戳，见<a href="#安装umpatcher">第七步</a>中的使用</li>
+<li>拉取<a href="https://github.com/dnSpy/dnSpy-Unity-mono">dnSpy-Unity-mono</a>并切换到<strong>dnSpy</strong>分支</li>
+<li>拉取<a href="https://github.com/Unity-Technologies/mono">Unity-Mono</a>并找到对应<strong>Unity</strong>版本的的分支<br />
+例如v5.4.3, 分支名为unity-5.4， 结尾带<em><strong>-mbe</strong></em>使用 <strong>.NET 4.x assemblies</strong>
+找到和<strong>时间戳</strong>最接近的提交，复制hash</li>
+<li>编译<strong>umpatcher</strong><br />
+在<strong>dnSpy-Unity-mono</strong>中的找到<strong>src\umpatcher\umpatcher.sln</strong>使用<strong>visual studio</strong>打开并Build即可</li>
+<li><a id="安装umpatcher">使用<strong>umpatcher</strong></a><pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">查看时间戳</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">umpatcher</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>timestamp</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>C:\path\to\the\correct\version\mono.dll<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">生成前确保Unity-mono和dnSpy-Unity-mono都是纯净工程，即git statue后没有提示任何文件，否则将导致失败并且程序会执行很长的时间，由于文件过多。</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">生成指定版本的dnSpy-Unity-mono工程</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">版本 为游戏的Unity版本</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">hash 为之前第五步复制的hash</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">umpatcher</span></span><span class="z-meta z-function-call z-arguments z-shell"> 5.4.3 aa8a6e7afc2f4fe63921df4fe8a18cfd0a441d19 <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>C:\path\to\Unity-mono<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>C:\path\to\dnSpy-Unity-mono<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+</span><span class="z-source z-shell z-bash"> <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">2019.2之后似乎都是.net4了，需要加上-mbe否则会走原先的生成逻辑</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">umpatcher</span></span><span class="z-meta z-function-call z-arguments z-shell"> 2019.4.26-mbe 5c72e2513122ba54eb1dcaef03df123ca1a2809b <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>C:\path\to\Unity-mono<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>C:\path\to\dnSpy-Unity-mono<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+</span></code></pre>
+</li>
+<li>编译<strong>mono-2.0-bdwgc.dll</strong><br />
+打开<strong>dnSpy-Unity-mono</strong>目录找到<strong>dnSpy-Unity-mono-v2019.x-V40.sln</strong>，用Visual Studio打开，选中里面的项目<strong>2019.4.26-mbe</strong>进行生成即可获得<strong>mono-2.0-bdwgc.dll</strong></li>
+<li>用获得的<strong>mono-2.0-bdwgc.dll</strong>将游戏中的<strong>mono-2.0-bdwgc.dll</strong>文件进行替换</li>
+<li>用<strong>dnSpy</strong>进行运行游戏<br />
+10.1. 选择<strong>调试-&gt;开始调试</strong><br />
+10.2. 进行如下设置
+<img src="https://github.com/Cnicehs/Image/raw/main/dnSpy%E8%B0%83%E8%AF%95%E8%BF%90%E8%A1%8C%E6%B8%B8%E6%88%8F.png" alt="dnSpy调试运行游戏" /></li>
+<li>拖入想调试的dll，断点即可</li>
+</ol>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://github.com/dnSpy/dnSpy/wiki/Debugging-Unity-Games">https://github.com/dnSpy/dnSpy/wiki/Debugging-Unity-Games</a><br />
+<a href="https://github.com/dnSpy/dnSpy-Unity-mono#supporting-a-new-unity-version-for-dummies">https://github.com/dnSpy/dnSpy-Unity-mono#supporting-a-new-unity-version-for-dummies</a><br />
+<a href="https://github.com/risk-of-thunder/R2API/wiki">https://github.com/risk-of-thunder/R2API/wiki</a><br />
+<a href="https://github.com/wonoton/Risk-of-rain-2-Mod-Guide">https://github.com/wonoton/Risk-of-rain-2-Mod-Guide</a><br />
+<a href="https://riskofrain2.fandom.com/wiki/Modding">https://riskofrain2.fandom.com/wiki/Modding</a><br />
+<a href="https://github.com/risk-of-thunder/R2Wiki/wiki">https://github.com/risk-of-thunder/R2Wiki/wiki</a>
+<a href="https://www.aoe.top/mod/405">https://www.aoe.top/mod/405</a>
+<a href="https://github.com/BepInEx/BepInEx.Debug">https://github.com/BepInEx/BepInEx.Debug</a>
+<a href="https://github.com/ManlyMarco/RuntimeUnityEditor#readme">https://github.com/ManlyMarco/RuntimeUnityEditor#readme</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

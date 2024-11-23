@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         FFmpeg
+        
+    </title>
+
+        
+            <meta property="og:title" content="FFmpeg" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="FFmpeg的一些使用案例" />
+         
+     
+
+     
+         
+             <meta name="description" content="FFmpeg的一些使用案例" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        FFmpeg<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-06-12</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/linux/" class="post-tag">Linux</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/ffmpeg/" class="post-tag">FFmpeg</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FFmpeg/#错误检测">错误检测</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FFmpeg/#FastStart">FastStart</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FFmpeg/#常见的一些操作">常见的一些操作</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/FFmpeg/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="错误检测">错误检测</h2>
+<p>  最近在使用Jellify的时候发现有些影片存在问题，于是打算写个脚本检测一下所有视频，既然要涉及的影音那就不可避免的要接触到FFmpeg这个项目了，只是为了检测视频是否有错误其实还是比较简单的，但其中还是有一点坑需要注意。</p>
+<ol>
+<li>
+<p>安装 <code>apt-get install ffmpeg</code></p>
+</li>
+<li>
+<p>错误检测 <code>ffmpeg -v error -i /path/to/file -map 0:1 -f null -</code></p>
+</li>
+<li>
+<p>shell脚本</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">直接使用read来解决</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-keyword z-control z-loop z-while z-shell">while</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">IFS</span></span><span class="z-meta z-function-call z-arguments z-shell">= read<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>r</span> line</span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span> <span class="z-keyword z-control z-loop z-do z-shell">do</span>
+</span><span class="z-source z-shell z-bash">    <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-echo z-shell">echo</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">line</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span></span>
+</span><span class="z-source z-shell z-bash">    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">ffmpeg</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>nostdin</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>v</span> error<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>i</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">line</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>map</span> 0:1<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>f</span> null -    <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> -nostdin 必须加上，否则会导致ffmpeg读取的数据变奇怪  https://superuser.com/questions/1088032/while-read-loop-through-lines-in-text-file-losing-characters-in-bash-script-i</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span><span class="z-source z-shell z-bash">    <span class="z-keyword z-control z-conditional z-if z-shell">if</span> <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-language z-shell">?</span></span> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>ne</span> 0 <span class="z-support z-function z-test z-end z-shell">]</span></span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span> <span class="z-keyword z-control z-conditional z-then z-shell">then</span>
+</span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-echo z-shell">echo</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>\033[0;31m<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">line</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>\033[0m<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span></span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+</span><span class="z-source z-shell z-bash">    <span class="z-keyword z-control z-conditional z-end z-shell">fi</span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-control z-loop z-end z-shell">done</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-keyword z-operator z-assignment z-redirection z-shell">&lt;</span> <span class="z-keyword z-operator z-assignment z-redirection z-process z-shell">&lt;</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">find</span></span><span class="z-meta z-function-call z-arguments z-shell"> /mnt/nas/qbittorrent<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>type</span> f<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>name</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>*.mp4<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> 通过read读取到数组后执行 无需 -nostdin</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> fname=&quot;&quot;</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> cat /dev/null &gt; ./tmp.ffmpeg</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> while read line</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> do</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     echo ${line} &gt;&gt; ./tmp.ffmpeg</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> done &lt; &lt;(find /mnt/nas/qbittorrent -type f -name &quot;*.mp4&quot;)</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> files=()</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> length=0</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> while read line</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> do</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     files[$length]=${line}</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     length=$[length+1]</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> done &lt;./tmp.ffmpeg</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> for(( i=0;i&lt;${#files[@]};i++)) </span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> #${#array[@]}获取数组长度用于循环</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> do</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     echo ${files[i]};</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     ffmpeg -v error -i &quot;${files[i]}&quot; -map 0:1 -f null -</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> done;</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></code></pre>
+</li>
+</ol>
+<h2 id="FastStart">FastStart</h2>
+<p>  最近购入了一台Servarica的大盘鸡，在使用nplayer在线播放动漫时发现首帧加载的速度有点慢，于是研究了一下相关的解决方法，最终选择使用FFmpeg对MP4进行faststart处理，对于这种没有GPU的vps来说也是最快捷的方式了，配合unmanci就可以实现自动化faststart。</p>
+<pre class="z-code"><code><span class="z-text z-plain">#!/bin/sh
+</span><span class="z-text z-plain">#用于unmanic的转换脚本
+</span><span class="z-text z-plain">#$1 源文件
+</span><span class="z-text z-plain">#$2 输出文件
+</span><span class="z-text z-plain">echo &quot;-------------------------------------------------------------------------------------------------------------------------------------&quot;
+</span><span class="z-text z-plain">echo &quot;$1&quot; | grep -e &quot;\.mp4&quot; &gt;/dev/null
+</span><span class="z-text z-plain">if [ $? = &quot;0&quot; ]; then #mp4
+</span><span class="z-text z-plain">    ffprobe -v debug &quot;$1&quot; 2&gt;&amp;1 | grep &quot;0 seeks&quot;  #mp4是否已经faststart了
+</span><span class="z-text z-plain">    if [ $? = &quot;0&quot; ]; then
+</span><span class="z-text z-plain">        echo &quot;Is moov skip&quot;
+</span><span class="z-text z-plain">        exit 0
+</span><span class="z-text z-plain">    fi
+</span><span class="z-text z-plain">    ffmpeg -nostdin -i &quot;$1&quot; -movflags faststart -acodec copy -vcodec copy -threads 10 -preset ultrafast &quot;$2&quot; -y
+</span><span class="z-text z-plain">    if [ $? = &quot;0&quot; ]; then
+</span><span class="z-text z-plain">        echo &quot;--------------------------------------------------------MP4 Move--------------------------------------------------------------------------&quot;
+</span><span class="z-text z-plain">        mv &quot;$2&quot; &quot;$1&quot;
+</span><span class="z-text z-plain">        exit 0
+</span><span class="z-text z-plain">    fi
+</span><span class="z-text z-plain">else #mkv
+</span><span class="z-text z-plain">    ffmpeg -nostdin -i &quot;$1&quot; -c copy -reserve_index_space 50k &quot;$2&quot; # 50kbytes is the suggested size for 1 hour of media.   # -nostdin 必须加上，否则会导致ffmpeg读取的数据变奇怪  https://superuser.com/questions/1088032/while-read-loop-through-lines-in-text-file-losing-characters-in-bash-script-i
+</span><span class="z-text z-plain">    if [ $? = &quot;0&quot; ]; then
+</span><span class="z-text z-plain">        echo &quot;--------------------------------------------------------MKV Move--------------------------------------------------------------------------&quot;
+</span><span class="z-text z-plain">        mv &quot;$2&quot; &quot;$1&quot;
+</span><span class="z-text z-plain">        exit 0
+</span><span class="z-text z-plain">    fi
+</span><span class="z-text z-plain">fi
+</span><span class="z-text z-plain">exit 1
+</span><span class="z-text z-plain">
+</span></code></pre>
+<h2 id="常见的一些操作">常见的一些操作</h2>
+<ol>
+<li>BT下载的视频中间存在错误或者缺失，可以使用如下指令将这些部分剔除<code>ffmpeg -err_detect ignore_err -i input.mp4 -c copy output.mp4</code></li>
+</ol>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="https://shura.eu.org/2018/03/09/%E7%94%A8ffmpeg%E5%BF%AB%E9%80%9F%E6%A0%A1%E9%AA%8C%E7%9B%AE%E5%BD%95%E5%86%85%E7%9A%84%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/">用ffmpeg快速校验目录内的视频文件的完整性 | Shura's自留地</a></p>
+<p><a href="https://www.freecodecamp.org/news/the-linux-ls-command-how-to-list-files-in-a-directory-with-options/">The Linux LS Command – How to List Files in a Directory + Option Flags</a></p>
+<p><a href="https://blog.csdn.net/aywb1314/article/details/52239281">使用awk命令获取文本的某一行，某一列_姥爷wvb的博客-CSDN博客_linux提取某一列</a></p>
+<p><a href="https://blog.csdn.net/Raily_Qi/article/details/93047723">shell脚本逐行处理文本文件_Raily_Qi的博客-CSDN博客_shell逐行处理文件</a></p>
+<p><a href="https://justcode.ikeepstudying.com/2018/02/shell%EF%BC%9A-shell%E4%B8%ADwhile%E5%BE%AA%E7%8E%AF%E7%9A%84%E9%99%B7%E9%98%B1-%E5%8F%98%E9%87%8F%E5%AE%9E%E6%95%88-%E6%97%A0%E6%B3%95%E8%B5%8B%E5%80%BC%E5%8F%98%E9%87%8F/">Shell： Shell中while循环的陷阱, 变量实效, 无法赋值变量</a></p>
+<p><a href="http://c.biancheng.net/view/810.html">Shell数组：Shell数组定义以及获取数组元素</a></p>
+<p><a href="https://www.jianshu.com/p/f36e8199571f">shell遍历数组3种方法 - 简书</a></p>
+<p><a href="https://superuser.com/questions/1492507/why-does-ffmpeg-require-nostdin-in-while-loop">bash - Why does FFmpeg require nostdin in while loop? - Super User</a></p>
+<p><a href="https://superuser.com/questions/1088032/while-read-loop-through-lines-in-text-file-losing-characters-in-bash-script-i">linux - 'while read' loop through lines in text file losing characters in Bash script. is FFmpeg line to blame? - Super User</a>
+<a href="https://stackoverflow.com/questions/6657759/detect-if-faststart-has-been-applied-to-video">Detect if "faststart" has been applied to video</a>
+<a href="https://superuser.com/questions/1190153/make-mkv-file-suitable-for-streaming-with-ffmpeg-or-avconv-how-to-move-all-m">Make MKV file suitable for streaming with ffmpeg</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

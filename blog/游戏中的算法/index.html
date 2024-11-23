@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         游戏中的算法
+        
+    </title>
+
+        
+            <meta property="og:title" content="游戏中的算法" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="游戏开发是用到的一些算法" />
+         
+     
+
+     
+         
+             <meta name="description" content="游戏开发是用到的一些算法" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        游戏中的算法<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-05-30</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/you-xi/" class="post-tag">游戏</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/suan-fa/" class="post-tag">算法</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#Shader算法">Shader算法</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#画函数图像">画函数图像</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#RGB和HSV转换">RGB和HSV转换</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#灰度值计算">灰度值计算</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#Sobel边缘检测">Sobel边缘检测</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#Shader画正多边形">Shader画正多边形</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#Shader噪声">Shader噪声</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/游戏中的算法/#常规算法">常规算法</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="Shader算法">Shader算法</h2>
+<h3 id="画函数图像">画函数图像</h3>
+<pre class="z-code"><code><span class="z-text z-plain">//f(x) = x^3
+</span><span class="z-text z-plain">float Plot1(float2 st)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">	return smoothstep(-0.01,0.01,pow(st.x,3)-st.y)*(1-smoothstep(-0.01,0.01,pow(st.x,3)-st.y));
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<img src="https://github.com/Cnicehs/Image/raw/main/Shader_Plot1.png" alt="Plot1" style="zoom: 50%;" />
+<pre class="z-code"><code><span class="z-text z-plain">float Plot2(float2 st,float f)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">	return smoothstep(f-0.01,f,st.y)-smoothstep(f,f+0.01,st.y);
+</span><span class="z-text z-plain">	//smoothstep可以通过向左平移f单位得到如下
+</span><span class="z-text z-plain">	//return smoothstep(-0.01,0,st.y-f)-smoothstep(0,0.01,st.y-f);
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<img src="https://github.com/Cnicehs/Image/raw/main/Shader_Plot2.png" alt="Plot2" style="zoom: 50%;" />
+<p><a href="https://www.geogebra.org/m/vjgjd9nj">两种不同方式下的smooth函数区别</a></p>
+<p>两者都做到了 （-0.01，0.01）区间范围内的显示，但Plot1的中单个Smooth长度为0.02，而Plot2中单个Smooth长度为0.01这是两者的一种差别。即Plot1是基于原本区间进行的变化操作，而Plot2则是通过两个不同区间的smooth合并而成的操作。</p>
+<h3 id="RGB和HSV转换">RGB和HSV转换</h3>
+<p><a href="https://stackoverflow.com/questions/15095909/from-rgb-to-hsv-in-opengl-glsl">From RGB to HSV in OpenGL GLSL - Stack Overflow</a></p>
+<p><a href="http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl">Blog: Fast branchless RGB to HSV conversion in GLSL – Lol Engine</a></p>
+<h3 id="灰度值计算">灰度值计算</h3>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">Gray</span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl">fixed3 <span class="z-variable z-parameter z-glsl">color</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-function z-glsl">  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> <span class="z-constant z-numeric z-glsl">0.299</span> <span class="z-keyword z-operator z-glsl">*</span> color<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">r</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">0.587</span> <span class="z-keyword z-operator z-glsl">*</span> color<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">g</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">0.114</span> <span class="z-keyword z-operator z-glsl">*</span> color<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">b</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span>
+</span></code></pre>
+<h3 id="Sobel边缘检测">Sobel边缘检测</h3>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Sample the source texture  
+</span></span><span class="z-source z-glsl">fixed4 col <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">tex2D</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_MainTex<span class="z-punctuation z-separator z-glsl">,</span> i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">uv</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Calculate the texel size  
+</span></span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> dx <span class="z-keyword z-operator z-assignment z-glsl">=</span> _MainTex_TexelSize<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">x</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> dy <span class="z-keyword z-operator z-assignment z-glsl">=</span> _MainTex_TexelSize<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">y</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Apply Sobel operator  
+</span></span><span class="z-source z-glsl">float3x3 sobelX <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">float3x3</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">                           <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">2</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">2</span><span class="z-punctuation z-separator z-glsl">,</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">                           <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl">float3x3 sobelY <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">float3x3</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">2</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">                           <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">                           <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">2</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> gx <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> gy <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl"><span class="z-keyword z-control z-glsl">for</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-storage z-type z-glsl">int</span> y <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-terminator z-glsl">;</span> y <span class="z-keyword z-operator z-comparison z-glsl">&lt;=</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-terminator z-glsl">;</span> y<span class="z-keyword z-operator z-arithmetic z-glsl">+</span><span class="z-keyword z-operator z-arithmetic z-glsl">+</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>  
+</span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">for</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span><span class="z-storage z-type z-glsl">int</span> x <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-terminator z-glsl">;</span> x <span class="z-keyword z-operator z-comparison z-glsl">&lt;=</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-terminator z-glsl">;</span> x<span class="z-keyword z-operator z-arithmetic z-glsl">+</span><span class="z-keyword z-operator z-arithmetic z-glsl">+</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>        fixed4 c <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">tex2D</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_MainTex<span class="z-punctuation z-separator z-glsl">,</span> i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">uv</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">float2</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">x <span class="z-keyword z-operator z-glsl">*</span> dx<span class="z-punctuation z-separator z-glsl">,</span> y <span class="z-keyword z-operator z-glsl">*</span> dy</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        gx <span class="z-keyword z-operator z-assignment z-augmented z-glsl">+=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Gray</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">c</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-glsl">*</span> sobelX<span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span>x <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span>y <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">        gy <span class="z-keyword z-operator z-assignment z-augmented z-glsl">+=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">Gray</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">c</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-glsl">*</span> sobelY<span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span>x <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-meta z-brackets z-glsl"><span class="z-punctuation z-section z-brackets z-begin z-glsl">[</span>y <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-section z-brackets z-end z-glsl">]</span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-punctuation z-section z-block z-end z-glsl">}</span></span><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span><span class="z-source z-glsl"><span class="z-invalid z-illegal z-stray-bracket-end z-glsl">}</span>
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl"><span class="z-storage z-type z-glsl">float</span> gmag <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-support z-function z-glsl">sqrt</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">gx <span class="z-keyword z-operator z-glsl">*</span> gx <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> gy <span class="z-keyword z-operator z-glsl">*</span> gy</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl"># 大于0.5的时候可以认为是边缘了
+</span><span class="z-source z-glsl">gmag <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-support z-function z-glsl">smoothstep</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0.5</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> _OutlineWidth <span class="z-keyword z-operator z-glsl">*</span> <span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0.5</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> _OutlineWidth <span class="z-keyword z-operator z-glsl">*</span> <span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span> gmag</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> Return the outline color or the source color  
+</span></span><span class="z-source z-glsl"><span class="z-keyword z-control z-glsl">return</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">lerp</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">col<span class="z-punctuation z-separator z-glsl">,</span> _OutlineColor<span class="z-punctuation z-separator z-glsl">,</span> gmag</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></code></pre>
+<h3 id="Shader画正多边形">Shader画正多边形</h3>
+<pre class="z-code"><code><span class="z-text z-plain">float NPoly(int n,float r,float offset,float st)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    float perAngle = TWO_PI/n;
+</span><span class="z-text z-plain">    float angle = atan2(st.y,st.x)+offset;
+</span><span class="z-text z-plain">    angle = frac(angle/perAngle)*perAngle;
+</span><span class="z-text z-plain">    float t = r*cos(perAngle/2)/cos(perAngle/2-angle);
+</span><span class="z-text z-plain">    return 1-step(t,distance(float2(0,0),st));
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<img src="https://github.com/Cnicehs/Image/raw/main/NPloy.png" alt="Plot2" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/NPoly_Note.png" alt="Plot2" style="zoom: 50%;" />
+<pre class="z-code"><code><span class="z-text z-plain">float NPloy2(int n,float r,float offset,float st)
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    float perAngle = TWO_PI/n;
+</span><span class="z-text z-plain">    float angle = atan2(st.y,st.x)+offset;
+</span><span class="z-text z-plain">    return step(cos(floor(.5+angle/perAngle)*angle-a),r);
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<img src="https://github.com/Cnicehs/Image/raw/main/NPloy2.png" alt="Plot2" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/NPoly2_Note.png" alt="Plot2" style="zoom: 50%;" />
+<h3 id="Shader噪声">Shader噪声</h3>
+<p><a href="https://tedsieblog.wordpress.com/2017/08/13/introduction-of-noise/">Introduction of Noise – 淺談雜訊 – 阿祥的開發日常 (wordpress.com)</a></p>
+<p><a href="https://catlikecoding.com/unity/tutorials/noise/">Noise, a Unity C# Tutorial (catlikecoding.com)</a></p>
+<p><a href="https://thebookofshaders.com/11/">The Book of Shaders: Noise</a></p>
+<p><a href="https://gist.github.com/patriciogonzalezvivo/670c22f3966e662d2f83">GLSL Noise Algorithms (github.com)</a></p>
+<p><a href="https://xiaoiver.github.io/coding/2018/08/01/%E5%99%AA%E5%A3%B0%E7%9A%84%E8%89%BA%E6%9C%AF.html">噪声的艺术 - xiaOp的博客 (xiaoiver.github.io)</a></p>
+<h3 id="常规算法">常规算法</h3>
+<p><a href="https://github.com/mxgmn/WaveFunctionCollapse">波函数坍缩</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         跨域
+        
+    </title>
+
+        
+            <meta property="og:title" content="跨域" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="跨域" />
+         
+     
+
+     
+         
+             <meta name="description" content="跨域" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        跨域<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-06-24</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/web/" class="post-tag">web</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#发生的条件">发生的条件</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#响应头">响应头</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#预检请求">预检请求</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#常见禁止设置的请求头">常见禁止设置的请求头</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#例子">例子</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/跨域/#Video.js_设置请求头的方法">Video.js 设置请求头的方法</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>今天想用 video.js 来解决一下昨天爬取到的视频链接，结果遇到了跨域的问题，所以记录一下。</p>
+<h2 id="发生的条件">发生的条件</h2>
+<ol>
+<li>
+<p>不同域名：当你从一个域名（例如<code>www.example.com</code>）发起请求，而目标资源的域名与之不同（例如<code>api.example.com</code>），就会发生跨域请求。</p>
+</li>
+<li>
+<p>不同子域：即使两个域名在根域上相同，但如果它们的子域不同，仍然会被视为跨域请求。例如，<code>sub1.example.com</code>向<code>sub2.example.com</code>发起请求，就会触发跨域请求。</p>
+</li>
+<li>
+<p>不同协议：当你从一个域名使用不同的协议（例如<code>http://example.com</code>和<code>https://example.com</code>）发起请求，会被视为跨域请求。</p>
+</li>
+<li>
+<p>不同端口：如果请求和目标资源使用不同的端口号，例如一个在<code>http://example.com:8080</code>，另一个在<code>http://example.com:3000</code>，会触发跨域请求。</p>
+</li>
+</ol>
+<h2 id="响应头">响应头</h2>
+<p>在处理跨域请求时，服务器可以通过设置响应头来控制允许的跨域访问。以下是一些常见的跨域相关响应头：</p>
+<ol>
+<li>
+<p>Access-Control-Allow-Origin：该头字段指定允许访问该资源的来源（域名）。例如，<code>Access-Control-Allow-Origin: https://example.com</code> 表示只允许来自 <code>https://example.com</code> 域的请求访问该资源。如果要允许任意来源访问，可以设置为 <code>Access-Control-Allow-Origin: *</code>。</p>
+</li>
+<li>
+<p>Access-Control-Allow-Methods：该头字段指定允许的跨域请求方法（HTTP 方法）。例如，<code>Access-Control-Allow-Methods: GET, POST, OPTIONS</code> 表示允许使用 GET、POST 和 OPTIONS 方法进行跨域请求。</p>
+</li>
+<li>
+<p>Access-Control-Allow-Headers：该头字段指定允许的请求头。例如，<code>Access-Control-Allow-Headers: Content-Type, Authorization</code> 表示允许包含 Content-Type 和 Authorization 请求头的跨域请求。</p>
+</li>
+<li>
+<p>Access-Control-Expose-Headers：该头字段指定允许暴露给客户端的响应头。默认情况下，XMLHttpRequest 对象只能访问特定的响应头字段，如 Cache-Control、Content-Language、Content-Type、Expires、Last-Modified 等。通过设置 <code>Access-Control-Expose-Headers</code>，可以将其他自定义的响应头字段暴露给客户端。</p>
+</li>
+<li>
+<p>Access-Control-Allow-Credentials：该头字段指定是否允许发送身份凭证（例如 Cookie、HTTP 认证等）到跨域请求的目标服务器。如果需要发送凭证，可以设置为 <code>Access-Control-Allow-Credentials: true</code>。</p>
+</li>
+</ol>
+<h2 id="预检请求">预检请求</h2>
+<p>在进行跨域请求时，浏览器可能会发送一个预检请求（Preflight Request）以验证目标服务器是否允许实际请求的发送。这个预检请求使用 HTTP 方法 OPTIONS，并包含一组特定的请求头。</p>
+<p>预检请求的目的是让服务器确认跨域请求是安全和可接受的。服务器在预检请求的响应中指定了允许的请求方法、请求头和其他相关信息，以便浏览器知道实际请求是否可以发送。这种机制可以帮助防止潜在的安全风险，确保跨域请求的可控性和安全性。</p>
+<p>预检请求的过程如下：</p>
+<ol>
+<li>
+<p>浏览器发送一个 OPTIONS 方法的请求到目标服务器，包含以下头字段：</p>
+<ul>
+<li>Access-Control-Request-Method：指定实际请求将使用的 HTTP 方法。</li>
+<li>Access-Control-Request-Headers：指定实际请求将携带的自定义请求头。</li>
+</ul>
+</li>
+<li>
+<p>目标服务器收到预检请求后，进行验证和处理。服务器可以检查预检请求中的头字段，确定是否允许实际请求的发送。</p>
+</li>
+<li>
+<p>目标服务器返回一个带有特定响应头的响应，包括：</p>
+<ul>
+<li>Access-Control-Allow-Origin：指定允许访问该资源的来源（域名）。</li>
+<li>Access-Control-Allow-Methods：指定允许的请求方法。</li>
+<li>Access-Control-Allow-Headers：指定允许的请求头。</li>
+<li>Access-Control-Allow-Credentials：指定是否允许发送身份凭证。</li>
+<li>其他相关的响应头。</li>
+</ul>
+</li>
+<li>
+<p>浏览器收到预检请求的响应后，检查响应头，确定实际请求是否可以发送。如果预检请求的响应满足要求，浏览器会发送实际请求，携带相应的请求头和数据。</p>
+</li>
+</ol>
+<p>预检请求的目的是为了与服务器进行交互，并获取服务器对跨域请求的验证和允许配置。这样可以确保服务器有明确的控制权，从而防止潜在的安全问题和滥用。</p>
+<h2 id="常见禁止设置的请求头">常见禁止设置的请求头</h2>
+<p>在跨域请求中，存在一些请求头字段被浏览器禁止设置。这是出于安全考虑，以防止恶意网站滥用跨域请求来访问敏感信息或执行恶意操作。</p>
+<p>以下是一些常见的跨域情况下禁止设置的请求头字段：</p>
+<ol>
+<li>
+<p>Origin：浏览器自动设置的请求头字段，指示请求的来源（域名）。在跨域请求中，浏览器会自动发送 Origin 头字段，但无法手动设置该字段的值。</p>
+</li>
+<li>
+<p>Referer：请求头字段指示请求的来源页面 URL。在跨域请求中，大多数浏览器会限制手动设置 Referer 头字段的值，以保护用户的隐私。</p>
+</li>
+<li>
+<p>Cookie：跨域请求默认不会携带当前域的 Cookie。虽然某些情况下可以设置 withCredentials 为 true，以允许发送当前域的 Cookie，但在跨域情况下，手动设置 Cookie 头字段是被禁止的。</p>
+</li>
+<li>
+<p>Authorization：该请求头字段用于携带身份验证凭据，如令牌或用户名/密码。在跨域请求中，手动设置 Authorization 头字段通常是不允许的。</p>
+</li>
+</ol>
+<p>这些是常见的被浏览器禁止设置的请求头字段。如果尝试设置这些字段，浏览器会拒绝该请求并抛出错误。这种限制是为了保护用户数据和确保安全性。</p>
+<h2 id="例子">例子</h2>
+<pre class="z-code"><code><span class="z-text z-plain">client -&gt; headers[&quot;Token] = &quot;token&quot;
+</span><span class="z-text z-plain">server -&gt; Access-Control-Allow-Headers: Server, x-goog-meta-frames, Content-Length, Content-Type, Range, X-Requested-With, If-Modified-Since, If-None-Match
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">此时 Access-Control-Allow-Headers 没有token这个头，所以跨域失败
+</span></code></pre>
+<h2 id="Video.js_设置请求头的方法">Video.js 设置请求头的方法</h2>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic"><span class="z-meta z-tag z-sgml z-doctype z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;!</span><span class="z-keyword z-declaration z-doctype z-html">DOCTYPE</span> <span class="z-constant z-language z-doctype z-html">html</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">html</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">head</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">title</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>Video Player Example<span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-inline z-any z-html">title</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">link</span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">href</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>https://vjs.zencdn.net/7.14.3/video-js.css<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">rel</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>stylesheet<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-punctuation z-definition z-tag z-end z-html">/&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-script z-begin z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-script z-html">script</span></span><span class="z-meta z-tag z-script z-begin z-html"> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">src</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>https://vjs.zencdn.net/7.14.3/video.min.js<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span><span class="z-meta z-tag z-script z-end z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-script z-html">script</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">head</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">  
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">body</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">video</span> <span class="z-meta z-attribute-with-value z-id z-html"><span class="z-entity z-other z-attribute-name z-id z-html">id</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-toc-list z-id z-html">my-video</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">video-js</span> <span class="z-meta z-class-name z-html">vjs-default-skin</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">controls</span> </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">preload</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>auto<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">width</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>640<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">height</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>264<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span>
+</span></span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-inline z-any z-html">
+</span></span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-inline z-any z-html"><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html"> </span>       </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">data-setup</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-single z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&#39;</span>{&quot;fluid&quot;: true}<span class="z-punctuation z-definition z-string z-end z-html">&#39;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">        <span class="z-comment z-block z-html"><span class="z-punctuation z-definition z-comment z-begin z-html">&lt;!--</span> &lt;source src=&quot;https://mushr.com/bcdn_token=vpZHyznCvt9xmBqrt7u015fxXEMmYB-JYmw4jTP6oFg&amp;expires=1687615341&amp;token_path=%2Fvod%2F/vod/10000/10376/10376.m3u8&quot;
+</span></span><span class="z-text z-html z-basic"><span class="z-comment z-block z-html">
+</span></span><span class="z-text z-html z-basic"><span class="z-comment z-block z-html">            type=&quot;application/x-mpegURL&quot; /&gt; <span class="z-punctuation z-definition z-comment z-end z-html">--&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-inline z-any z-html">video</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-script z-begin z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-script z-html">script</span></span><span class="z-meta z-tag z-script z-begin z-html"><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">        <span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-comment z-line z-double-slash z-js"><span class="z-punctuation z-definition z-comment z-js">//</span> // //  全局拦截器
+</span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">        <span class="z-meta z-function z-declaration z-js"><span class="z-support z-class z-js">videojs</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-support z-class z-js">Vhs</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-support z-class z-js">xhr</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-entity z-name z-function z-js"><span class="z-variable z-other z-readwrite z-js">beforeRequest</span></span> <span class="z-keyword z-operator z-assignment z-js">=</span></span><span class="z-meta z-function z-js"></span><span class="z-meta z-function z-declaration z-js"> <span class="z-storage z-type z-function z-js">function</span> <span class="z-punctuation z-section z-group z-begin z-js">(</span><span class="z-meta z-binding z-name z-js"><span class="z-variable z-parameter z-function z-js">options</span></span><span class="z-punctuation z-section z-group z-end z-js">)</span></span><span class="z-meta z-function z-js"> <span class="z-meta z-block z-js"><span class="z-punctuation z-section z-block z-begin z-js">{</span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-variable z-other z-readwrite z-js">headers</span> <span class="z-keyword z-operator z-assignment z-js">=</span> <span class="z-variable z-other z-readwrite z-js">options</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-meta z-property z-object z-js">headers</span> <span class="z-keyword z-operator z-logical z-js">||</span> <span class="z-meta z-mapping z-js"><span class="z-punctuation z-section z-block z-begin z-js">{</span><span class="z-punctuation z-section z-block z-end z-js">}</span></span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-variable z-other z-readwrite z-js">headers</span><span class="z-meta z-brackets z-js"><span class="z-punctuation z-section z-brackets z-begin z-js">[</span><span class="z-meta z-string z-js"><span class="z-string z-quoted z-double z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&quot;</span>Server<span class="z-punctuation z-definition z-string z-end z-js">&quot;</span></span></span><span class="z-punctuation z-section z-brackets z-end z-js">]</span></span> <span class="z-keyword z-operator z-assignment z-js">=</span> <span class="z-meta z-string z-js"><span class="z-string z-quoted z-double z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&quot;</span>baidu.com<span class="z-punctuation z-definition z-string z-end z-js">&quot;</span></span></span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-comment z-line z-double-slash z-js"><span class="z-punctuation z-definition z-comment z-js">//</span> headers[&quot;Origin&quot;] = &quot;baidu.com&quot;
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-variable z-other z-readwrite z-js">headers</span><span class="z-meta z-brackets z-js"><span class="z-punctuation z-section z-brackets z-begin z-js">[</span><span class="z-meta z-string z-js"><span class="z-string z-quoted z-double z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&quot;</span>Token<span class="z-punctuation z-definition z-string z-end z-js">&quot;</span></span></span><span class="z-punctuation z-section z-brackets z-end z-js">]</span></span> <span class="z-keyword z-operator z-assignment z-js">=</span> <span class="z-meta z-string z-js"><span class="z-string z-quoted z-double z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&quot;</span>Tk<span class="z-punctuation z-definition z-string z-end z-js">&quot;</span></span></span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-variable z-other z-readwrite z-js">options</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-meta z-property z-object z-js">headers</span> <span class="z-keyword z-operator z-assignment z-js">=</span> <span class="z-variable z-other z-readwrite z-js">headers</span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-meta z-function-call z-method z-js"><span class="z-support z-type z-object z-console z-js">console</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-support z-function z-console z-js">log</span><span class="z-meta z-group z-js"><span class="z-punctuation z-section z-group z-begin z-js">(</span><span class="z-meta z-string z-js"><span class="z-string z-quoted z-double z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&quot;</span>options<span class="z-punctuation z-definition z-string z-end z-js">&quot;</span></span></span><span class="z-punctuation z-separator z-comma z-js">,</span> <span class="z-variable z-other z-readwrite z-js">options</span><span class="z-punctuation z-section z-group z-end z-js">)</span></span></span><span class="z-punctuation z-terminator z-statement z-js">;</span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">  
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">            <span class="z-keyword z-control z-flow z-return z-js">return</span> <span class="z-variable z-other z-readwrite z-js">options</span><span class="z-punctuation z-terminator z-statement z-js">;</span>
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">
+</span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function z-js"><span class="z-meta z-block z-js">        <span class="z-punctuation z-section z-block z-end z-js">}</span></span></span><span class="z-punctuation z-terminator z-statement z-js">;</span>
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">        <span class="z-storage z-type z-js">var</span> <span class="z-meta z-binding z-name z-js"><span class="z-variable z-other z-readwrite z-js">player</span></span> <span class="z-keyword z-operator z-assignment z-js">=</span> <span class="z-meta z-function-call z-js"><span class="z-variable z-function z-js">videojs</span><span class="z-meta z-group z-js"><span class="z-punctuation z-section z-group z-begin z-js">(</span><span class="z-meta z-string z-js"><span class="z-string z-quoted z-single z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&#39;</span>my-video<span class="z-punctuation z-definition z-string z-end z-js">&#39;</span></span></span><span class="z-punctuation z-section z-group z-end z-js">)</span></span></span><span class="z-punctuation z-terminator z-statement z-js">;</span>
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">        <span class="z-meta z-function-call z-method z-js"><span class="z-variable z-other z-readwrite z-js">player</span><span class="z-punctuation z-accessor z-js">.</span><span class="z-variable z-function z-js">src</span><span class="z-meta z-group z-js"><span class="z-punctuation z-section z-group z-begin z-js">(</span><span class="z-meta z-mapping z-js"><span class="z-punctuation z-section z-block z-begin z-js">{</span>
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">                <span class="z-meta z-mapping z-key z-js">src</span><span class="z-punctuation z-separator z-key-value z-js">:</span> <span class="z-meta z-string z-js"><span class="z-string z-quoted z-single z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&#39;</span>https://mushr.com/bcdn_token=vpZHyznCvt9xmBqrt7u015fxXEMmYB-JYmw4jTP6oFg&amp;expires=1687615341&amp;token_path=%2Fvod%2F/vod/10000/10376/10376.m3u8<span class="z-punctuation z-definition z-string z-end z-js">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-js">,</span>
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">                <span class="z-meta z-mapping z-key z-js">type</span><span class="z-punctuation z-separator z-key-value z-js">:</span> <span class="z-meta z-string z-js"><span class="z-string z-quoted z-single z-js"><span class="z-punctuation z-definition z-string z-begin z-js">&#39;</span>application/x-mpegURL<span class="z-punctuation z-definition z-string z-end z-js">&#39;</span></span></span>
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">
+</span></span></span></span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js"><span class="z-meta z-function-call z-method z-js"><span class="z-meta z-group z-js"><span class="z-meta z-mapping z-js">            <span class="z-punctuation z-section z-block z-end z-js">}</span></span><span class="z-punctuation z-section z-group z-end z-js">)</span></span></span><span class="z-punctuation z-terminator z-statement z-js">;</span>
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">  
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">
+</span></span></span><span class="z-text z-html z-basic"><span class="z-source z-js z-embedded z-html"><span class="z-source z-js">    </span></span><span class="z-meta z-tag z-script z-end z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-script z-html">script</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">body</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">  
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">html</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

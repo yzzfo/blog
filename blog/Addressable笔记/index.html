@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Addressable笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="Addressable笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Addressable笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Addressable笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Addressable笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-04-07</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#增量更新">增量更新</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#配置">配置</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#打包">打包</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#代码">代码</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#测试">测试</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#Addressables.MergeMode">Addressables.MergeMode</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#Catalogs">Catalogs</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#资源载入">资源载入</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#Release注意点">Release注意点</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#注意点">注意点</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#缓存位置">缓存位置</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#关联文章">关联文章</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Addressable笔记/#参考资料">参考资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="增量更新">增量更新</h2>
+<h3 id="配置">配置</h3>
+<ol>
+<li>
+<p>修改<code>Addressable Asset Settings</code>中的Catalog，使其支持服务端清单，<code>Only update catalogs manually</code> 选项用于禁止自带的自动更新功能。<br />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic1.png" alt="" /></p>
+</li>
+<li>
+<p>为资源组设置远程模式，其中<code>Use Asset Bundle Cache</code>用于标记该bundle下载后会缓存到设备上，<code>Prevent Updates</code>勾选后则意为该资源为<strong>静态资源</strong>，对该组的修改后续将进行<strong>增量更新</strong>，反之为全量更新。
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic2.png" alt="" /></p>
+</li>
+<li>
+<p>配置服务器地址，其中<code>RemoteLoadPath</code>对应<code>bundle</code>所在的文件夹，修改<code>Play Mode Script</code>为<code>Use Existing Build</code>用以使用真实环境测试。<br />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic3.png" alt="" /></p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic4.png" alt="" /></p>
+<h3 id="打包">打包</h3>
+<ol>
+<li>Build第一个包
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic5.png" alt="" /></li>
+<li>修改了某个Group中的资源后，进行增量更新，这里只有勾选了<code>Prevent Updates</code>组中的物体才会出现，填入一个新的Group名即增量包名，点击Apply即会创建出一个新的组，之后选择更新新包即可打出新的资源。<br />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic6.png" alt="" /></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic7.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic8.png" alt="" /></p>
+<h3 id="代码">代码</h3>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-support z-type z-cs">IEnumerator</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">DoUpdateAddressadble</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-method z-cs"></span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 这一句话包含了CheckForCatalogUpdates这个副作用，所以注释调  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 如果之前没调用InitializeAsync，后续别的函数执行时也会自己重新调一遍InitializeAsync  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> AsyncOperationHandle&lt;IResourceLocator&gt; initHandle = Addressables.InitializeAsync();    // yield return initHandle;  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 检测更新  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">checkHandle</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CheckForCatalogUpdates</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Succeeded</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LogError</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>CheckForCatalogUpdates Error<span class="z-constant z-character z-escape z-cs">\n</span><span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OperationException</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-break z-cs">yield break</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Result</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Count</span> <span class="z-keyword z-operator z-cs">&gt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>有更新<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">updateHandle</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">UpdateCatalogs</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Result</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">updateHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">updateHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Succeeded</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LogError</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>UpdateCatalogs Error<span class="z-constant z-character z-escape z-cs">\n</span><span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">updateHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OperationException</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-flow z-break z-cs">yield break</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 更新列表迭代器  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">List</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">IResourceLocator</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span></span> <span class="z-variable z-other z-cs">locators</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">updateHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Result</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-keyword z-control z-loop z-foreach z-cs">foreach</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">locator</span> <span class="z-keyword z-control z-flow z-cs">in</span> <span class="z-variable z-other z-cs">locators</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>            <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">keys</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">locator</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Keys</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToList</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 获取待下载的文件总大小  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 注意不能传入IList接口，如果是List需要强转为(IEnumerable)才行  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 因为当前版本有问题存在三种签名  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> GetDownloadSizeAsync(IList&lt;object&gt; keys) [Obsolete] 这导致IList直接走object接口了，进而报错  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> GetDownloadSizeAsync(IEnumerable keys)  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> GetDownloadSizeAsync(object key)            var sizeHandle = Addressables.GetDownloadSizeAsync((IEnumerable)keys);  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">sizeHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">sizeHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">!=</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Succeeded</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">                <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LogError</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>GetDownloadSizeAsync Error<span class="z-constant z-character z-escape z-cs">\n</span><span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">sizeHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OperationException</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-keyword z-control z-flow z-break z-cs">yield break</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-storage z-type z-cs">long</span> <span class="z-variable z-other z-cs">totalDownloadSize</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">sizeHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Result</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>download size : <span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">totalDownloadSize</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>download size : <span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span> <span class="z-variable z-other z-cs">totalDownloadSize</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">totalDownloadSize</span> <span class="z-keyword z-operator z-cs">&gt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">            <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">                <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 下载  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">downloadHandle</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">DownloadDependenciesAsync</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">keys</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">MergeMode</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Union</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-keyword z-control z-loop z-while z-cs">while</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span><span class="z-keyword z-operator z-cs">!</span><span class="z-variable z-other z-cs">downloadHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">IsDone</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>                    <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">downloadHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Failed</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">                        <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LogError</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>DownloadDependenciesAsync Error<span class="z-constant z-character z-escape z-cs">\n</span><span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span> <span class="z-keyword z-operator z-cs">+</span>  
+</span></span></span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">                                       <span class="z-variable z-other z-cs">downloadHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">OperationException</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">ToString</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                        <span class="z-keyword z-control z-flow z-break z-cs">yield break</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 下载进度  
+</span></span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-storage z-type z-cs">float</span> <span class="z-variable z-other z-cs">percentage</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">downloadHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">PercentComplete</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-string z-interpolated z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">$&quot;</span>已下载: </span></span><span class="z-meta z-string z-interpolated z-cs"><span class="z-punctuation z-section z-interpolation z-begin z-cs">{</span></span><span class="z-meta z-string z-interpolated z-cs"><span class="z-source z-cs"><span class="z-variable z-other z-cs">percentage</span></span><span class="z-punctuation z-section z-interpolation z-end z-cs">}</span></span><span class="z-meta z-string z-interpolated z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                    <span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-constant z-language z-cs">null</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-punctuation z-section z-block z-end z-cs">}</span></span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">downloadHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Succeeded</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">                    <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>下载完毕!<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">                </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>            </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>        <span class="z-punctuation z-section z-block z-end z-cs">}</span></span>    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>    <span class="z-keyword z-control z-conditional z-else z-cs">else  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Debug</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Log</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>没有检测到更新<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-block z-cs">    </span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<h2 id="测试">测试</h2>
+<ol>
+<li>在<code>Play Mode Script</code>为<code>Use Existing Build</code>时Editor下也是存在Bundle缓存的，所以也是可以测试更新逻辑的。</li>
+<li>可以通过Unity自带的Web服务来搭建本地文件服务，可以在<code>Play Mode Script</code>为<code>Use Existing Build</code>起作用。
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic9.png" alt="" /></li>
+<li>在 <code>Simulate Groups</code> 模式下需要使用如下代码来修改速度，一下设置虽然说是 ProjectConfigData，但没有在 Project 相关配置中找到，只在 <code>Library\com.unity.addressables\catalog.json</code> 这个文件中搜索到了相关配置，所以在设置后第一次运行不生效，需要重新生成 catalog.json 才会生效。</li>
+</ol>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-keyword z-control z-preprocessor z-cs">if</span> <span class="z-constant z-other z-flag z-cs">UNITY_EDITOR</span>  </span>
+</span><span class="z-source z-cs">	<span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEditor</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">AddressableAssets</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Settings</span><span class="z-punctuation z-terminator z-cs">;</span>
+</span><span class="z-source z-cs">	<span class="z-variable z-other z-cs">ProjectConfigData</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">LocalLoadSpeed</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1024</span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1024</span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">10</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs">	<span class="z-variable z-other z-cs">ProjectConfigData</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">RemoteLoadSpeed</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1024</span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">1024</span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">10</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-meta z-preprocessor z-cs"><span class="z-keyword z-other z-preprocessor z-cs"><span class="z-punctuation z-definition z-preprocessor z-cs">#</span></span><span class="z-keyword z-control z-preprocessor z-cs">endif</span></span>
+</span></code></pre>
+<ol start="4">
+<li>要启用 <code>Event Viewer</code> 需要开启如下选项<br />
+<img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic13.png" alt="" /></li>
+</ol>
+<h2 id="Addressables.MergeMode">Addressables.MergeMode</h2>
+<p><img src="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic10.png" alt="" /></p>
+<h2 id="Catalogs">Catalogs</h2>
+<ol>
+<li>当关闭<code>Only update catalogs manually</code>时<code>Addressables.InitializeAsync();</code>会更新Catalogs文件</li>
+<li>手动调用<code>Addressables.UpdateCatalogs()</code>相当于<code>关闭</code>Only update catalogs manually`干的事</li>
+<li>当勾选<code>Only update catalogs manually</code>时，直接调用<code>Addressables.CheckForCatalogUpdates(false);</code>时Result将包含所有内容。</li>
+<li>更新检查仅是对比Catalogs文件，所以当CheckForCatalogUpdates后去下载对应的文件中途断开后，重新进入CheckForCatalogUpdates将无法获取到新的内容，因为本地Catalogs文件已经为最新的了。</li>
+<li>如果中途断开，若之后用到了被更新的文件，Addressables将去获取新的文件。</li>
+</ol>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-variable z-other z-cs">以下代码等效于Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">InitializeAsync</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-variable z-other z-cs">勾选</span>`<span class="z-variable z-other z-cs">Only</span> <span class="z-variable z-other z-cs">update</span> <span class="z-variable z-other z-cs">catalogs</span> <span class="z-variable z-other z-cs">manually</span>`<span class="z-variable z-other z-cs">时所作的事</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">var</span> <span class="z-variable z-other z-cs">checkHandle</span> <span class="z-keyword z-operator z-assignment z-cs">=</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">CheckForCatalogUpdates</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-conditional z-if z-cs">if</span> <span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Status</span> <span class="z-keyword z-operator z-cs">==</span> <span class="z-variable z-other z-cs">AsyncOperationStatus</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Succeeded</span> <span class="z-keyword z-operator z-cs">&amp;&amp;</span> <span class="z-variable z-other z-cs">checkHandle</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Result</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">Count</span> <span class="z-keyword z-operator z-cs">&gt;</span> <span class="z-constant z-numeric z-integer z-decimal z-cs">0</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span>  
+</span><span class="z-source z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span><span class="z-meta z-block z-cs">  
+</span></span><span class="z-source z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">updateHandle</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">UpdateCatalogs</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-block z-cs">    <span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">updateHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-block z-cs"></span><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span></span>
+</span></code></pre>
+<h2 id="资源载入">资源载入</h2>
+<p>在Addressable中有两种加载方式，一种是LoadAssetAsync另一种是InstantiateAsync，他们的区别在于，LoadAssetAsync后必须Release否则引用计数会一直存在，InstantiateAsync则是当切换场景时，若实例化的对象被销毁了对应的引用计数也会消失。<br />
+在Addressable类这个层，LoadAssetAsync和InstantiateAsync均可以使用Release进行销毁，ReleaseInstance仅添加了实例判空检测。<br />
+之所以InstantiateAsync在切换场景是会判断引用计数是可以参考<code>Library/PackageCache/com.unity.addressables@1.21.9/Runtime/ResourceManager/ResourceProviders/InstanceProvider.cs</code>可以看到对于实例化物体都有一个字典将其记录了。</p>
+<h3 id="Release注意点">Release注意点</h3>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 以下这段代码是错误的
+</span></span><span class="z-source z-cs"><span class="z-support z-type z-cs">List</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">TextAsset</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span></span> <span class="z-variable z-other z-cs">assets</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-meta z-instance z-cs"><span class="z-keyword z-operator z-new z-cs">new</span></span><span class="z-meta z-instance z-cs"> </span><span class="z-meta z-instance z-cs"><span class="z-support z-type z-cs">List</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">TextAsset</span></span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-instance z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LoadAssetsAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">TextAsset</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>config<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function z-anonymous z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-parameter z-cs">x</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-end z-cs">)</span></span> <span class="z-storage z-type z-function z-lambda z-cs">=&gt;</span></span></span><span class="z-meta z-function z-anonymous z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-meta z-function z-anonymous z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span></span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs">    <span class="z-variable z-other z-cs">assets</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Add</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">x</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-block z-end z-cs">}</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Release</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">assets</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs">
+</span><span class="z-source z-cs"><span class="z-comment z-line z-double-slash z-cs"><span class="z-punctuation z-definition z-comment z-cs">//</span> 这种才是正确的，Release只能销毁响应结果的引用
+</span></span><span class="z-source z-cs"><span class="z-storage z-type z-variable z-cs">var</span> <span class="z-variable z-other z-cs">configHandle</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">LoadAssetsAsync</span><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-begin z-cs">&lt;</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-support z-type z-cs">TextAsset</span><span class="z-meta z-function-call z-cs"><span class="z-meta z-generic z-cs"><span class="z-punctuation z-definition z-generic z-end z-cs">&gt;</span></span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>config<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span><span class="z-constant z-language z-cs">null</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-flow z-return z-cs">yield return</span> <span class="z-variable z-other z-cs">configHandle</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span><span class="z-source z-cs"><span class="z-variable z-other z-cs">Addressables</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Release</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">configHandle</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>
+</span></code></pre>
+<h2 id="注意点">注意点</h2>
+<ol>
+<li>Non-Recursive Dependency Calculation：开启该选项可以提高构建速度同时减少运行内存的占用，但资源存在循环依赖时会导致加载失败。不建议开启。</li>
+<li><a href="https://yzzfo.github.io/blog/Addressable%E7%AC%94%E8%AE%B0/%E4%BD%BF%E7%94%A8Addressables%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF.md#%E6%B3%A8%E6%84%8F%E7%82%B9">场景切换时死锁问题</a></li>
+<li>切换平台后, Editor 下读取路径出现问题，解决方法是清除一下缓存。</li>
+<li>切换 Android 后出现 TLS 错误，在开发模式下 <code>Edit -&gt; Project Settings -&gt; Player -&gt; Other Settings -&gt; Configuration -&gt; Allow downloads over HTTP</code> 可以在这设置一下。</li>
+<li>读取 <code>Built in date</code> 中的文件时文件<strong>Key 没有后置名</strong>，同 Resource. Load 一样不需要文件后缀名，截至 <code>1.21</code> 版本在 Group 界面下复制 Resources 文件夹下的 Key 时还是会多出后缀名，去除后缀名才是真正的 Key。具体参考 ResourceLocationMap.cs 文件中的 Locate 函数，在此处断点可看到具体的 Key 值。</li>
+</ol>
+<h2 id="缓存位置">缓存位置</h2>
+<p>项目名 : com.DefaultCompany.Addressables
+PC/Editor :  <code>C:\Users\\AppData\LocalLow\Unity\DefaultCompany_Addressables</code>
+安卓 :<code>InternalSharedStorage&gt;Android&gt;data&gt;com.DefaultCompany.Addressables&gt;cache&gt;vulkan_pso_cache.bin</code></p>
+<h2 id="关联文章">关联文章</h2>
+<ul>
+<li><a href="https://yzzfo.github.io/blog/Addressable%E7%AC%94%E8%AE%B0/%E4%BD%BF%E7%94%A8Addressables%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF.md">场景相关内容</a></li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/501300405?utm_id=0">Addressables之使用</a> <a href="https://raw.githubusercontent.com/Cnicehs/Image/main/addressable_pic12.png">截图存档</a></li>
+<li>https://zhuanlan.zhihu.com/p/243606717</li>
+<li>https://www.jianshu.com/p/dfa98f540673</li>
+<li>https://medium.com/swlh/need-a-local-static-server-here-are-several-options-bbbe77e59a11</li>
+<li>https://www.bilibili.com/read/cv11642315</li>
+<li>https://answer.uwa4d.com/question/62a18c85b87a457351737513</li>
+<li>https://www.cnblogs.com/qq2351194611/p/16601170.html</li>
+<li>https://docs.unity3d.com/Packages/com.unity.addressables@1.20/manual/SynchronousAddressables.html</li>
+</ol>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

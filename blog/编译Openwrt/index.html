@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         编译Openwrt
+        
+    </title>
+
+        
+            <meta property="og:title" content="编译Openwrt" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="编译Openwrt的笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="编译Openwrt的笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        编译Openwrt<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2022-05-04</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-12</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/openwrt/" class="post-tag">Openwrt</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/bian-yi/" class="post-tag">编译</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/编译Openwrt/#本地构建">本地构建</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/编译Openwrt/#GitAction_构建">GitAction 构建</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/编译Openwrt/#其他资料">其他资料</a>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <p>  最近在使用eSir的固件时总是有各种各样的小地方并不能满足自己的需求，于是打算自行来编译lede的openwrt。现在网上主要有两种编译方式，一种是使用<strong>Git Action</strong>来进行编译，另一种是本地下载lede的库来自行编译，<strong>Git Action</strong>方式也只是基于CI对编译步骤进行了一定程度的封装而已，所以先采用本地编译的方式来进行固件构建。</p>
+<h2 id="本地构建">本地构建</h2>
+<ol>
+<li>
+<p>搭建Ubuntu LTS环境</p>
+</li>
+<li>
+<p>安装依赖</p>
+<pre class="z-code"><code><span class="z-text z-plain">sudo apt update -y
+</span><span class="z-text z-plain">sudo apt full-upgrade -y
+</span><span class="z-text z-plain">sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+</span><span class="z-text z-plain">bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
+</span><span class="z-text z-plain">git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev \
+</span><span class="z-text z-plain">libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
+</span><span class="z-text z-plain">mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip qemu-utils \
+</span><span class="z-text z-plain">rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+</span></code></pre>
+</li>
+<li>
+<p>下载源码</p>
+<pre class="z-code"><code><span class="z-text z-plain">git clone https://github.com/coolsnowwolf/lede
+</span><span class="z-text z-plain">cd lede
+</span></code></pre>
+</li>
+<li>
+<p>(option)自建feed</p>
+<pre class="z-code"><code><span class="z-text z-plain">#新建github仓库 假设为https://github.com/xxx/custom_feed.git
+</span><span class="z-text z-plain">git clone https://github.com/xxx/custom_feed.git
+</span><span class="z-text z-plain">#添加smartdns的界面到feed
+</span><span class="z-text z-plain">git submodule add https://github.com/pymumu/luci-app-smartdns.git
+</span><span class="z-text z-plain">#添加passwall
+</span><span class="z-text z-plain">git submodule add https://github.com/xiaorouji/openwrt-passwall2
+</span><span class="z-text z-plain">git submodule add https://github.com/xiaorouji/openwrt-passwall.git
+</span></code></pre>
+</li>
+<li>
+<p>修改<code>feeds.conf.default</code></p>
+<pre class="z-code"><code><span class="z-text z-plain">src-git packages https://github.com/coolsnowwolf/packages
+</span><span class="z-text z-plain">src-git luci https://github.com/coolsnowwolf/luci
+</span><span class="z-text z-plain">src-git routing https://github.com/coolsnowwolf/routing
+</span><span class="z-text z-plain">src-git telephony https://git.openwrt.org/feed/telephony.git
+</span><span class="z-text z-plain">#src-git video https://github.com/openwrt/video.git
+</span><span class="z-text z-plain">#src-git targets https://github.com/openwrt/targets.git
+</span><span class="z-text z-plain">#src-git oldpackages http://git.openwrt.org/packages.git
+</span><span class="z-text z-plain">#src-link custom /usr/src/openwrt/custom-feed
+</span><span class="z-text z-plain">#酸酸乳
+</span><span class="z-text z-plain">src-git helloworld https://github.com/fw876/helloworld.git
+</span><span class="z-text z-plain">#自建feed
+</span><span class="z-text z-plain">src-git custom https://github.com/xxx/custom_feed.git
+</span></code></pre>
+</li>
+<li>
+<p>安装feed</p>
+<pre class="z-code"><code><span class="z-text z-plain">./scripts/feeds update -a
+</span><span class="z-text z-plain">./scripts/feeds install -a
+</span><span class="z-text z-plain">make menuconfig
+</span></code></pre>
+</li>
+<li>
+<p>自定义配置</p>
+<p>可在项目根目录下创建<code>files</code>目录，该目录即会对应到镜像中的<code>/</code>目录</p>
+<p>更多可参考</p>
+<p><a href="https://github.com/coolsnowwolf/lede/issues/7211">请教各位如何把个性化的config文件编译到img里</a></p>
+<p><a href="https://www.cnblogs.com/rohens-hbg/p/5712087.html">openwrt 更改默认主题 - hbg-rohens - 博客园</a></p>
+<p><a href="http://iotts.com.cn/blog/2021/04/02/OpenWrt-%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4IP%E5%9C%B0%E5%9D%80%E5%92%8C%E7%BD%91%E5%85%B3DNS%E5%9C%B0%E5%9D%80/">[OpenWrt]源码编译修改默认IP地址和网关DNS地址 | α-LIB</a></p>
+</li>
+<li>
+<p>下载 dl 库，编译固件 （-j 后面是线程数，第一次编译推荐用单线程）</p>
+<pre class="z-code"><code><span class="z-text z-plain">make download -j8
+</span><span class="z-text z-plain">make V=s -j1
+</span></code></pre>
+</li>
+<li>
+<p>二次编译</p>
+<pre class="z-code"><code><span class="z-text z-plain">cd lede
+</span><span class="z-text z-plain">git pull
+</span><span class="z-text z-plain">./scripts/feeds update -a
+</span><span class="z-text z-plain">./scripts/feeds install -a
+</span><span class="z-text z-plain">make defconfig
+</span><span class="z-text z-plain">make download -j8
+</span><span class="z-text z-plain">make V=s -j$(nproc)
+</span></code></pre>
+<p>如果需要重新配置：</p>
+<pre class="z-code"><code><span class="z-text z-plain">rm -rf ./tmp &amp;&amp; rm -rf .config
+</span><span class="z-text z-plain">make menuconfig
+</span><span class="z-text z-plain">make V=s -j$(nproc)
+</span></code></pre>
+</li>
+</ol>
+<h2 id="GitAction_构建">GitAction 构建</h2>
+<ol>
+<li>
+<p>https://github.com/esirplayground/AutoBuild-OpenWrt#autobuild-openwrt</p>
+</li>
+<li>
+<p>在手动构建的lede文件夹中执行<code>./scripts/diffconfig.sh &gt; diffconfig</code>，将diffconfig中的内容替换掉<strong>AutoBuild-Openwrt</strong>项目中目标架构的config文件</p>
+</li>
+<li>
+<p>修改workflow中yaml文件使其运行</p>
+</li>
+</ol>
+<p>具体可看该视频[🔥🔥<a href="https://youtu.be/9YO7nxNry-4">Video Tutorial (in Mandrin) | 视频教程(国语)</a>📺🎉](https://youtu.be/9YO7nxNry-4)</p>
+<h2 id="其他资料">其他资料</h2>
+<p><a href="https://github.com/coolsnowwolf/lede/issues/5731">转盘后在esxi里添加现有硬盘不能识别出来文件</a></p>
+<p><a href="https://www.right.com.cn/forum/thread-389986-1-1.html">求助，LEAN源码中修改默认登录密码的方法-恩山无线论坛 - Powered by Discuz!</a></p>
+<p><a href="https://www.haxi.cc/archives/%E6%89%8B%E5%8A%A8%E7%94%9F%E6%88%90Linux%E5%AF%86%E7%A0%81-etc-shadow.html">手动生成Linux密码（/etc/shadow） - 哈希</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

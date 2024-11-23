@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Shader 笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="Shader 笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Shader笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Shader笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Shader 笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-04-27</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/unity/" class="post-tag">Unity</a>, 
+                                
+                                    <a href="https://yzzfo.github.io/tags/shaderlab/" class="post-tag">Shaderlab</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#为什么有时候能看到类似float3*float2">为什么有时候能看到类似float3*float2</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#如何把NDC空间下的坐标转换成屏幕空间下的UV坐标呢？">如何把NDC空间下的坐标转换成屏幕空间下的UV坐标呢？</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#ComputeScreenPos和NDC下UV的区别">ComputeScreenPos和NDC下UV的区别</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#通过SV_POSITION计算UV">通过SV_POSITION计算UV</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#ComputeScreenPos_应该在Vertex中计算">ComputeScreenPos 应该在Vertex中计算</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#计算Screen_UV的例子">计算Screen UV的例子</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#通过Screen_Positon计算世界坐标">通过Screen Positon计算世界坐标</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#内置着色器变量">内置着色器变量</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#一些常用变量">一些常用变量</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Shader 笔记/#SV_POSITION">SV_POSITION</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Shader 笔记/#_ProjectionParams">_ProjectionParams</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Shader 笔记/#_ScreenParams">_ScreenParams</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#Shader指令">Shader指令</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#AlphaTest">AlphaTest</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#Stencil">Stencil</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#Blend混合">Blend混合</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#ColorMask">ColorMask</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#GrabPass">GrabPass</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#Shader固定管线">Shader固定管线</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Shader 笔记/#额外资料">额外资料</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h3 id="为什么有时候能看到类似float3*float2">为什么有时候能看到类似float3*float2</h3>
+<blockquote>
+<p>这里的乘法是逐分量的乘法，也就是说，每个分量都分别乘以对应的值。例如，float3(a,b,c) * float2(x,y) 等价于 float3(a_x,b_y,c)。</p>
+</blockquote>
+<h4 id="如何把NDC空间下的坐标转换成屏幕空间下的UV坐标呢？">如何把NDC空间下的坐标转换成屏幕空间下的UV坐标呢？</h4>
+<blockquote>
+<p>要把NDC空间下的坐标转换成屏幕空间下的UV坐标，可以用以下公式：
+xuv = (xndc + 1) / 2
+yuv = (yndc + 1) / 2
+其中，xndc和yndc是NDC空间下的坐标，xuv和yuv是屏幕空间下的UV坐标。这个公式是把[-1, 1]范围内的NDC坐标映射到[0, 1]范围内的UV坐标。</p>
+</blockquote>
+<h4 id="ComputeScreenPos和NDC下UV的区别">ComputeScreenPos和NDC下UV的区别</h4>
+<p><a href="https://zhuanlan.zhihu.com/p/145400372">Unity Shader中的ComputeScreenPos函数 - 知乎 (zhihu.com)</a>
+ComputeScreenPos是Unity shader提供的一个内置函数，它可以根据顶点位置计算出屏幕坐标。它返回一个float4，其中xy分量是屏幕坐标，w分量是齐次坐标。要得到UV坐标，可以用xy除以w</p>
+<p>通过ComputeScreenPos计算而来的屏幕坐标用其算出的UV和NDC空间下转换的UV有一些区别。主要是因为ComputeScreenPos考虑了不同平台上的投影参数，而NDC空间下转换的UV没有考虑这些因素</p>
+<pre class="z-code"><code><span class="z-text z-plain">基本公式
+</span><span class="z-text z-plain">screenPosX = ((x / w) * 0.5 + 0.5) * width  
+</span><span class="z-text z-plain">screenPosY = ((y / w) * 0.5 + 0.5) * height
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">两者都是依据如下公式变换出来的
+</span><span class="z-text z-plain">o.x = pos.x/pos.w  =&gt; [-1,1]
+</span><span class="z-text z-plain">o.x * 0.5 + 0.5 = 0.5*pos.x/pos.w + 0.5 =&gt; [0,1]
+</span><span class="z-text z-plain">同时乘pos.w得到如下公式 =&gt; [0,w]
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">ComputeScreenPos
+</span><span class="z-text z-plain">o.x = (pos.x * 0.5 + pos.w * 0.5)  
+</span><span class="z-text z-plain">o.y = (pos.y * 0.5 * _ProjectionParams.x + pos.w * 0.5)
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">NDC
+</span><span class="z-text z-plain">o.x = (pos.x * 0.5 + pos.w * 0.5)  
+</span><span class="z-text z-plain">o.y = (pos.y * 0.5 + pos.w * 0.5)
+</span></code></pre>
+<h4 id="通过SV_POSITION计算UV"><a href="https://yzzfo.github.io/blog/Shader%20%E7%AC%94%E8%AE%B0/Shader-Semantics#SV_POSITION">通过SV_POSITION计算UV</a></h4>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> frag 阶段
+</span></span><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> i.vertex 为SV_POSITION
+</span></span><span class="z-source z-glsl">i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span> <span class="z-keyword z-operator z-arithmetic z-glsl">/</span> _ScreenParams<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span>
+</span></code></pre>
+<h4 id="ComputeScreenPos_应该在Vertex中计算">ComputeScreenPos 应该在Vertex中计算</h4>
+<p>在Frag中计算时发现通过用其计算的结果来算uv并不正确，但在Vertex阶段计算，然后在Frag阶段去算uv是正确的，<a href="https://yzzfo.github.io/blog/Shader%20%E7%AC%94%E8%AE%B0/Shader-Semantics#SV_POSITION">原因在此</a>。</p>
+<h4 id="计算Screen_UV的例子">计算Screen UV的例子</h4>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-storage z-type z-glsl">struct</span> <span class="z-entity z-name z-struct z-glsl">v2f</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    float4 scrPos: TEXCOORD0<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    float4 CSPos: TEXCOORD1<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl">    float4 vertex: SV_POSITION<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-struct z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span><span class="z-source z-glsl">  
+</span><span class="z-source z-glsl">v2f <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">vert</span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl">appdata <span class="z-variable z-parameter z-glsl">v</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-meta z-function z-glsl">  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    v2f o<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">UnityObjectToClipPos</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">v<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">CSPos</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">UnityObjectToClipPos</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">v<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>   
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">scrPos</span> <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">ComputeScreenPos</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">o<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> o<span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"></span></span><span class="z-meta z-function z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span></span>  
+</span><span class="z-source z-glsl">
+</span><span class="z-source z-glsl"><span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> 以下三种return均可返回screen uv
+</span></span><span class="z-source z-glsl">fixed4 <span class="z-meta z-function z-glsl"><span class="z-entity z-name z-function z-glsl">frag</span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function z-parameters z-glsl"><span class="z-meta z-group z-glsl">v2f <span class="z-variable z-parameter z-glsl">i</span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>: SV_Target  
+</span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">fixed4</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">vertex</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span><span class="z-keyword z-operator z-arithmetic z-glsl">/</span>_ScreenParams<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span><span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-comment z-line z-double-slash z-glsl"><span class="z-punctuation z-definition z-comment z-glsl">//</span> _ProjectionParams.x 是否要翻转y
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">fixed4</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">0.5</span> <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span>i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">CSPos</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span> <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">fixed2</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> _ProjectionParams<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">x</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span> <span class="z-keyword z-operator z-arithmetic z-glsl">/</span> i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">CSPos</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">w</span> <span class="z-keyword z-operator z-arithmetic z-glsl">+</span> <span class="z-constant z-numeric z-glsl">0.5</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span> 
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">fixed4</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">scrPos</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xy</span> <span class="z-keyword z-operator z-arithmetic z-glsl">/</span> i<span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">scrPos</span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">w</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">0</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<h4 id="通过Screen_Positon计算世界坐标">通过Screen Positon计算世界坐标</h4>
+<pre data-lang="cs" class="language-cs z-code"><code class="language-cs" data-lang="cs"><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">System</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Collections</span><span class="z-punctuation z-separator z-namespace z-cs">.</span><span class="z-meta z-path z-cs">Generic</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs"><span class="z-keyword z-control z-import z-cs">using</span> <span class="z-meta z-path z-cs">UnityEngine</span><span class="z-punctuation z-terminator z-cs">;</span>  
+</span><span class="z-source z-cs">  
+</span><span class="z-source z-cs"><span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-meta z-class z-cs"><span class="z-storage z-type z-class z-cs">class</span> <span class="z-entity z-name z-class z-cs">Scanf</span> <span class="z-punctuation z-separator z-type z-cs">:</span> <span class="z-entity z-other z-inherited-class z-cs">MonoBehaviour</span>  
+</span></span><span class="z-source z-cs"><span class="z-meta z-class z-cs"></span><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-modifier z-access z-cs">public</span> <span class="z-support z-type z-cs">Material</span> <span class="z-variable z-other z-member z-cs">material</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-storage z-type z-cs">void</span> <span class="z-meta z-method z-cs"><span class="z-entity z-name z-function z-cs">OnRenderImage</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-begin z-cs">(</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-support z-type z-cs">RenderTexture</span> <span class="z-variable z-parameter z-cs">src</span><span class="z-punctuation z-separator z-parameter z-function z-cs">,</span> <span class="z-support z-type z-cs">RenderTexture</span> <span class="z-variable z-parameter z-cs">dst</span></span><span class="z-meta z-method z-parameters z-cs"><span class="z-punctuation z-section z-parameters z-end z-cs">)</span></span><span class="z-meta z-method z-cs">  
+</span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-cs">    </span><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-punctuation z-section z-block z-begin z-cs">{</span>        <span class="z-support z-type z-cs">Camera</span> <span class="z-variable z-other z-cs">curruntCamera</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">Camera</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">main</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Matrix4x4</span> <span class="z-variable z-other z-cs">matrixCameraToWorld</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">curruntCamera</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">cameraToWorldMatrix</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Matrix4x4</span> <span class="z-variable z-other z-cs">matrixProjectionInverse</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">GL</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">GetGPUProjectionMatrix</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">curruntCamera</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">projectionMatrix</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-constant z-language z-cs">false</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-variable z-other z-cs">inverse</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-support z-type z-cs">Matrix4x4</span> <span class="z-variable z-other z-cs">matrixHClipToWorld</span> <span class="z-keyword z-operator z-assignment z-variable z-cs">=</span> <span class="z-variable z-other z-cs">matrixCameraToWorld</span> <span class="z-keyword z-operator z-cs">*</span> <span class="z-variable z-other z-cs">matrixProjectionInverse</span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Shader</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">SetGlobalMatrix</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-string z-quoted z-double z-cs"><span class="z-punctuation z-definition z-string z-begin z-cs">&quot;</span>_MatrixHClipToWorld<span class="z-punctuation z-definition z-string z-end z-cs">&quot;</span></span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">matrixHClipToWorld</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">        <span class="z-variable z-other z-cs">Graphics</span><span class="z-punctuation z-accessor z-dot z-cs">.</span><span class="z-meta z-function-call z-cs"><span class="z-variable z-function z-cs">Blit</span><span class="z-meta z-group z-cs"><span class="z-punctuation z-section z-group z-begin z-cs">(</span></span></span><span class="z-meta z-function-call z-cs"><span class="z-meta z-group z-cs"><span class="z-variable z-other z-cs">src</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">dst</span><span class="z-punctuation z-separator z-argument z-cs">,</span> <span class="z-variable z-other z-cs">material</span><span class="z-punctuation z-section z-group z-end z-cs">)</span></span></span><span class="z-punctuation z-terminator z-statement z-cs">;</span>  
+</span></span></span></span></span><span class="z-source z-cs"><span class="z-meta z-class z-body z-cs"><span class="z-meta z-block z-cs"><span class="z-meta z-method z-body z-cs"><span class="z-meta z-block z-cs">    <span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span><span class="z-punctuation z-section z-block z-end z-cs">}</span></span></span>
+</span></code></pre>
+<p><code>GL.GetGPUProjectionMatrix</code>的含义
+<a href="https://zhuanlan.zhihu.com/p/393643084">OpenGL-like（OpenGL and OpenGL ES）和Direct3D-like（Direct3D, Metal and consoles）对Clip space的表达是不一样的，这会导致projectionMatrix会不一样，这也就是Unity提供GL.GetGPUProjectionMatrix的原因，GL.GetGPUProjectionMatrix会将Camera.projectionMatrix转换为当前GPU平台对应的表达</a></p>
+<pre data-lang="glsl" class="language-glsl z-code"><code class="language-glsl" data-lang="glsl"><span class="z-source z-glsl"><span class="z-invalid z-illegal z-reserved-keyword z-glsl">inline</span> half3 <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">TransformUVToWorldPos</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">half2 uv</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span>  
+</span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-begin z-glsl">{</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-invalid z-illegal z-reserved-keyword z-glsl">half</span> depth <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">tex2D</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_CameraDepthTexture<span class="z-punctuation z-separator z-glsl">,</span> uv</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">r</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#ifndef</span> SHADER_API_GLCORE  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    half4 positionCS <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">half4</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">uv <span class="z-keyword z-operator z-glsl">*</span> <span class="z-constant z-numeric z-glsl">2</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> depth<span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span></span> <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">LinearEyeDepth</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">depth<span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-meta z-preprocessor z-glsl">    <span class="z-keyword z-control z-import z-glsl">#else</span>  
+</span></span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">        half4 positionCS <span class="z-keyword z-operator z-assignment z-glsl">=</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">half4</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">uv <span class="z-keyword z-operator z-glsl">*</span> <span class="z-constant z-numeric z-glsl">2</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> depth <span class="z-keyword z-operator z-glsl">*</span> <span class="z-constant z-numeric z-glsl">2</span> <span class="z-keyword z-operator z-arithmetic z-glsl">-</span> <span class="z-constant z-numeric z-glsl">1</span><span class="z-punctuation z-separator z-glsl">,</span> <span class="z-constant z-numeric z-glsl">1</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span> <span class="z-keyword z-operator z-glsl">*</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">LinearEyeDepth</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">depth</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-meta z-preprocessor z-glsl"><span class="z-keyword z-control z-import z-glsl">#endif</span></span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl">    <span class="z-keyword z-control z-glsl">return</span> <span class="z-meta z-function-call z-glsl"><span class="z-variable z-function z-glsl">mul</span><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-begin z-glsl">(</span></span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl">_MatrixHClipToWorld<span class="z-punctuation z-separator z-glsl">,</span> positionCS</span></span><span class="z-meta z-function-call z-glsl"><span class="z-meta z-group z-glsl"><span class="z-punctuation z-section z-group z-end z-glsl">)</span></span></span><span class="z-punctuation z-accessor z-glsl">.</span><span class="z-variable z-other z-member z-glsl">xyz</span><span class="z-punctuation z-terminator z-glsl">;</span>  
+</span></span><span class="z-source z-glsl"><span class="z-meta z-block z-glsl"><span class="z-punctuation z-section z-block z-end z-glsl">}</span></span>
+</span></code></pre>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/39935774/unity-shaderlab-transform-from-screen-space-to-world-space">Unity Shaderlab- transform from screen space to world space</a>
+<a href="https://www.cnblogs.com/sword-magical-blog/p/10483459.html">从NDC（归一化的设备坐标）坐标转换到世界坐标要点</a></p>
+</blockquote>
+<h2 id="内置着色器变量"><a href="https://docs.unity3d.com/cn/current/Manual/SL-UnityShaderVariables.html">内置着色器变量</a></h2>
+<h3 id="一些常用变量">一些常用变量</h3>
+<h4 id="SV_POSITION">SV_POSITION</h4>
+<ul>
+<li>xy 屏幕坐标</li>
+<li>z 深度值，同ZBuffer中存储的格式一样</li>
+<li>w clip space下的w，在Unity中同View Space下的z</li>
+</ul>
+<h4 id="_ProjectionParams">_ProjectionParams</h4>
+<ul>
+<li>x 用于判断y是否需要翻转</li>
+</ul>
+<h4 id="_ScreenParams">_ScreenParams</h4>
+<ul>
+<li>xy 屏幕大小</li>
+</ul>
+<h2 id="Shader指令">Shader指令</h2>
+<h3 id="AlphaTest"><a href="https://docs.unity3d.com/Manual/SL-AlphaTest.html">AlphaTest</a></h3>
+<ol>
+<li>AlphaTest选项
+<ul>
+<li>GEqual</li>
+<li>Equal</li>
+<li>NotEqual</li>
+<li>Less</li>
+<li>Lequal</li>
+<li>Always</li>
+<li>Never</li>
+</ul>
+</li>
+</ol>
+<pre class="z-code"><code><span class="z-text z-plain">AlphaTest GEqual [_Float]   Fragment函数所输出的颜色Alpha值大于_Float的才会输出
+</span></code></pre>
+<h3 id="Stencil"><a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Stencil</a></h3>
+<pre class="z-code"><code><span class="z-text z-plain">Shader &quot;Examples/CommandExample&quot;
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    SubShader
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">         // The rest of the code that defines the SubShader goes here.
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">        Pass
+</span><span class="z-text z-plain">        {    
+</span><span class="z-text z-plain">             Stencil
+</span><span class="z-text z-plain">             {
+</span><span class="z-text z-plain">                 Ref 2			//设置参考值为2
+</span><span class="z-text z-plain">                 Comp Always	//总是通过模板测试
+</span><span class="z-text z-plain">                 Pass Replace	//通过后替换掉原本模板该像素的值设为2
+</span><span class="z-text z-plain">             }            
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">             // The rest of the code that defines the Pass goes here.
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">Shader &quot;Examples/CommandExample&quot;
+</span><span class="z-text z-plain">{
+</span><span class="z-text z-plain">    SubShader
+</span><span class="z-text z-plain">    {
+</span><span class="z-text z-plain">             Stencil
+</span><span class="z-text z-plain">             {
+</span><span class="z-text z-plain">                 Ref 2		//设置参考值为2
+</span><span class="z-text z-plain">                 Comp Less	//和模板值进行比对，只有模板值小于Ref的值，即小于2的时候才渲染
+</span><span class="z-text z-plain">             }  
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">         // The rest of the code that defines the SubShader goes here.        
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">        Pass
+</span><span class="z-text z-plain">        {    
+</span><span class="z-text z-plain">              // The rest of the code that defines the Pass goes here.
+</span><span class="z-text z-plain">        }
+</span><span class="z-text z-plain">    }
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<h3 id="Blend混合"><a href="https://docs.unity3d.com/Manual/SL-Blend.html">Blend混合</a></h3>
+<ol>
+<li><strong>Blend</strong>选项
+<ul>
+<li>Src
+<ul>
+<li>SrcColor</li>
+<li>SrcAlpha</li>
+<li>One MinusSrcColor</li>
+<li>OneMinusSrcAlpha</li>
+</ul>
+</li>
+<li>Dst
+<ul>
+<li>DstColor</li>
+<li>DstAlpha</li>
+<li>OneMinusDstColor</li>
+<li>OneMinusDstAlpha</li>
+</ul>
+</li>
+<li>One</li>
+<li>Zero</li>
+</ul>
+</li>
+<li><strong>BlendOp</strong>选项
+<ul>
+<li>Add</li>
+<li>Sub</li>
+<li>RevSub</li>
+<li>Min</li>
+<li>Max</li>
+</ul>
+</li>
+<li><strong>Blend的等式</strong><code>(SourceRGBA*Something) + (DestRGBA*Something)``BlendOp</code>即用于<code>替换</code>等式之间的<code>+</code>如<code>Min((SourceRGBA*Something),(DestRGBA*Something))</code></li>
+</ol>
+<h3 id="ColorMask"><a href="https://docs.unity3d.com/2021.1/Documentation/Manual/SL-ColorMask.html">ColorMask</a></h3>
+<pre class="z-code"><code><span class="z-text z-plain">ColorMask R/G/B/A/0
+</span><span class="z-text z-plain">ColorMask RB    只输出红绿
+</span><span class="z-text z-plain">ColorMask 0     过滤所有颜色
+</span><span class="z-text z-plain">
+</span></code></pre>
+<h3 id="GrabPass"><a href="https://docs.unity3d.com/Manual/SL-GrabPass.html">GrabPass</a></h3>
+<p><code>GrabPass{ _CustomTex }</code><strong>抓取屏幕内容</strong>并命名为_CustomTex的贴图 <em><strong>若未设置</strong></em> _CustomTex 则默认名字为 <strong>_GrabTexture</strong></p>
+<h1 id="Shader固定管线"><a href="https://docs.unity3d.com/Manual/SL-SetTexture.html">Shader固定管线</a></h1>
+<p>对于固定渲染管线Combine中也可以在其Pass中定义诸如<strong>AlphaTest</strong>，<strong>Stencil</strong>，<strong>Blend</strong>这样的指令并生效，使用方法同其他方式一致。</p>
+<p><a href="https://www.cnblogs.com/vsirWaiter/p/5992483.html">UnityShader之固定管线命令Combine纹理混合【Shader资料4】 - 威少小二orz - 博客园 (cnblogs.com)</a></p>
+<h2 id="额外资料">额外资料</h2>
+<p><a href="https://dev.twsiyuan.com/2018/05/unity-rendering-order.html">Unity rendering order 整理筆記 (twsiyuan.com)</a></p>
+<p><a href="http://blog.renkaikai.com/article/mask">源码探析Mask、Rect Mask2D与Sprite Mask的异同 (renkaikai.com)</a></p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

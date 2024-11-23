@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Golang笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="Golang笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Golang笔记" />
+         
+     
+
+     
+         
+             <meta name="description" content="Golang笔记" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Golang笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2021-03-24</time>
+                    
+
+                    
+                        :: Updated on <time>2022-12-05</time>
+                    
+
+                    
+
+                    
+                    
+                            <span class="tags-label"> :: Tags:</span>
+                            <span class="tags">
+                                    <a href="https://yzzfo.github.io/tags/golang/" class="post-tag">Golang</a>
+                                
+                            </span>
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/Golang笔记/#Golang笔记">Golang笔记</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang笔记/#Golang库管理">Golang库管理</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang笔记/#Golang库">Golang库</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Golang笔记/#exec">exec</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Golang笔记/#rsrc">rsrc</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/Golang笔记/#androiddnsfix">androiddnsfix</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/Golang笔记/#Golang资源">Golang资源</a>
+                                        </li>
+
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h1 id="Golang笔记">Golang笔记</h1>
+<h4 id="Golang库管理">Golang库管理</h4>
+<ul>
+<li>Golang mod导入<strong>本地库</strong>
+<ul>
+<li>
+<p>同一项目下：</p>
+<pre class="z-code"><code><span class="z-text z-plain">moduledir
+</span><span class="z-text z-plain">├── go.mod
+</span><span class="z-text z-plain">├── main.go
+</span><span class="z-text z-plain">└── packdir
+</span><span class="z-text z-plain">    └── pack.go
+</span></code></pre>
+<p><code>moduledemo/go.mod</code>中如下定义:</p>
+<pre class="z-code"><code><span class="z-text z-plain">module modulename
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">go 1.16
+</span></code></pre>
+<p>在main.go中 <code>import "modulename/packdir"</code>	即<strong>model/目录</strong></p>
+</li>
+<li>
+<p>不同项目下</p>
+<pre class="z-code"><code><span class="z-text z-plain">├── modulea
+</span><span class="z-text z-plain">│   ├── go.mod
+</span><span class="z-text z-plain">│   └── main.go
+</span><span class="z-text z-plain">└── moduleBDir
+</span><span class="z-text z-plain">    ├── go.mod
+</span><span class="z-text z-plain">    └── moduleb.go
+</span></code></pre>
+<p><strong>modulea</strong>导入<strong>moduleb</strong>设置go.mod</p>
+<pre class="z-code"><code><span class="z-text z-plain">module moduledemo
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">go 1.16
+</span><span class="z-text z-plain">
+</span><span class="z-text z-plain">require &quot;moduleb&quot; v0.0.0
+</span><span class="z-text z-plain">replace &quot;moduleb&quot; =&gt; &quot;../moduleBDir&quot;
+</span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Golang库">Golang库</h2>
+<h3 id="exec"><a href="https://pkg.go.dev/os/exec">exec</a></h3>
+<p>运行并获得输出，阻塞式 <code>exec.Command("ping", "www.baidu.com").Output()</code></p>
+<p>非阻塞式使用<strong>Pipe</strong></p>
+<h3 id="rsrc"><a href="https://github.com/akavel/rsrc">rsrc</a></h3>
+<p>给win下程序添加图标，管理员权限之类的工具<br />
+在<strong>main</strong>程序目录下新建一个<strong>xxx.manifest</strong>文件，要Build时先运行<code>rsrc -arch amd64 -manifest xxx.manifest -o xxx.syso</code> <strong>arch</strong>默认为amd64，运行后直接<code>build -o xxx</code>即可，默认build状态下会引用当前目录下的所有东西，以此来达到引用<strong>xxx.syso</strong>的目的，若要编译<strong>linux</strong>下的程序，删除<strong>xxx.syso</strong>即可</p>
+<h3 id="androiddnsfix"><a href="https://github.com/mtibben/androiddnsfix">androiddnsfix</a></h3>
+<p>用于修复golang编译的程序无法在安卓中正常使用dns的问题</p>
+<h2 id="Golang资源">Golang资源</h2>
+<ul>
+<li>电子书<br />
+<a href="https://learnku.com/docs/build-web-application-with-golang/071-xml-processing/3195">GoWeb编程</a><br />
+<a href="https://chai2010.cn/advanced-go-programming-book/ch4-rpc/ch4-01-rpc-intro.html">Go语言高级编程</a><br />
+<a href="https://geektutu.com/post/gee-day1.html">Go 7 Days</a></li>
+<li>在线工具:<br />
+<a href="https://mholt.github.io/json-to-go/">Json&gt;&gt;&gt;Go</a></li>
+</ul>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

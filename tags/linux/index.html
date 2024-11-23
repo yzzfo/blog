@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         yzzfo&#x27;s Blog
+        
+    </title>
+
+        
+            <meta property="og:title" content="yzzfo&#x27;s Blog" />
+        
+     
+
+     
+         
+     
+
+     
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+    <div id="default-first-page-bg"></div>
+    
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+
+    
+    <div class="page-header">
+        Entries tagged :: Linux<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+    
+
+    <main class="list">
+    
+<ul>
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2023-12-10</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux下代理终端&#x2F;>Linux下代理终端</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        Linux下代理终端
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux下代理终端&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2023-06-20</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux下的日志&#x2F;>Linux下的日志</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        Linux下的日志
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux下的日志&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2023-02-28</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;在N6005中使用AVX指令&#x2F;>在N6005中使用AVX指令</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        使用Qemu来模拟AVX指令吧
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;在N6005中使用AVX指令&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-12-03</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;在Sonarr中使用Thexem-Proxy自定义数据&#x2F;>在Sonarr中使用Thexem-Proxy自定义数据</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        使用Thexem-Proxy来自定义Alternate Titles
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;在Sonarr中使用Thexem-Proxy自定义数据&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-11-13</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;V2ray笔记&#x2F;>V2ray笔记</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        使用Vray时的一些笔记
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;V2ray笔记&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-10-29</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;nftables&#x2F;>nftables</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        nftables的使用案例
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;nftables&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-08-03</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Calibre-Web&#x2F;>Calibre-Web</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        在Docker中安装Calibre-Web
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Calibre-Web&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-06-12</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;FFmpeg&#x2F;>FFmpeg</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        FFmpeg的一些使用案例
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;FFmpeg&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-05-22</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;PVE笔记&#x2F;>PVE笔记</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        一些关于PVE的笔记
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;PVE笔记&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-05-04</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux Disk&#x2F;>Linux Disk</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        一些关于在Linux下操作Disk的笔记
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux Disk&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-04-30</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux笔记&#x2F;>Linux笔记</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        一些Linux指令记录
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux笔记&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2022-04-02</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux性能监控&#x2F;>Linux性能监控</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        关于Linux下用于查看性能的软件的笔记
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Linux性能监控&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    
+    <li class="list-item">
+    <section>
+        <div class="post-header">
+            <time>2021-03-28</time>
+
+            <div>
+                <h1 class="title">
+                    <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Raspberry&#x2F;>Raspberry</a>
+
+                    
+                </h1>
+
+                <div class="meta">
+                    <div class="description">
+                        
+                        Raspberry使用时的笔记
+                        
+                    </div>
+
+                    
+                    <a class="readmore" href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;blog&#x2F;Raspberry&#x2F;>Read more ⟶</a>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+  </li>
+    </ul>
+
+    </main>
+
+
+
+
+        
+
+    </div>
+</body>
+
+<script>
+    // 背景图
+    var bg = document.getElementById("default-first-page-bg");
+    function resize() {
+        var meta = document.querySelector(".page-header")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>

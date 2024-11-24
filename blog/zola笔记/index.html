@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         zola笔记
+        
+    </title>
+
+        
+            <meta property="og:title" content="zola笔记" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="zola相关的一些内容" />
+         
+     
+
+     
+         
+             <meta name="description" content="zola相关的一些内容" />
+         
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+
+    
+    
+        <link href=https://yzzfo.github.io/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/codeblock.js></script>
+    
+
+    
+    
+        <script src=https://yzzfo.github.io/js/toc.js></script>
+    
+    
+    
+    
+        <script src=https://yzzfo.github.io/js/note.js></script>
+    
+
+    
+        
+            <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              }
+            };
+            </script>
+        
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="yzzfo&#x27;s Blog" href="https://yzzfo.github.io/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://yzzfo.github.io/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://yzzfo.github.io/theme/dark.css" />
+    
+    <!-- 代码块css -->
+    <link id="syntax-theme-link" rel="stylesheet" type="text/css" href="" />
+    <!-- Set the correct theme in the script -->
+    <script src=https://yzzfo.github.io/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/main.css />
+
+    
+</head>
+
+
+<link rel="stylesheet" type="text/css" media="screen" href=https://yzzfo.github.io/page.css />
+<!-- https://www.fusejs.io/getting-started/installation.html#direct-script-include -->
+
+<script>
+    // https://juejin.cn/post/7096050514105729061
+    !(function (n, e) {
+        function setViewHeight() {
+            var windowVH = e.innerHeight / 100
+            n.documentElement.style.setProperty('--vh', windowVH + 'px')
+        }
+        var i = 'orientationchange' in window ? 'orientationchange' : 'resize'
+        n.addEventListener('DOMContentLoaded', setViewHeight)
+        e.addEventListener(i, setViewHeight)
+    })(document, window)
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("loading").style.display = "none";
+    })
+</script>
+
+
+
+
+<body>
+    <div id="loading"></div>
+    <div id="global-bg"></div>
+    
+<div id="first-page-bg"></div>
+
+    <div class="content">
+        
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;yzzfo.github.io&#x2F;>yzzfo&#x27;s Blog</a>
+
+        <div class="socials">
+            
+        </div>
+    </div>
+
+    <nav id="nav-bar">
+        
+        <a href=https://yzzfo.github.io/blog style="margin-left: 0.5em">&#x2F;blog</a>
+        
+        <a href=https://yzzfo.github.io/tags style="margin-left: 0.5em">&#x2F;tags</a>
+        
+        <a href=https://yzzfo.github.io/bookmarks style="margin-left: 0.5em">&#x2F;bookmarks</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://yzzfo.github.io/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://yzzfo.github.io/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+        
+        
+        
+
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        zola笔记<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-11-24</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+        
+            <div class="toc-container">
+                <h1 class="toc-title">Table of Contents</h1>
+                <ul class="toc-list">
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/zola笔记/#Zola的目录结构">Zola的目录结构</a>
+                            
+                        </li>
+                    
+                        <li>
+                            <a href="https://yzzfo.github.io/blog/zola笔记/#Zola主题">Zola主题</a>
+                            
+                                <ul>
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/zola笔记/#安装主题">安装主题</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/zola笔记/#themes和templates">themes和templates</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/zola笔记/#使用主题">使用主题</a>
+                                        </li>
+
+                                        
+                                    
+                                        <li>
+                                            <a href="https://yzzfo.github.io/blog/zola笔记/#自定义主题">自定义主题</a>
+                                        </li>
+
+                                        
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#模板引擎">模板引擎</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#模块">模块</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#分类">分类</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#搜索功能">搜索功能</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#其他相关的文档链接">其他相关的文档链接</a>
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <a href="https://yzzfo.github.io/blog/zola笔记/#Tailwild（可选）">Tailwild（可选）</a>
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                    
+                                </ul>
+                            
+                        </li>
+                    
+                </ul>
+            </div>
+        
+        
+
+        <section class="body">
+            <h2 id="Zola的目录结构">Zola的目录结构</h2>
+<pre class="z-code"><code><span class="z-text z-plain">├── config.toml
+</span><span class="z-text z-plain">├── content/
+</span><span class="z-text z-plain">│   └── blog/
+</span><span class="z-text z-plain">│       ├── _index.md
+</span><span class="z-text z-plain">│       ├── first.md
+</span><span class="z-text z-plain">│       └── second.md
+</span><span class="z-text z-plain">├── sass/
+</span><span class="z-text z-plain">├── static/
+</span><span class="z-text z-plain">├── templates/
+</span><span class="z-text z-plain">│   ├── base.html
+</span><span class="z-text z-plain">│   ├── blog-page.html
+</span><span class="z-text z-plain">│   ├── blog.html
+</span><span class="z-text z-plain">│   └── index.html
+</span><span class="z-text z-plain">└── themes/
+</span></code></pre>
+<h2 id="Zola主题">Zola主题</h2>
+<h3 id="安装主题">安装主题</h3>
+<p>找到Zola的主题后，可以通过切换到<strong>themes</strong>路径将主题的仓库clone到themes文件夹内</p>
+<h3 id="themes和templates">themes和templates</h3>
+<p>templates中的内容会覆盖themes/templates中的同名内容，可用于修改主题</p>
+<h3 id="使用主题">使用主题</h3>
+<p>由于每个主题对section的处理都有区别，所以推荐直接clone主题仓库后在该仓库内运行<code>zola serve</code>来预览一下主题，在查看一下config.toml以及content中的结构，确定后，迁移config.toml到自己的博客内，同时适配自己的content结构。</p>
+<h3 id="自定义主题">自定义主题</h3>
+<h4 id="模板引擎">模板引擎</h4>
+<p>Zola使用的是Tera模板，所以在使用的时候需要了解一些<a href="https://keats.github.io/tera/docs/#templates">Tera模板的基础语法</a>。</p>
+<h4 id="模块">模块</h4>
+<ol>
+<li>section  当content以及子文件夹中，每出现一个_index.md，即出现一个section</li>
+</ol>
+<pre class="z-code"><code><span class="z-text z-plain">两个section  
+</span><span class="z-text z-plain">├── content/
+</span><span class="z-text z-plain">│   └── blog/
+</span><span class="z-text z-plain">│   │   └── _index.md
+</span><span class="z-text z-plain">│   └── _index.md
+</span></code></pre>
+<ol start="2">
+<li>page section文件夹下面的<code>xxxx.md</code>或者<code>文件夹/index.md</code>这样的形式为page</li>
+</ol>
+<pre class="z-code"><code><span class="z-text z-plain">两个section  
+</span><span class="z-text z-plain">├── content/
+</span><span class="z-text z-plain">│   └── blog/
+</span><span class="z-text z-plain">│   │   └── _index.md
+</span><span class="z-text z-plain">│   │   └── blog文章.md
+</span><span class="z-text z-plain">│   └── _index.md
+</span><span class="z-text z-plain">│   └── 文章B.md
+</span><span class="z-text z-plain">│   └── 文章C/
+</span><span class="z-text z-plain">│   │   └── index.md
+</span><span class="z-text z-plain">│   │   └── 图片素材.png
+</span></code></pre>
+<p>两个section，三个page</p>
+<h4 id="分类">分类</h4>
+<p>要使用分类，需要先在config.toml中设置taxonomies，这里用于添加类目例如(software,platform)
+这样就可以在page中设置page的<strong>software</strong>和<strong>platform</strong>这两个类目的信息</p>
+<pre data-lang="toml" class="language-toml z-code"><code class="language-toml" data-lang="toml"><span class="z-source z-toml"><span class="z-comment z-line z-number-sign z-toml"><span class="z-punctuation z-definition z-comment z-toml">#</span> config.toml</span>
+</span><span class="z-source z-toml"><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">taxonomies</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-punctuation z-definition z-array z-begin z-toml">[</span>
+</span><span class="z-source z-toml">    <span class="z-punctuation z-definition z-inline-table z-begin z-toml">{</span><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">name</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>software<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span><span class="z-punctuation z-separator z-inline-table z-toml">,</span> <span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">feed</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-punctuation z-definition z-inline-table z-end z-toml">}</span><span class="z-punctuation z-separator z-array z-toml">,</span>
+</span><span class="z-source z-toml">    <span class="z-punctuation z-definition z-inline-table z-begin z-toml">{</span><span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">name</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-string z-quoted z-double z-basic z-toml"><span class="z-punctuation z-definition z-string z-begin z-toml">&quot;</span>platform<span class="z-punctuation z-definition z-string z-end z-toml">&quot;</span></span><span class="z-punctuation z-separator z-inline-table z-toml">,</span> <span class="z-meta z-tag z-key z-toml"><span class="z-entity z-name z-tag z-toml">feed</span></span> <span class="z-punctuation z-definition z-key-value z-toml">=</span> <span class="z-constant z-language z-toml">true</span><span class="z-punctuation z-definition z-inline-table z-end z-toml">}</span><span class="z-punctuation z-separator z-array z-toml">,</span>
+</span><span class="z-source z-toml"><span class="z-punctuation z-definition z-array z-end z-toml">]</span>
+</span></code></pre>
+<pre data-lang="md" class="language-md z-code"><code class="language-md" data-lang="md"><span class="z-text z-html z-markdown"><span class="z-meta z-block-level z-markdown"><span class="z-markup z-heading z-1 z-markdown"><span class="z-punctuation z-definition z-heading z-begin z-markdown">#</span> </span><span class="z-markup z-heading z-1 z-markdown"><span class="z-entity z-name z-section z-markdown">xxx.md</span><span class="z-meta z-whitespace z-newline z-markdown">
+</span></span></span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">[taxonomies] 
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">software = [&quot;Unity&quot;]
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">platform = [&quot;IOS&quot;]
+</span></span></code></pre>
+<h4 id="搜索功能"><a href="https://www.getzola.org/documentation/content/search/">搜索功能</a></h4>
+<p>zola可以生成用于搜索的数据，通过<code>build_search_index = true</code>即可生成搜索用的json数据，使用时需要配合elasticlunr或者fuse.</p>
+<h4 id="其他相关的文档链接">其他相关的文档链接</h4>
+<ol>
+<li><a href="https://www.getzola.org/documentation/templates/pages-sections/">内置变量</a></li>
+<li><a href="https://www.getzola.org/documentation/templates/overview/#built-in-functions">内置函数</a></li>
+<li><a href="https://www.getzola.org/documentation/templates/overview">Overview</a></li>
+</ol>
+<h4 id="Tailwild（可选）">Tailwild（可选）</h4>
+<p>参考 https://www.printlnhello.world/blog/zola-tailwindcss/<br />
+总结起来就是安装tailwindcss，在启动zola之前，先使用tailwind生成css到static文件夹内</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    var bg = document.getElementById("first-page-bg");
+    function resize() {
+        var meta = document.querySelector("body > div.content > main > article > div.title > div.meta")
+        var rect = meta.getBoundingClientRect();
+        var height = rect.bottom + 10;
+        bg.style.height = height + "px";
+        bg.style.minHeight = height + "px";
+        bg.style.maxHeight = height + "px";
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        resize();
+    })
+
+    window.addEventListener("resize", () => {
+        resize();
+    })
+
+    window.addEventListener('scroll', function () {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        const scrollValue = window.scrollY;
+        const per = 8; // 1/8的时候就到达30
+        const target = 30;
+        const unit = height / target;
+        var b = Math.min(per * scrollValue / unit, target);
+        const netBlur = `blur(${b}px)`;
+        bg.style.filter = netBlur;
+    });
+</script>
+
+
+</html>
